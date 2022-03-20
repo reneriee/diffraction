@@ -1,0 +1,14 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 28: expected ':' not found.
+    label choice_thatplace
+                          ^
+
+File "game/script.rpy", line 34: expected ':' not found.
+    label choice_Store
+                      ^
+
+Ren'Py Version: Ren'Py 7.4.11.2266
+Fri Jan 14 18:13:44 2022

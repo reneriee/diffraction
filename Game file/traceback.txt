@@ -1,0 +1,22 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 26, in script
+    jump choice_store
+ScriptError: could not find label 'choice_store'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 26, in script
+    jump choice_store
+  File "renpy/ast.py", line 1757, in execute
+    rv = renpy.game.script.lookup(target)
+  File "renpy/script.py", line 918, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'choice_store'.
+
+Windows-10-10.0.19041
+Ren'Py 7.4.11.2266
+Diffraction 1.0
+Fri Jan 14 18:16:11 2022
