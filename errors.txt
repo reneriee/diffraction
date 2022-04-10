@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 28: expected ':' not found.
-    label choice_thatplace
+File "game/screens.rpy", line 302: expected a keyword argument, colon, or end of line.
+    imagebutton auto idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" action ShowMenu("preferences")
                           ^
 
-File "game/script.rpy", line 34: expected ':' not found.
-    label choice_Store
-                      ^
-
 Ren'Py Version: Ren'Py 7.4.11.2266
-Fri Jan 14 18:13:44 2022
+Sun Apr 10 17:42:41 2022

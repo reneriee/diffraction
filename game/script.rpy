@@ -1,5 +1,28 @@
 ﻿# The script of the game goes in this file.
 
+# Blur gui function
+# init python:
+#     def is_menu_active():
+#         if renpy.get_screen("preferences"):
+#             return True
+#         else:
+#             return False
+
+#     def blur_bg():
+#         show layer master:
+#             blur 20.0
+
+#     def unblur_bg():
+#         transform choice_bg_transform_show:
+#             blur 0.0
+
+
+# if($is_menu_active):
+#     $blur_bg
+# else:
+#     $unblur_bg
+
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 

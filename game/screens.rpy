@@ -291,27 +291,26 @@ style quick_button_text:
 
 screen navigation():
 
-    vbox:
+    hbox:
         style_prefix "navigation"
 
-        xpos gui.navigation_xpos
-        yalign 0.5
-
-        spacing gui.navigation_spacing
+        if renpy.get_screen('navigation'):
+            xalign 1
+            yalign 0.5
 
         if main_menu:
-
-            textbutton _("Start") action Start()
+            imagebutton idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" xpos 160 ypos 55 action ShowMenu("preferences")
+            imagebutton idle "gui/imagebuttons/gallery_tab_idle.png" selected_idle "gui/imagebuttons/gallery_tab_selected_idle.png" hover "gui/imagebuttons/gallery_tab_selected_idle.png" xpos 190 ypos 55 action ShowMenu("gallery")
+            imagebutton idle "gui/imagebuttons/load_tab_idle.png" selected_idle "gui/imagebuttons/load_tab_selected_idle.png" hover "gui/imagebuttons/load_tab_selected_idle.png" xpos 210 ypos 55 action ShowMenu("load")
+            imagebutton idle "gui/imagebuttons/tracks_tab_idle.png" selected_idle "gui/imagebuttons/tracks_tab_selected_idle.png" hover "gui/imagebuttons/tracks_tab_selected_idle.png" xpos 230 ypos 55 action ShowMenu("tracks")
 
         else:
-
-            textbutton _("History") action ShowMenu("history")
-
-            textbutton _("Save") action ShowMenu("save")
-
-        textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
+            imagebutton idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" xpos 160 ypos 55 action ShowMenu("preferences")
+            imagebutton idle "gui/imagebuttons/gallery_tab_idle.png" selected_idle "gui/imagebuttons/gallery_tab_selected_idle.png" hover "gui/imagebuttons/gallery_tab_selected_idle.png" xpos 190 ypos 55 action ShowMenu("gallery")
+            imagebutton idle "gui/imagebuttons/load_tab_idle.png" selected_idle "gui/imagebuttons/load_tab_selected_idle.png" hover "gui/imagebuttons/load_tab_selected_idle.png" xpos 210 ypos 55 action ShowMenu("load")
+            imagebutton idle "gui/imagebuttons/save_tab_idle.png" selected_idle "gui/imagebuttons/save_tab_selected_idle.png" hover "gui/imagebuttons/save_tab_selected_idle.png" xpos 230 ypos 55 action ShowMenu("save")
+            imagebutton idle "gui/imagebuttons/tracks_tab_idle.png" selected_idle "gui/imagebuttons/tracks_tab_selected_idle.png" hover "gui/imagebuttons/tracks_tab_selected_idle.png" xpos 250 ypos 55 action ShowMenu("tracks")
+            imagebutton idle "gui/imagebuttons/history_tab_idle.png" selected_idle "gui/imagebuttons/history_tab_selected_idle.png" hover "gui/imagebuttons/history_tab_selected_idle.png" xpos 270 ypos 55 action ShowMenu("history")
 
         if _in_replay:
 
@@ -321,18 +320,17 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+       
+        # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+        #     ## Help isn't necessary or relevant to mobile devices.
+        #     textbutton _("Help") action ShowMenu("help")
 
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+        # if renpy.variant("pc"):
 
-        if renpy.variant("pc"):
-
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+        #     ## The quit button is banned on iOS and unnecessary on Android and
+        #     ## Web.
+        #     textbutton _("Quit") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -365,7 +363,38 @@ screen main_menu():
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+
+    vbox:
+        style_prefix "navigation"
+
+        if renpy.get_screen('main_menu'):
+            xalign 0.5
+            yalign 0.5
+
+        if main_menu:
+            spacing gui.navigation_spacing
+
+            textbutton _("Start") action Start()
+            textbutton _("About") action ShowMenu("about")
+            textbutton _("Load") action ShowMenu("load")
+            textbutton _("Preferences") action ShowMenu("preferences")
+
+        if _in_replay:
+
+            textbutton _("End Replay") action EndReplay(confirm=True)
+
+
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+            ## Help isn't necessary or relevant to mobile devices.
+            textbutton _("Help") action ShowMenu("help")
+
+        if renpy.variant("pc"):
+
+            ## The quit button is banned on iOS and unnecessary on Android and
+            ## Web.
+            textbutton _("Quit") action Quit(confirm=not main_menu)
+
 
     if gui.show_name:
 
@@ -528,12 +557,50 @@ style game_menu_label:
 style game_menu_label_text:
     size gui.title_text_size
     color gui.accent_color
-    yalign 0.5
+    yalign 1.5
+    xpos 80
 
 style return_button:
     xpos gui.navigation_xpos
     yalign 1.0
     yoffset -45
+
+
+
+## Gallery screen ################################################################
+##
+screen gallery():
+
+    tag menu
+
+    ## This use statement includes the game_menu screen inside this one. The
+    ## vbox child is then included inside the viewport inside the game_menu
+    ## screen.
+    use game_menu(_("Gallery"), scroll="viewport"):
+
+        style_prefix "gallery"
+
+        vbox:
+            text _("this is supposed to be the gallery")
+
+
+
+## Tracks screen ################################################################
+##
+screen tracks():
+
+    tag menu
+
+    ## This use statement includes the game_menu screen inside this one. The
+    ## vbox child is then included inside the viewport inside the game_menu
+    ## screen.
+    use game_menu(_("Tracks"), scroll="viewport"):
+
+        style_prefix "tracks"
+
+        vbox:
+            text _("this is supposed to be the tracks")
+
 
 
 ## About screen ################################################################
