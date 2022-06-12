@@ -1,6 +1,4 @@
-###################################################
 ## GENERAL ########################################
-###################################################
 
 style text_shadow:
     drop_shadow  [(2, 2)] 
@@ -25,8 +23,6 @@ style game_menu_title_text:
 style box:
     background None
 
-
-#############################################
 # -------------------------------------------
 
 #### Preferences screen ####
@@ -91,3 +87,6 @@ style slider_value_max:
     size 24
     font "Exo-Regular.ttf" 
     ypos 3
+
+
+#### Save/Load screens ####

@@ -353,9 +353,10 @@ screen navigation():
 
         if main_menu:
             imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 action ShowMenu("preferences")
-            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 190 ypos 55 action ShowMenu("gallery")
-            imagebutton auto "loadtab_%s.png" focus_mask True xpos 210 ypos 55 action ShowMenu("load")
-            imagebutton auto "trackstab_%s.png" focus_mask True xpos 230 ypos 55 action ShowMenu("tracks")
+            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 action ShowMenu("gallery")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 action ShowMenu("load")
+            imagebutton auto "trackstab_%s.png" focus_mask True xpos 222 ypos 55 action ShowMenu("tracks")
+            image "gui/tabs_border_home.png" ypos 115 xpos -841
 
         else:
             imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 action ShowMenu("preferences")
@@ -365,6 +366,7 @@ screen navigation():
             imagebutton auto "trackstab_%s.png" focus_mask True xpos 242 ypos 55 action ShowMenu("tracks")
             imagebutton auto "historytab_%s.png" focus_mask True xpos 262 ypos 55 action ShowMenu("history")
             image "gui/tabs_border.png" ypos 115 xpos -1330
+
 
 
         if _in_replay:
@@ -732,7 +734,9 @@ screen file_slots(title):
                 style "page_label"
 
                 key_events True
-                xalign 0.5
+                xalign 1.0
+                yalign 0
+
                 action page_name_value.Toggle()
 
                 input:
@@ -742,11 +746,11 @@ screen file_slots(title):
             ## The grid of file slots.
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
+                xalign 0
+                yalign 0
+                yfill True
 
-                xalign 0.5
-                yalign 0.5
-
-                spacing gui.slot_spacing
+                spacing 10
 
                 for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
@@ -754,7 +758,7 @@ screen file_slots(title):
 
                     button:
                         action FileAction(slot)
-
+                        
                         has vbox
 
                         add FileScreenshot(slot) xalign 0.5
