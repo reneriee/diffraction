@@ -25,25 +25,26 @@ transform blinkwait:
 
 #Persistent MC Portrait
 init python:
-     config.side_image_tag = "MC"
+    config.side_image_tag = "MC"
 
-transform change_transform(old,new):
-    contains:
-        old
-        alpha 1.0
-        align 0.02 yalign 1.0
-        linear 0.3 alpha 0.0
-    contains:
-        new
-        xalign 0.02 yalign 1.0
-        linear 0.3 alpha 1.0
+# transform change_transform(old,new):
+#     contains:
+#         old
+#         alpha 1.0
+#         align 0.02 yalign 1.0
+#         linear 0.3 alpha 0.0
+#     contains:
+#         new
+#         xalign 0.02 yalign 1.0
+#         linear 0.3 alpha 1.0
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define f = Character("Faine", image="Faine")
-define h = Character("Hen", image="Hen")
+define f = Character("Faine", image="MC")
+define h = Character("Hen", image="MC")
 define mc = Character("MC", image="MC")
+define na = Character("???")
 
 image side MC = LayeredImageProxy("MC", Transform(crop=(0,1,1533,1400), zoom=0.3))
 

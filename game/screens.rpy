@@ -4,7 +4,6 @@
 
 init offset = -1
 
-
 ################################################################################
 ## Styles
 ################################################################################
@@ -64,6 +63,7 @@ style slider:
     ysize gui.slider_size
     base_bar Frame("gui/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
     thumb "gui/slider/horizontal_[prefix_]thumb.png"
+    thumb_offset 7 
 
 style vslider:
     xsize gui.slider_size
@@ -95,9 +95,14 @@ style frame:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
+default persistent.show_mc_side_image = True
+
 screen say(who, what):
     style_prefix "say"
 
+    if persistent.show_mc_side_image:
+        add SideImage()
+        
     window:
         id "window"
 
@@ -131,12 +136,12 @@ style namebox_label is say_label
 
 
 style window:
-    xalign 0.5
+    xalign 0
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/textbox.png", xalign=0, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -246,21 +251,37 @@ screen quick_menu():
     zorder 100
 
     if quick_menu:
+        vbox:
+            xalign 0.901
+            yalign 2.118
 
-        hbox:
-            style_prefix "quick"
+            imagebutton auto "quickprefs_%s.png" focus_mask True xpos 28 ypos 193 action ShowMenu('preferences')
+            button:
+                add "quickmain_button"
+                focus_mask True 
+                xpos -9 
+                ypos -1 
+                action MainMenu()
+            imagebutton auto "quickhistory_%s.png" focus_mask True xpos 0 ypos 105 action ShowMenu('history')
+            imagebutton auto "quickauto_%s.png" focus_mask True xpos -50 ypos -100 action Preference("auto-forward", "toggle")
+            imagebutton auto "quickskip_%s.png" focus_mask True xpos 135 ypos -260 action Skip() alternate Skip(fast=True, confirm=True)
+            imagebutton auto "quicksave_%s.png" focus_mask True xpos 229 ypos 6 action ShowMenu('save')
+            imagebutton auto "quickload_%s.png" focus_mask True xpos 229 ypos 161 action ShowMenu('load')
+           
 
-            xalign 0.5
-            yalign 1.0
+        # hbox:
+        #     style_prefix "quick"
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+        #     xalign 0.5
+        #     yalign 1.0
+
+            # textbutton _("Back") action Rollback()
+            # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            # textbutton _("Auto") action Preference("auto-forward", "toggle")
+            # textbutton _("Save") action ShowMenu('save')
+            # textbutton _("Q.Save") action QuickSave()
+            # textbutton _("Q.Load") action QuickLoad()
+            # textbutton _("Prefs") action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -281,6 +302,42 @@ style quick_button_text:
 
 
 ################################################################################
+## Outer Frame and Weather Screens (Widgets)
+################################################################################
+
+screen widgets:
+    image "weatherbg.png" yalign 0.03 xalign 0
+    image "camera_icons.png" yalign 0.03 xalign 0.99
+    text "[month]/"yalign 0.03 xalign 0.07 style "date_small"
+    text "[day]" yalign 0.03 xalign 0.09 style "date_big"
+    text "[dayofweek]" yalign 0.08 xalign 0.07 at drop_shadow_blur style "text_shadow"
+    text "[dayofweek]" yalign 0.08 xalign 0.07 style "day_name"
+    text "[temperature] ° " yalign 0.1 xalign 0 style "temperature_text"
+
+    if weather == "sunny":
+        add "sunny.png" yalign 0.03 xalign 0
+    elif weather == "rainy":
+        add "rainy.png" yalign 0.03 xalign 0
+
+
+style date_small is text:
+    font "digital-7.ttf"
+    size 41
+
+style date_big is text:
+    font "digital-7.ttf"
+    size 55
+
+style day_name is text:
+    color gui.accent_color
+    size 25
+    font "Exo-Medium.ttf"
+
+style temperature_text is text:
+    font "Exo-Medium.ttf"
+    size 25
+
+################################################################################
 ## Main and Game Menu Screens
 ################################################################################
 
@@ -299,28 +356,26 @@ screen navigation():
             yalign 0.5
 
         if main_menu:
-            imagebutton idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" xpos 160 ypos 55 action ShowMenu("preferences")
-            imagebutton idle "gui/imagebuttons/gallery_tab_idle.png" selected_idle "gui/imagebuttons/gallery_tab_selected_idle.png" hover "gui/imagebuttons/gallery_tab_selected_idle.png" xpos 190 ypos 55 action ShowMenu("gallery")
-            imagebutton idle "gui/imagebuttons/load_tab_idle.png" selected_idle "gui/imagebuttons/load_tab_selected_idle.png" hover "gui/imagebuttons/load_tab_selected_idle.png" xpos 210 ypos 55 action ShowMenu("load")
-            imagebutton idle "gui/imagebuttons/tracks_tab_idle.png" selected_idle "gui/imagebuttons/tracks_tab_selected_idle.png" hover "gui/imagebuttons/tracks_tab_selected_idle.png" xpos 230 ypos 55 action ShowMenu("tracks")
+            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 action ShowMenu("preferences")
+            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 190 ypos 55 action ShowMenu("gallery")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 210 ypos 55 action ShowMenu("load")
+            imagebutton auto "trackstab_%s.png" focus_mask True xpos 230 ypos 55 action ShowMenu("tracks")
 
         else:
-            imagebutton idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" xpos 160 ypos 55 action ShowMenu("preferences")
-            imagebutton idle "gui/imagebuttons/gallery_tab_idle.png" selected_idle "gui/imagebuttons/gallery_tab_selected_idle.png" hover "gui/imagebuttons/gallery_tab_selected_idle.png" xpos 190 ypos 55 action ShowMenu("gallery")
-            imagebutton idle "gui/imagebuttons/load_tab_idle.png" selected_idle "gui/imagebuttons/load_tab_selected_idle.png" hover "gui/imagebuttons/load_tab_selected_idle.png" xpos 210 ypos 55 action ShowMenu("load")
-            imagebutton idle "gui/imagebuttons/save_tab_idle.png" selected_idle "gui/imagebuttons/save_tab_selected_idle.png" hover "gui/imagebuttons/save_tab_selected_idle.png" xpos 230 ypos 55 action ShowMenu("save")
-            imagebutton idle "gui/imagebuttons/tracks_tab_idle.png" selected_idle "gui/imagebuttons/tracks_tab_selected_idle.png" hover "gui/imagebuttons/tracks_tab_selected_idle.png" xpos 250 ypos 55 action ShowMenu("tracks")
-            imagebutton idle "gui/imagebuttons/history_tab_idle.png" selected_idle "gui/imagebuttons/history_tab_selected_idle.png" hover "gui/imagebuttons/history_tab_selected_idle.png" xpos 270 ypos 55 action ShowMenu("history")
+            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 action ShowMenu("preferences")
+            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 action ShowMenu("gallery")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 action ShowMenu("load")
+            imagebutton auto "savetab_%s.png" focus_mask True xpos 222 ypos 55 action ShowMenu("save")
+            imagebutton auto "trackstab_%s.png" focus_mask True xpos 242 ypos 55 action ShowMenu("tracks")
+            imagebutton auto "historytab_%s.png" focus_mask True xpos 262 ypos 55 action ShowMenu("history")
+            image "gui/tabs_border.png" ypos 115 xpos -1330
+
 
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
-
-       
         # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
         #     ## Help isn't necessary or relevant to mobile devices.
@@ -507,7 +562,8 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
         action Return()
 
-    label title
+    text title xpos 186 ypos 178 size 40 at drop_shadow_blur style "text_shadow"            
+    label title style "game_menu_title"
 
     if main_menu:
         key "game_menu" action ShowMenu("main_menu")
@@ -533,16 +589,16 @@ style game_menu_outer_frame:
     background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
-    xsize 420
+    xsize 190
     yfill True
 
 style game_menu_content_frame:
-    left_margin 60
+    left_margin 0
     right_margin 30
-    top_margin 15
+    top_margin 100
 
 style game_menu_viewport:
-    xsize 1380
+    xsize 1800
 
 style game_menu_vscrollbar:
     unscrollable gui.unscrollable
@@ -552,7 +608,7 @@ style game_menu_side:
 
 style game_menu_label:
     xpos 75
-    ysize 180
+    ysize 100
 
 style game_menu_label_text:
     size gui.title_text_size
@@ -564,7 +620,6 @@ style return_button:
     xpos gui.navigation_xpos
     yalign 1.0
     yoffset -45
-
 
 
 ## Gallery screen ################################################################
@@ -778,91 +833,133 @@ style slot_button_text:
 ## themselves.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
+
 screen preferences():
 
     tag menu
 
     use game_menu(_("Preferences"), scroll="viewport"):
         vbox:
-
-            hbox:
+            vbox:
                 box_wrap True
 
                 if renpy.variant("pc") or renpy.variant("web"):
 
-                    vbox:
+                    hbox:
                         style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
+                        label _("Display") style "pref_label"
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                        textbutton _("Windowed") action Preference("display", "window")
 
-                vbox:
+                hbox:
                     style_prefix "radio"
-                    label _("Rollback Side")
+                    label _("Rollback Side") style "pref_label"
                     textbutton _("Disable") action Preference("rollback side", "disable")
                     textbutton _("Left") action Preference("rollback side", "left")
                     textbutton _("Right") action Preference("rollback side", "right")
 
-                vbox:
+                hbox:
                     style_prefix "check"
-                    label _("Skip")
+                    label _("Skip") style "pref_label"
                     textbutton _("Unseen Text") action Preference("skip", "toggle")
                     textbutton _("After Choices") action Preference("after choices", "toggle")
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+
+                hbox:
+                    style_prefix "radio"
+                    label _("Protagonist Portrait") style "pref_label"
+                    textbutton _("On") action SetField(persistent, 'show_mc_side_image', True)
+                    textbutton _("Off") action SetField(persistent, 'show_mc_side_image', False)
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
 
             null height (4 * gui.pref_spacing)
 
-            hbox:
+            vbox:
                 style_prefix "slider"
                 box_wrap True
-
-                vbox:
-
-                    label _("Text Speed")
-
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-
-                    bar value Preference("auto-forward time")
-
-                vbox:
+                
+                hbox:
 
                     if config.has_music:
-                        label _("Music Volume")
+                        label _("BGM Volume") style "pref_label_audio"
 
                         hbox:
+              
+                            frame style "box" right_margin 17:
+
+                                text "0%" style "slider_value_min"
+                        
                             bar value Preference("music volume")
+
+                            frame style "box" left_margin 17:
+                                text "100%" style "slider_value_max"      
+
+                hbox:
 
                     if config.has_sound:
 
-                        label _("Sound Volume")
+                        label _("SFX Volume") style "pref_label_audio"
 
                         hbox:
-                            bar value Preference("sound volume")
+                            frame style "box" right_margin 17:
 
+                                text "0%" style "slider_value_min"
+                        
+                            bar value Preference("sound volume")
+                        
+                            frame style "box" left_margin 17:
+                                text "100%" style "slider_value_max"     
+                                
                             if config.sample_sound:
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
+                    # if config.has_voice:
+                    #     label _("Voice Volume")
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                    #     hbox:
+                    #         bar value Preference("voice volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                    #         if config.sample_voice:
+                    #             textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
 
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                        # textbutton _("Mute All"):
+                        #     action Preference("all mute", "toggle")
+                        #     style "mute_all_button"
+
+                frame style "box" top_margin 30: 
+                    vbox:            
+                        hbox:
+
+                            label _("Text Speed") style "pref_label_audio"
+                            
+                            frame style "box" right_margin 17:
+
+                                text "0%" style "slider_value_min"
+                        
+                            bar value Preference("text speed")
+                        
+                            frame style "box" left_margin 17:
+                                text "100%" style "slider_value_max"      
+
+
+                        hbox:
+
+                            label _("Auto Speed") style "pref_label_audio"
+                    
+                            frame style "box" right_margin 17:
+
+                                text "0%" style "slider_value_min"
+                        
+                            bar value Preference("auto-forward time")
+                        
+                            frame style "box" left_margin 17:
+                                text "100%" style "slider_value_max"      
+
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -922,12 +1019,13 @@ style check_button_text:
 
 style slider_slider:
     xsize 525
-
+    
 style slider_button:
     properties gui.button_properties("slider_button")
     yalign 0.5
     left_margin 15
-
+    ypos 80
+    
 style slider_button_text:
     properties gui.button_text_properties("slider_button")
 
