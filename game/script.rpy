@@ -3,9 +3,9 @@
 # Custom gui functions etc
 init python:
 
-# Blur the gui 
-  def do_the_blurry(transform, st, at):    
-    if (renpy.get_screen("preferences") 
+# Blur the gui
+  def do_the_blurry(transform, st, at):
+    if (renpy.get_screen("preferences")
     or renpy.get_screen("gallery")
     or renpy.get_screen("load")
     or renpy.get_screen("save")
@@ -29,10 +29,20 @@ init python:
       store.day = day_now
       store.dayofweek = dayofweek_now
       store.temperature = temperature_now
- 
+
 # Assistant things and variables
 transform blur_bg:
   function do_the_blurry
+
+# Declare characters used by this game. The color argument colorizes the
+# name of the character.
+
+define f = Character("Faine", image="Faine Norm")
+define f2 = Character("Faine", image="Faine Small")
+define f3 = Character("Faine", image="Faine Big")
+define h = Character("Hen", image="MC")
+define mc = Character("MC", image="MC")
+define na = Character("???")
 
 # The game starts here.
 label start:
@@ -51,7 +61,7 @@ label start:
     "(EXIT)"
     hide bg mc room
     show bg scenery
-    mc "Out in the streets."
+    mc neutral "Out in the streets."
     mc "It's raining should have brought umbrella oh well, would have to have left through the door for that."
     mc "Thinking about this I wonder:"
     menu:
@@ -74,10 +84,25 @@ label start:
 
     show bg thatplace
     with fade
-    "(MC thoughts blablabla, this is the place I met faine that day.)"
-    "(Totally forgot wow so emotional, this is a good photo op)"
-    show faine
+    mc judge "(MC thoughts blablabla, this is the place I met faine that day.)"
+    show Faine Norm
+    mc "(Totally forgot wow so emotional, this is a good photo op)"
+    show Faine at hidari
     "You spot someone who resembles your old friend...but is it really him?"
+    f anxious "Who are you?"
+    mc shock "You don't remember me?"
+    f unhappy "No..."
+    show Faine Norm at migi2
+    mc "If that's how you want to be."
+    show Faine Norm at mannaka with poof
+    f "It's just how I am."
+    show Faine Small with poof
+    mc sad "You don't have to be so harsh about it."
+    f anxious "Oh."
+    f thoughtful "Sorry about that. I didn't mean to be."
+    "Faine takes a small step towards you."
+    show Faine Big with poof
+    f3 "I am big now."
     "To be continued..."
     jump choice_done
 

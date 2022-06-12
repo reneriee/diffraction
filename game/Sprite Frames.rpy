@@ -7,7 +7,19 @@ transform same_transform(old, new):
 
 define config.side_image_same_transform = same_transform
 
-define config.side_image_only_not_showing = False
+transform migi:
+    xalign 1.3
+
+transform migi2:
+    xalign 1.7
+
+transform hidari:
+    xalign -0.35
+
+transform mannaka:
+    xalign 0.5
+
+define poof = Dissolve(0.2)
 
 transform blinkwait:
     choice:
@@ -25,7 +37,9 @@ transform blinkwait:
 
 #Persistent MC Portrait
 init python:
-    config.side_image_tag = "MC"
+
+    if persistent.show_mc_side_image == True:
+        config.side_image_tag = "MC"
 
 # transform change_transform(old,new):
 #     contains:
@@ -37,14 +51,6 @@ init python:
 #         new
 #         xalign 0.02 yalign 1.0
 #         linear 0.3 alpha 1.0
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define f = Character("Faine", image="MC")
-define h = Character("Hen", image="MC")
-define mc = Character("MC", image="MC")
-define na = Character("???")
 
 image side MC = LayeredImageProxy("MC", Transform(crop=(0,1,1533,1400), zoom=0.3))
 
@@ -91,6 +97,46 @@ layeredimage MC:
         attribute fringe default:
             "mcf"
 
+image Faine Small = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1725), zoom=0.61, xoffset=130, yoffset=5))
+image Faine Norm = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1600), zoom=0.70, xoffset=160, yoffset=5))
+image Faine Big = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1350), zoom=0.85, xoffset=200, yoffset=5))
+
+layeredimage Fainey:
+    always:
+        "ffb1"
+    group eyes:
+        attribute neutral default:
+            "f_neutral_blink"
+        attribute unhappy:
+            "f_unhappy_blink"
+        attribute anxious:
+            "f_anxious_blink"
+        attribute thoughtful:
+            "f_thoughtful_blink"
+        attribute eyesclosed:
+            "ffdb"
+    group brows:
+        attribute neutral default:
+            "ffe1br"
+        attribute unhappy:
+            "ffe2br"
+        attribute anxious:
+            "ffe3br"
+        attribute thoughtful:
+            "ffe4br"
+    group mouth:
+        attribute neutral default:
+            "ffe1m"
+        attribute unhappy:
+            "ffe2m"
+        attribute anxious:
+            "ffe3m"
+        attribute thoughtful:
+            "ffe4m"
+    group hair:
+        attribute hair default:
+            "fff"
+
 ####BLINKING ANIMATION CODE####
 image MC_neutral_blink:
     "mce1e"
@@ -124,4 +170,38 @@ image MC_sad_blink:
     blinkwait
     "mcdb"
     0.15
+    repeat
+
+image f_neutral_blink:
+    "ffe1e"
+    blinkwait
+    "ffe1b"
+    0.13
+    "ffdb"
+    0.13
+    repeat
+
+image f_unhappy_blink:
+    "ffe2e"
+    blinkwait
+    "ffdb"
+    0.20
+    repeat
+
+image f_anxious_blink:
+    "ffe3e"
+    blinkwait
+    "ffe3b"
+    0.13
+    "ffdb"
+    0.13
+    repeat
+
+image f_thoughtful_blink:
+    "ffe4e"
+    blinkwait
+    "ffe4b"
+    0.13
+    "ffdb"
+    0.13
     repeat

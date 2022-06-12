@@ -1,98 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/screens.rpy", line 780, in execute
-    screen preferences():
-  File "game/screens.rpy", line 780, in execute
-    screen preferences():
-  File "game/screens.rpy", line 784, in execute
-    use game_menu(_("Preferences"), scroll="viewport"):
-  File "game/screens.rpy", line 449, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0):
-  File "game/screens.rpy", line 449, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0):
-  File "game/screens.rpy", line 503, in execute
-    use navigation
-  File "game/screens.rpy", line 292, in execute
-    screen navigation():
-  File "game/screens.rpy", line 292, in execute
-    screen navigation():
-  File "game/screens.rpy", line 294, in execute
-    hbox:
-  File "game/screens.rpy", line 301, in execute
-    if main_menu:
-  File "game/screens.rpy", line 302, in execute
-    imagebutton auto "gui/imagebuttons/prefs_tab_idle.png" idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" action ShowMenu("preferences")
-  File "renpy/common/00defaults.rpy", line 139, in _imagemap_auto_function
-    rv = auto_param % variant
-TypeError: not all arguments converted during string formatting
+  File "game/script.rpy", line 50, in script
+    init python:
+  File "game/script.rpy", line 50, in script
+    init python:
+  File "game/script.rpy", line 52, in <module>
+    if show_mc_side_image == False:
+NameError: name 'show_mc_side_image' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
-    python hide:
-  File "renpy/ast.py", line 928, in execute
+  File "/Users/mellnguyen/Desktop/renpy-7.4.11-sdk/renpy/bootstrap.py", line 331, in bootstrap
+    renpy.main.main()
+  File "/Users/mellnguyen/Desktop/renpy-7.4.11-sdk/renpy/main.py", line 560, in main
+    renpy.game.context().run(node)
+  File "game/script.rpy", line 50, in script
+    init python:
+  File "game/script.rpy", line 50, in script
+    init python:
+  File "/Users/mellnguyen/Desktop/renpy-7.4.11-sdk/renpy/ast.py", line 928, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2245, in py_exec_bytecode
+  File "/Users/mellnguyen/Desktop/renpy-7.4.11-sdk/renpy/python.py", line 2245, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
-    python hide:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
-    ui.interact()
-  File "renpy/ui.py", line 298, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "renpy/display/core.py", line 3325, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
-  File "renpy/display/core.py", line 3737, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "renpy/display/core.py", line 568, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 568, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 568, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/core.py", line 568, in visit_all
-    d.visit_all(callback, seen)
-  File "renpy/display/screen.py", line 436, in visit_all
-    callback(self)
-  File "renpy/display/core.py", line 3737, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "renpy/display/screen.py", line 447, in per_interact
-    self.update()
-  File "renpy/display/screen.py", line 637, in update
-    self.screen.function(**self.scope)
-  File "game/screens.rpy", line 780, in execute
-    screen preferences():
-  File "game/screens.rpy", line 780, in execute
-    screen preferences():
-  File "game/screens.rpy", line 784, in execute
-    use game_menu(_("Preferences"), scroll="viewport"):
-  File "game/screens.rpy", line 449, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0):
-  File "game/screens.rpy", line 449, in execute
-    screen game_menu(title, scroll=None, yinitial=0.0):
-  File "game/screens.rpy", line 503, in execute
-    use navigation
-  File "game/screens.rpy", line 292, in execute
-    screen navigation():
-  File "game/screens.rpy", line 292, in execute
-    screen navigation():
-  File "game/screens.rpy", line 294, in execute
-    hbox:
-  File "game/screens.rpy", line 301, in execute
-    if main_menu:
-  File "game/screens.rpy", line 302, in execute
-    imagebutton auto "gui/imagebuttons/prefs_tab_idle.png" idle "gui/imagebuttons/prefs_tab_idle.png" selected_idle "gui/imagebuttons/prefs_tab_selected_idle.png" hover "gui/imagebuttons/prefs_tab_selected_idle.png" action ShowMenu("preferences")
-  File "renpy/ui.py", line 953, in _imagebutton
-    insensitive = choice(insensitive, insensitive_image, "insensitive")
-  File "renpy/ui.py", line 939, in choice
-    rv = renpy.config.imagemap_auto_function(auto, name)
-  File "renpy/common/00defaults.rpy", line 139, in _imagemap_auto_function
-    rv = auto_param % variant
-TypeError: not all arguments converted during string formatting
+  File "game/script.rpy", line 52, in <module>
+    if show_mc_side_image == False:
+NameError: name 'show_mc_side_image' is not defined
 
-Windows-10-10.0.19041
+Darwin-21.5.0-x86_64-i386-64bit
 Ren'Py 7.4.11.2266
 Diffraction 1.0
-Sun Apr 10 17:43:29 2022
+Sun Jun 12 16:44:07 2022

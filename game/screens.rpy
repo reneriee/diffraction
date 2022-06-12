@@ -63,7 +63,7 @@ style slider:
     ysize gui.slider_size
     base_bar Frame("gui/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
     thumb "gui/slider/horizontal_[prefix_]thumb.png"
-    thumb_offset 7 
+    thumb_offset 7
 
 style vslider:
     xsize gui.slider_size
@@ -100,9 +100,6 @@ default persistent.show_mc_side_image = True
 screen say(who, what):
     style_prefix "say"
 
-    if persistent.show_mc_side_image:
-        add SideImage()
-        
     window:
         id "window"
 
@@ -118,8 +115,8 @@ screen say(who, what):
 
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+    if not renpy.variant("small") and persistent.show_mc_side_image == True:
+            add SideImage() xalign 0.0 yalign 1.0
 
 
 ## Make the namebox available for styling through the Character object.
@@ -258,16 +255,15 @@ screen quick_menu():
             imagebutton auto "quickprefs_%s.png" focus_mask True xpos 28 ypos 193 action ShowMenu('preferences')
             button:
                 add "quickmain_button"
-                focus_mask True 
-                xpos -9 
-                ypos -1 
+                focus_mask True
+                xpos -9
+                ypos -1
                 action MainMenu()
             imagebutton auto "quickhistory_%s.png" focus_mask True xpos 0 ypos 105 action ShowMenu('history')
             imagebutton auto "quickauto_%s.png" focus_mask True xpos -50 ypos -100 action Preference("auto-forward", "toggle")
             imagebutton auto "quickskip_%s.png" focus_mask True xpos 135 ypos -260 action Skip() alternate Skip(fast=True, confirm=True)
             imagebutton auto "quicksave_%s.png" focus_mask True xpos 229 ypos 6 action ShowMenu('save')
             imagebutton auto "quickload_%s.png" focus_mask True xpos 229 ypos 161 action ShowMenu('load')
-           
 
         # hbox:
         #     style_prefix "quick"
@@ -562,7 +558,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
         action Return()
 
-    text title xpos 186 ypos 178 size 40 at drop_shadow_blur style "text_shadow"            
+    text title xpos 186 ypos 178 size 40 at drop_shadow_blur style "text_shadow"
     label title style "game_menu_title"
 
     if main_menu:
@@ -879,22 +875,22 @@ screen preferences():
             vbox:
                 style_prefix "slider"
                 box_wrap True
-                
+
                 hbox:
 
                     if config.has_music:
                         label _("BGM Volume") style "pref_label_audio"
 
                         hbox:
-              
+
                             frame style "box" right_margin 17:
 
                                 text "0%" style "slider_value_min"
-                        
+
                             bar value Preference("music volume")
 
                             frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"      
+                                text "100%" style "slider_value_max"
 
                 hbox:
 
@@ -906,12 +902,12 @@ screen preferences():
                             frame style "box" right_margin 17:
 
                                 text "0%" style "slider_value_min"
-                        
+
                             bar value Preference("sound volume")
-                        
+
                             frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"     
-                                
+                                text "100%" style "slider_value_max"
+
                             if config.sample_sound:
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
@@ -931,34 +927,34 @@ screen preferences():
                         #     action Preference("all mute", "toggle")
                         #     style "mute_all_button"
 
-                frame style "box" top_margin 30: 
-                    vbox:            
+                frame style "box" top_margin 30:
+                    vbox:
                         hbox:
 
                             label _("Text Speed") style "pref_label_audio"
-                            
+
                             frame style "box" right_margin 17:
 
                                 text "0%" style "slider_value_min"
-                        
+
                             bar value Preference("text speed")
-                        
+
                             frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"      
+                                text "100%" style "slider_value_max"
 
 
                         hbox:
 
                             label _("Auto Speed") style "pref_label_audio"
-                    
+
                             frame style "box" right_margin 17:
 
                                 text "0%" style "slider_value_min"
-                        
+
                             bar value Preference("auto-forward time")
-                        
+
                             frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"      
+                                text "100%" style "slider_value_max"
 
 
 style pref_label is gui_label
@@ -1019,13 +1015,13 @@ style check_button_text:
 
 style slider_slider:
     xsize 525
-    
+
 style slider_button:
     properties gui.button_properties("slider_button")
     yalign 0.5
     left_margin 15
     ypos 80
-    
+
 style slider_button_text:
     properties gui.button_text_properties("slider_button")
 
@@ -1486,8 +1482,10 @@ screen nvl(dialogue, items=None):
             textbutton i.caption:
                 action i.action
                 style "nvl_button"
+    if persistent.show_mc_side_image == True:
+        add SideImage() xalign 0.0 yalign 1.0
 
-    add SideImage() xalign 0.0 yalign 1.0
+
 
 
 screen nvl_dialogue(dialogue):
