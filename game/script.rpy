@@ -37,9 +37,7 @@ transform blur_bg:
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define f = Character("Faine", image="Faine Norm")
-define f2 = Character("Faine", image="Faine Small")
-define f3 = Character("Faine", image="Faine Big")
+define f = Character("Faine", image="Faine")
 define h = Character("Hen", image="MC")
 define mc = Character("MC", image="MC")
 define na = Character("???")
@@ -85,16 +83,16 @@ label start:
     show bg thatplace
     with fade
     mc judge "(MC thoughts blablabla, this is the place I met faine that day.)"
-    show Faine Norm
+    show Faine
     mc "(Totally forgot wow so emotional, this is a good photo op)"
     show Faine at hidari
     "You spot someone who resembles your old friend...but is it really him?"
     f anxious "Who are you?"
     mc shock "You don't remember me?"
     f unhappy "No..."
-    show Faine Norm at migi2
+    show Faine at migi2
     mc "If that's how you want to be."
-    show Faine Norm at mannaka with poof
+    show Faine at mannaka with poof
     f "It's just how I am."
     show Faine Small with poof
     mc sad "You don't have to be so harsh about it."
@@ -102,7 +100,10 @@ label start:
     f thoughtful "Sorry about that. I didn't mean to be."
     "Faine takes a small step towards you."
     show Faine Big with poof
-    f3 "I am big now."
+    f "I am big now."
+    hide Faine Big
+    show Faine
+    with poof
     "To be continued..."
     jump choice_done
 

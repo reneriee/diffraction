@@ -98,7 +98,7 @@ layeredimage MC:
             "mcf"
 
 image Faine Small = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1725), zoom=0.61, xoffset=130, yoffset=5))
-image Faine Norm = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1600), zoom=0.70, xoffset=160, yoffset=5))
+image Faine = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1600), zoom=0.70, xoffset=160, yoffset=5))
 image Faine Big = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1350), zoom=0.85, xoffset=200, yoffset=5))
 
 layeredimage Fainey:
