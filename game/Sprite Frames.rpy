@@ -36,10 +36,10 @@ transform blinkwait:
         1.7
 
 #Persistent MC Portrait
-init python:
+#init python:
 
-    if persistent.show_mc_side_image == True:
-        config.side_image_tag = "MC"
+#    if persistent.show_mc_side_image == True:
+#        config.side_image_tag = "MC"
 
 # transform change_transform(old,new):
 #     contains:
@@ -71,6 +71,8 @@ layeredimage MC:
             "MC_sad_blink"
         attribute happy:
             "mce5e"
+        attribute eyesclosed:
+            "mcdb"
     group brows:
         attribute neutral default:
             "mce1br"
@@ -82,6 +84,8 @@ layeredimage MC:
             "mce4br"
         attribute happy:
             "mce5br"
+        attribute eyesclosed:
+            "mce4br"
     group mouth:
         attribute neutral default:
             "mce1m"
@@ -93,6 +97,8 @@ layeredimage MC:
             "mce4m"
         attribute happy:
             "mce5m"
+        attribute eyesclosed:
+            "mce2m"
     group hair:
         attribute fringe default:
             "mcf"
@@ -108,13 +114,15 @@ layeredimage Fainey:
         attribute neutral default:
             "f_neutral_blink"
         attribute unhappy:
-            "f_unhappy_blink"
+            "f_neutral_blink"
         attribute anxious:
             "f_anxious_blink"
         attribute thoughtful:
             "f_thoughtful_blink"
         attribute eyesclosed:
             "ffdb"
+        attribute mixed:
+            "f_anxious_blink"
     group brows:
         attribute neutral default:
             "ffe1br"
@@ -124,6 +132,10 @@ layeredimage Fainey:
             "ffe3br"
         attribute thoughtful:
             "ffe4br"
+        attribute eyesclosed:
+            "ffe1br"
+        attribute mixed:
+            "ffe2br"
     group mouth:
         attribute neutral default:
             "ffe1m"
@@ -133,6 +145,10 @@ layeredimage Fainey:
             "ffe3m"
         attribute thoughtful:
             "ffe4m"
+        attribute eyesclosed:
+            "ffe1m"
+        attribute mixed:
+            "ffe1m"
     group hair:
         attribute hair default:
             "fff"
