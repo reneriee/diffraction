@@ -7,6 +7,7 @@ transform same_transform(old, new):
 
 define config.side_image_same_transform = same_transform
 
+
 transform migi:
     xalign 1.3
 
@@ -14,7 +15,7 @@ transform migi2:
     xalign 1.7
 
 transform hidari:
-    xalign -0.35
+    xalign -0.3
 
 transform mannaka:
     xalign 0.5
@@ -103,9 +104,10 @@ layeredimage MC:
         attribute fringe default:
             "mcf"
 
-image Faine Small = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1725), zoom=0.61, xoffset=130, yoffset=5))
-image Faine = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1600), zoom=0.70, xoffset=160, yoffset=5))
-image Faine Big = LayeredImageProxy("Fainey", Transform(crop=(0,1,2300,1350), zoom=0.85, xoffset=200, yoffset=5))
+image Faine Tiny = LayeredImageProxy("Fainey", Transform(crop=(0,0,1872,2150), zoom=0.45))
+image Faine Small = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1728), zoom=0.60))
+image Faine = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1600), zoom=0.70))
+image Faine Big = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1350), zoom=0.85))
 
 layeredimage Fainey:
     always:
