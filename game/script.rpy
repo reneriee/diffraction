@@ -151,9 +151,9 @@ label start:
     jump choice_done
 
     label choice_done:
+    label mell_cheat:
 
     scene bg black
-
     z "I'll leave Faine in your capable hands, Alright? --Alright. I gotta go or I'll lose the duck!"
     p "Wha- you can’t- ..."
     p "Annnd he’s already gone..."
@@ -182,7 +182,6 @@ label start:
     f "...."
     p "What if I said I wanted to be a T-rex?"
     f "I heard they sell those blow up dinosaur costumes in the next town over?"
-    label mell_cheat:
     p "Ah geeez…"
     hide mini_cg_1 with dissolve
 
@@ -295,7 +294,87 @@ label start:
     mc "Faine ..."
     hide Faine Tiny with poof
     mc "H-hey–!"
+    z "The quiet exclamation is lost in the noisy crowd, as is the sudden flicker of an all too familiar face in the distance."
+    z "Without realizing, I take a few steps forward."
+    mc "(It can't be...)"
+    mc "(Faine?!)"
+    mc "(Why was he here? Where has he been? Did he look different !? -)"
+    z "A million questions surface, but before there’s time to think about it, I’m already running after him."
+    #show Hen Giant with poof
+    z "Only in the rush, I’d forgotten to look where I was going ..."
+    mc "Wai- ... Ngh-"
+    na "Hey- ah- ... Watch it!" with hpunch
+    #show hen cg
+    z "The man I collided with utters a panicked curse as his things clatter to the ground."
+    z "The people around us quickly back away as if to avoid the site of the collision."
+    mc "(There’s no time to worry about this, I have to get up and-)"
+    z "*CRACK*"
+    mc " .... "
+    na " .... "
+    mc "(Oh crap ...)"
+    z "There, beneath my boot, lies a very shiny, very new-looking...and a very broken-beyond-repair smartphone."
 
+    menu:
+        mc "What should I do!?"
+        "Keep running.":
+            mc "(Ugh- I can’t deal with this now, I need to find Faine!)"
+            z "Tearing my glance away from  the cracked phone and the hopefully still disoriented stranger, I turn and run, quickly resuming my pursuit."
+            mc "(It’s probably nothing too bad….right?)"
+            jump Find_Faine
+        "Apologize, then run after Faine.":
+            mc "(Ugh- I can’t deal with this now, I need to find Faine!)"
+            z "Looking up from the cracked phone, I catch the stranger’s gaze and hesitate for a moment."
+            mc "(It’s no good, I don’t have time for this..)"
+            mc "I-I’m sorry! I have to go ..."
+            mc "I’ll come back later!"
+            z "Without looking for a response, I quickly turn to run after Faine once again."
+            #$ Apologize_to_Hen = True
+            jump Find_Faine
+        "Stand around awkwardly.":
+            jump Stay_Hen_1
+        "Stop and apologize to the stanger, attempt to make amends.":
+            jump Stay_Hen_2
+
+    label Stay_Hen_1:
+
+    z "In an instant, all thoughts of pursuing Faine had slipped from my mind in the face of this new scenario."
+    z "Meeting the stranger’s gaze, I quickly step back as he moves to gather up his belongings."
+    z "I find myself unable to do anything but watch."
+    #show Hen shock with
+    na "Nonono ... look at what she’s done to you-..."
+    z "He examines the shattered phone."
+    z "Without so much as looking at me, he begins to frantically press buttons, all the while clutching the device as though it were his injured child."
+    na "Cmon, cmon, please be alive!"
+    z "Unfortunately he seems to have no luck."
+    mc "(Should I help him?)"
+    mc sad "(It’s probably too late for me to do anything now though ... )"
+    z "I continue to hesitate."
+    #show Hen eyesclosed with poof
+    z "A few more attempts later, he finally lowers his hands tellingly, before directing a pointed glance up at me."
+    #show Hen neutral with poof
+    mc judge "(I’m so screwed...)"
+    z "Picking himself and his belongings back up, he moves towards me with a smile?"
+    #show Hen Big smile with poof
+    na "So, it looks like {i}your{/i} foot broke {i}my{/i} phone."
+
+    label Stay_Hen_2:
+    z "In an instant, all thoughts of pursuing Faine had slipped from my mind in the face of this new scenario."
+    z "Meeting the stranger’s gaze, I quickly remove my shoe from his phone."
+    mc "I’m so sorry! Let me help you."
+    z "Without even waiting for confirmation, I move to help him gather up his belongings, which luckily hadn’t scattered too far."
+    #show Hen shock with dissolve
+    z "Meanwhile, without so much as looking at me, he’d begun to frantically press the buttons of his shattered phone, all the while clutching the device as though it were his injured child."
+    na "Cmon, cmon, please be alive!"
+    z "Nervously, I look at the screen, silently hoping it might somehow be less damaged than it looks."
+    mc sad "(Well, either way I really don’t have the money to fix this ... )"
+    z "After a few more failures, he finally lowers his hands."
+    #show Hen eyesclosed with poof
+    na "It’s no good ... it’s dead."
+    #show Hen neutral with poof
+    z "Standing up, he picks up the items I’d returned to him earlier, sliding the phone into his pocket and turning his full attention towards me."
+
+
+    label Find_Faine:
     scene bg mc room
     with fade
 
@@ -414,5 +493,31 @@ label start:
     mc neutral "(I should probably get home before it starts raining anyways...)"
     mc sad "(Mom isn’t going to be happy if I’m late either...)"
 
+    menu:
+        mc "I should..."
+        "I forgot the phone guy! Go back and look for him.":
+            jump Return_Hen
+        "It's been a long day. Let's go home.":
+            z "Leaving the park, I begin to make my way back."
+            jump Go_Home_Early
+
+    label Return_Hen:
+    z "I’d only taken a few steps in the direction of home ... "
+    z " ... when all of a sudden, a thought flashed back into my mind."
+    mc " .... "
+    mc shock " .... "
+    mc "(Wait ... )"
+    mc "(Ah!! Crap I totally forgot about him!!)"
+    #show mini_cg_broken_phone with dissolve
+    mc "(I totally ditched him back there, what was I even thinking?!)"
+    mc sad "(And I was just about to go home too ... hah ...)"
+    mc "(If I go back for him now he’ll probably be super pissed…if he’s even still there ... )"
+    mc "(But then again if I just leave that’s also not right.)"
+    mc judge "(Nevermind how awkward it would be if I ran into him again after this ... )"
+    mc shock "(Agh- what do I do?!)"
+    mc neutral "(Okay, okay…calm down and think ... )"
+    mc "(It’s not that late, so the job fair is still open for a bit ... I think.)"
+    mc "(He might still be there if he’s attending one of the evening events ... maybe???)"
+    mc ""
 
     return
