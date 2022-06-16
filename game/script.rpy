@@ -68,6 +68,7 @@ define b3 = Character("Recruiter 12", image = "migel", ctc = "ctc_arrow", ctc_ti
 image mini_cg_1 = "memory.png"
 
 define flash = Fade(0.1, 0.0, 0.5, color="#666")
+define fadehold = Fade(0.7, 0.3, 0.7)
 
 # The game starts here.
 label start:
@@ -154,11 +155,13 @@ label start:
     label mell_cheat:
 
     scene bg black
-    z "I'll leave Faine in your capable hands, Alright? --Alright. I gotta go or I'll lose the duck!"
+    z "I'll leave Faine in your capable hands, Alright? - Alright!"
+    z "I gotta go or I'll lose the duck!"
     p "Wha- you can’t- ..."
     p "Annnd he’s already gone..."
-    p "... -Figures."
-    p "...We come all the way here and he abandons you to go on a literal wild goose chase...Hey Faine, you okay with this?"
+    p "Figures."
+    p "We come all the way up a mountain and he abandons us to go on a literal wild goose chase."
+    p "Hey Faine, you okay with this?"
     f "I think it was a wild duck chase."
     p "A wild du-....That's really not the point here."
     f "What is the point then?"
@@ -180,7 +183,7 @@ label start:
     f "You’ll do amazing for sure."
     p "...."
     f "...."
-    p "What if I said I wanted to be a T-rex?"
+    p "What if I wanted to be a T-rex?"
     f "I heard they sell those blow up dinosaur costumes in the next town over?"
     p "Ah geeez…"
     hide mini_cg_1 with dissolve
@@ -224,28 +227,28 @@ label start:
     label choice_apologize_repeat:
     mc neutral "Sorry, could you please repeat yourself?"
     b1 "As I was saying, we currently can’t afford to invest in anyone without at least 3 years of relevant work experience."
-    z "The woman vaguely flips through my portfolio, it’s clear based on how quickly she turns each page that she’s barely taking anything in."
+    z "The woman vaguely flips through my portfolio. It’s clear based on how quickly she turns each page that she’s barely taking anything in."
     b1 "Now, that isn’t to say your work isn’t good; you might even be a good fit for our company once you get some experience."
     b1 "But unfortunately, 3 years of personal social media work isn’t quite our standard for “experience”."
     mc sad "...I understand."
 
     hide morgana
-    with dissolve
-
-    scene bg_job
+    hide bg_job
+    show bg_job
     show barty:
         size(765,1120)
         xalign 0.45
         yalign 5
-    with fade
+    with fadehold
 
-    ba "I’m not really a stickler for a set amount of work experience, and I’d be quite happy to give you a chance despite your bland portfolio."
-    ba "But you need to want it, to have a passion for it!"
+    ba "You know-"
+    ba "I’d be quite happy to give you a chance despite your bland, boring portfolio."
+    ba "But you need to want it! To have a passion for it!"
     ba "Our biggest clients all want tasteful, cultured, body shots of themselves and we are a discreet studio dedicated to ART."
     mc judge "...."
     ba "You’re just not convincing me right now with all this social media nonsense…"
     ba "We just can’t take on someone who’s done nothing but play around online over the last few years."
-    ba "If you’re that good, you should start figuring out how to get some solid marketable skills or add some culture to your portfolio."
+    ba "If you’re that good, you should start figuring out how to get some solid marketable skills or add some culture to your portfolio!"
     mc "(No thanks...)"
 
     hide bg_job
@@ -255,7 +258,7 @@ label start:
         size (770,1365)
         xalign 0.45
         yalign -0.05
-    with fade
+    with fadehold
 
     b3 "Wow, your portfolio is excellent!"
     mc shock "(Wait, what?!)"
@@ -273,25 +276,26 @@ label start:
 
     label all_rejections:
 
-    scene bg mc room
+    scene bg_job
     with fade
 
     mc eyesclosed "(No, no, no, no. Nothing but rejections.)"
     mc sad "(I was told applying at job fairs was supposed to be easier but that’s not true at all. At least email rejections aren’t as brutal.)"
     mc "(This was such a waste of time ...)"
-    mc judge "(... I should just put as much distance between myself and Mr. “cultured photos” as possible for now.)"
+    mc judge "(... I should just put as much distance between myself and Mr. “cultured photos” as possible.)"
     mc sad "Hahhh ..."
-    mc "(I wonder what that boy would think of me now ...)"
-    mc "(Would he still tell me that I can make it?)"
-    mc "(There’s probably not much point in thinking about it.)"
-    mc "(Now that I think about it, even though I remember what he said, I can’t remember his name…)"
+    mc judge"({i}That sounds cool, I’m sure you’ll be great.{/i})"
+    mc "(Great my butt.)"
+    mc sad "(I wonder what that boy would think if he saw me today?)"
+    mc "(There’s probably not much point in giving myself a headache over it.)"
+    mc neutral "(But now that I think about it, even though I remember what he said, I can’t remember his name…)"
     mc "(It started with an ‘F’, right? ... Fang?)"
     mc "(No ... was it Frank?)"
     mc "(Maybe it was more of a Finn ... ?)"
     show Faine Tiny with dissolve
     mc shock "(Wait.)"
     mc "(Isn’t that-)"
-    mc "Faine ..."
+    mc "...Faine."
     hide Faine Tiny with poof
     mc "H-hey–!"
     z "The quiet exclamation is lost in the noisy crowd, as is the sudden flicker of an all too familiar face in the distance."
@@ -302,8 +306,8 @@ label start:
     z "A million questions surface, but before there’s time to think about it, I’m already running after him."
     #show Hen Giant with poof
     z "Only in the rush, I’d forgotten to look where I was going ..."
-    mc "Wai- ... Ngh-"
-    na "Hey- ah- ... Watch it!" with hpunch
+    mc "Wai- ... Ngh-" with hpunch
+    na "Hey- ah- ... Watch it!"
     #show hen cg
     z "The man I collided with utters a panicked curse as his things clatter to the ground."
     z "The people around us quickly back away as if to avoid the site of the collision."
@@ -312,7 +316,7 @@ label start:
     mc " .... "
     na " .... "
     mc "(Oh crap ...)"
-    z "There, beneath my boot, lies a very shiny, very new-looking...and a very broken-beyond-repair smartphone."
+    z "There, beneath my shoe, lies a very shiny, very new-looking...and a very broken-beyond-repair smartphone."
 
     menu:
         mc "What should I do!?"
@@ -360,7 +364,7 @@ label start:
     label Stay_Hen_2:
     z "In an instant, all thoughts of pursuing Faine had slipped from my mind in the face of this new scenario."
     z "Meeting the stranger’s gaze, I quickly remove my shoe from his phone."
-    mc "I’m so sorry! Let me help you."
+    mc shock "I’m so sorry! Let me help you."
     z "Without even waiting for confirmation, I move to help him gather up his belongings, which luckily hadn’t scattered too far."
     #show Hen shock with dissolve
     z "Meanwhile, without so much as looking at me, he’d begun to frantically press the buttons of his shattered phone, all the while clutching the device as though it were his injured child."
@@ -503,7 +507,7 @@ label start:
 
     label Return_Hen:
     z "I’d only taken a few steps in the direction of home ... "
-    z " ... when all of a sudden, a thought flashed back into my mind."
+    z " ... When all of a sudden, a thought flashed back into my mind."
     mc " .... "
     mc shock " .... "
     mc "(Wait ... )"
