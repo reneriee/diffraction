@@ -64,6 +64,7 @@ define p = Character("[protag_name]", ctc = "ctc_arrow", ctc_timepause = "ctc_ar
 define b1 = Character("Recruiter 1", image = "morgana", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define ba = Character("Recruiter 5", image = "barty", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define b3 = Character("Recruiter 12", image = "migel", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
+define c = Character("Woman", image = "morgana", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 
 image mini_cg_1 = "memory.png"
 
@@ -155,7 +156,9 @@ label start:
     label mell_cheat:
 
     scene bg black
+
     z "I'll leave Faine in your capable hands, Alright? - Alright!"
+    play music "<loop 0.00>Prologue.mp3" fadein 5.0
     z "I gotta go or I'll lose the duck!"
     p "Wha- you can’t- ..."
     p "Annnd he’s already gone..."
@@ -184,6 +187,7 @@ label start:
     p "...."
     f "...."
     p "What if I wanted to be a T-rex?"
+    stop music fadeout 5.0
     f "I heard they sell those blow up dinosaur costumes in the next town over?"
     p "Ah geeez…"
     hide mini_cg_1 with dissolve
@@ -195,6 +199,7 @@ label start:
 
     show bg_job
     with fade
+
     show blink with Dissolve(0.03)
     show blackscreen with Dissolve(0.03)
     pause 0.1
@@ -208,6 +213,7 @@ label start:
     hide blink with dissolve
 
     mc shock "...Huh?"
+    play music "<loop 0.00>Job_Fair.mp3" fadein 5.0 volume 0.75
     show morgana:
         size(765,1120)
         xalign 0.45
@@ -268,6 +274,7 @@ label start:
     mc judge "(.......Should have known.)"
     b3 "So how about it!? I’m sure we can make it worth your while!"
     mc "(*Sigh*)"
+    stop music fadeout 3.0
     mc sad "I'll give it some thought...thanks."
 
     hide migel
@@ -316,7 +323,7 @@ label start:
     mc " .... "
     na " .... "
     mc "(Oh crap ...)"
-    z "There, beneath my shoe, lies a very shiny, very new-looking...and a very broken-beyond-repair smartphone."
+    z "There, {w=0.5} beneath my shoe,{w=0.5} lies a very shiny, very new-looking {w=0.5}...and a {i}very{/i} broken-beyond-repair smartphone."
 
     menu:
         mc "What should I do!?"
@@ -391,6 +398,7 @@ label start:
     with fade
 
     mc sad "(Finally…)"
+    play music "<loop 0.00>Meeting_v1b.mp3" fadein 3.0 volume 0.65
     mc shock "(....Wait, where did he go?)"
     z "The park appears to be empty."
     z "Or so it seems…"
@@ -496,6 +504,7 @@ label start:
     #put away Faine's profile
     mc neutral "(I should probably get home before it starts raining anyways...)"
     mc sad "(Mom isn’t going to be happy if I’m late either...)"
+    stop music fadeout 3.0
 
     menu:
         mc "I should..."
@@ -522,6 +531,111 @@ label start:
     mc neutral "(Okay, okay…calm down and think ... )"
     mc "(It’s not that late, so the job fair is still open for a bit ... I think.)"
     mc "(He might still be there if he’s attending one of the evening events ... maybe???)"
-    mc ""
+    mc "(I...should probably at least try to do the right thing ... shouldn’t I... )"
+    mc shock "...."
+    z "Just as I am contemplating this, I feel a cold drop of rain hit my cheek."
+    z "Soon, a flurry of heavy raindrops follow."
+    z "Looking up, I find that the sky above has taken on a foreboding shade of gray."
+    mc eyesclosed "UGH!...Fine!!"
+    mc judge "(I SO don’t have the time for this…)"
+    mc "(...But I also don’t think I can just go home after remembering this... )"
+    z "And so without wasting another moment, I begin running through the rain, back towards the building where the job fair is being held."
+
+    scene bg_job
+    with fade
+
+    mc shock "Hah...hah..."
+    z "I pause to catch my breath."
+    mc judge "(I should really stop neglecting my workout routine... )"
+    mc "(Ugh... and my clothes feel all damp from the rain... )"
+    mc eyesclosed "(Okay...focus, focus.)"
+    z "Having caught my breath, I pull myself up, scanning the space ahead for the man with the broken phone."
+    z "The venue is fairly empty at this point, so I can easily see across the expanse of the hall... however..."
+    mc neutral "(Hm... I can’t see him here... )"
+    mc "(Could he have left already?)"
+    mc "(Well he was kind of flashy looking... I guess I could... )"
+    z "Catching sight of a nearby unoccupied booth, I wander over. "
+    mc shock "Excuse me!"
+    z "I catch a woman’s attention."
+    #show woman_sprite with dissolve
+    c "How can I help you?"
+    mc neutral "Well uh... I was looking for someone and I was wondering if maybe you saw him?"
+
+    menu:
+        mc "He-"
+        "Tall, now that I think about it and kind of handsome-":
+            jump Flattering_Choice
+        "Brown-black hair, brown-black eye, brown-black jacket...":
+            jump Uncertain_Choice
+        "(Describe situation in which you encountered him since it drew attention)":
+            jump Uncertain_Choice
+
+    label Uncertain_Choice:
+    mc "Brown-black hair, brown-black eye, brown-black jacket..."
+    z "Suddenly, I am interrupted as a voice speaks up behind me."
+    na "He was tall! Dashing! Handsome! I could fall in love...actually I already have."
+    mc shock "(...?!)"
+    z "I turn... to find the exact man I was looking for, staring down at me."
+    #show Hen with dissolve
+    mc " (Agh! Where did he come from?!)"
+    #show Hen wink with poof
+    mc judge "(...Did he just wink at me?)"
+    z "I open my mouth to speak but he cuts me off."
+    na "Unfortunately I’ve committed a terrible sin!"
+    z "He goes on, raising his hands and speaking as though reciting a dramatic tale."
+    #show Hen eyesclosed with poof
+    na "Yes..how could a girl like me, who smashes someone’s custom, engraved, $5000.00 phone beyond repair and then runs away-"
+    na "-Ever be considered worthy of someone so perfect?"
+    na "I should probably beg for his forgiveness."
+    na "Hope that he might have a bit more integrity than I do."
+    z "His tone might be mistaken for playful joking under different circumstances, however the pointed stare he directs at me tells an entirely different story."
+    mc shock "(....)"
+    #show Hen smile with poof
+    z "He smiles at me, it is absolutely not reassuring."
+    z "For a moment, an awkward silence falls."
+    mc judge "Uhm... "
+    z "I awkwardly make eye contact with the woman who I’d asked for help."
+    z "She continues to smile at me, but is clearly uncomfortable."
+    mc "(Ugh…this is so awkward... )"
+    mc "(We should probably continue this in privacy... )"
+    mc smile "W-well... it... looks like I found him... ! T-thanks... "
+    #hide Hen with dissolve
+    z "Without another word, I quickly turn to leave, soon hearing his footsteps follow behind me."
+    #show Hen neutral with dissolve
+    z "A glance back has him smiling and shrugging at me, as though what just happened wasn’t entirely his doing."
+    #hide Hen with dissolve
+    mc judge "(...He’s kind of starting to irritate me.)"
+    mc eyesclosed "(*Sigh*)"
+    mc neutral "(What should I do?)"
+    mc "(It doesn’t look like he’s going to help me out and make the first move here... )"
+
+    #menu:
+        #"You're feeling slightly petty, walk faster":
+        #"Stop, tell him that was uncalled for, you were trying to find him after all.":
+        #"Stop. Ask him what he wants.":
+        #"Stop, tell him you'd like to make amends.":
+
+    z "A safe distance away from prying ears, I come to a stop, as does he."
+    mc "You realize I was there looking for you, right?"
+    #show Hen neutral with dissolve
+    z "I turn to face him, he looks back at me innocently."
+    na "So?"
+    mc judge "...."
+    mc shock "So I really don’t think you had to go and make a scene like that! It was totally uncalled for!"
+    na "Huuh... "
+    z "He raises an eyebrow at me skeptically, clearly unimpressed with that response."
+    mc "(...)"
+    mc sad "(Okay I probably did deserve this a bit since I did run and abandon him like that... but still!)"
+    mc eyesclosed "*Sigh*"
+    mc neutral "(This is clearly getting me nowhere... )"
+    mc "Okay fine, whatever."
+    mc "I came back to apologize about your phone, so I’m sorry about that…a-and running off afterwards."
+    mc "I’d like to make it up to you somehow."
+    na "Hmmm... ?"
+    #show Hen smile with poof
+    na "And how are you going to do that?"
+    mc "(How am I going to do that?)"
+    mc "(I hadn’t actually thought that far ahead...)"
+
 
     return
