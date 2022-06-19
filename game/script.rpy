@@ -54,10 +54,14 @@ image ctc_arrow:
         repeat
 
 default protag_name = "April"
+default Did_Nothing = False
+default Hen_Name = "???"
+default Otto_Name = "Hat Boy"
+default Lexi_Name = "Purse Girl"
 
 define z = Character (None, ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define f = Character("Faine", image="Faine", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
-define h = Character("Hen", image="MC", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
+define h = Character("[Hen_Name]", image="Hen", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define mc = Character("[protag_name]", image="MC", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define na = Character("???", ctc ="ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define p = Character("[protag_name]", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
@@ -65,8 +69,11 @@ define b1 = Character("Recruiter 1", image = "morgana", ctc = "ctc_arrow", ctc_t
 define ba = Character("Recruiter 5", image = "barty", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define b3 = Character("Recruiter 12", image = "migel", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define c = Character("Woman", image = "morgana", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
+define o = Character("[Otto_Name]", image="Otto", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
+define l = Character("[Lexi_Name]", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 
 image mini_cg_1 = "memory.png"
+image Hen_cg = "Hen_cg.jpg"
 
 define flash = Fade(0.1, 0.0, 0.5, color="#666")
 define fadehold = Fade(0.7, 0.3, 0.7)
@@ -122,22 +129,31 @@ label start:
     mc shock "You don't remember me?"
     f unhappy "No..."
     show Faine at migi
+    show Hen at hidari
     mc "If that's how you want to be."
+    hide Hen
     show Faine at mannaka with poof
+    hide Faine
+    show Hen at mannaka with poof
     f "It's just how I am."
-    show Faine Small with poof
+    show Faine Small at hidari2 with poof
+    show Hen Small at migi2 with poof
     mc sad "You don't have to be so harsh about it."
     f anxious "Oh."
+    hide Hen
     f thoughtful "Sorry about that. I didn't mean to be."
     "Faine takes a small step towards you."
-    show Faine Big with poof
+    show Faine Big at mannaka with poof
     f "I am big now."
     hide Faine Big
     show Faine
     with poof
+    z "It's how it is."
+    hide Faine
+    show Hen Big with poof
     "To be continued..."
     hide bg thatplace
-    hide Faine
+    hide Hen
     jump choice_done
 
     label choice_store:
@@ -153,7 +169,7 @@ label start:
     jump choice_done
 
     label choice_done:
-    label mell_cheat:
+
 
     scene bg black
 
@@ -282,7 +298,7 @@ label start:
     jump all_rejections
 
     label all_rejections:
-
+    label mell_cheat:
     scene bg_job
     with fade
 
@@ -311,18 +327,30 @@ label start:
     mc "(Faine?!)"
     mc "(Why was he here? Where has he been? Did he look different !? -)"
     z "A million questions surface, but before there’s time to think about it, I’m already running after him."
-    #show Hen Giant with poof
     z "Only in the rush, I’d forgotten to look where I was going ..."
+    show Hen Giant shocked with poof
     mc "Wai- ... Ngh-" with hpunch
-    na "Hey- ah- ... Watch it!"
-    #show hen cg
+    hide Hen Giant with poof
+    h "Hey- ah- ... Watch it!"
+
+    scene Hen_cg with dissolve:
+       size (1920, 1080) crop (1460, 1062, 2050, 1116)
+       linear 3 crop (1460, 200, 2050, 1116)
     z "The man I collided with utters a panicked curse as his things clatter to the ground."
+
+    scene Hen_cg:
+        size (1920, 1080)
+    with Dissolve(0.7)
+
     z "The people around us quickly back away as if to avoid the site of the collision."
     mc "(There’s no time to worry about this, I have to get up and-)"
+
+    scene bg_job with dissolve
+
     z "*CRACK*"
     mc " .... "
-    na " .... "
-    mc "(Oh crap ...)"
+    h " .... "
+    mc shock "(Oh crap ...)"
     z "There, {w=0.5} beneath my shoe,{w=0.5} lies a very shiny, very new-looking {w=0.5}...and a {i}very{/i} broken-beyond-repair smartphone."
 
     menu:
@@ -347,43 +375,169 @@ label start:
             jump Stay_Hen_2
 
     label Stay_Hen_1:
-
+    $ Did_Nothing = True
     z "In an instant, all thoughts of pursuing Faine had slipped from my mind in the face of this new scenario."
     z "Meeting the stranger’s gaze, I quickly step back as he moves to gather up his belongings."
     z "I find myself unable to do anything but watch."
-    #show Hen shock with
-    na "Nonono ... look at what she’s done to you-..."
+    show Hen shocked with dissolve
+    h "Nonono ... look at what she’s done to you-..."
     z "He examines the shattered phone."
     z "Without so much as looking at me, he begins to frantically press buttons, all the while clutching the device as though it were his injured child."
-    na "Cmon, cmon, please be alive!"
+    h thoughtful "Cmon, cmon, please be alive!"
     z "Unfortunately he seems to have no luck."
+    show Hen eyesclosed with poof
     mc "(Should I help him?)"
-    mc sad "(It’s probably too late for me to do anything now though ... )"
+    mc sad "(It’s probably too late for me to do anything now though... )"
+    show Hen thoughtful with poof
     z "I continue to hesitate."
-    #show Hen eyesclosed with poof
     z "A few more attempts later, he finally lowers his hands tellingly, before directing a pointed glance up at me."
-    #show Hen neutral with poof
+    show Hen smile with poof
     mc judge "(I’m so screwed...)"
     z "Picking himself and his belongings back up, he moves towards me with a smile?"
-    #show Hen Big smile with poof
-    na "So, it looks like {i}your{/i} foot broke {i}my{/i} phone."
+    show Hen Big smile with poof
+    h "So, it looks like {i}your{/i} foot broke {i}my{/i} phone."
+
+    jump Stay_Hen_Conclusion
 
     label Stay_Hen_2:
     z "In an instant, all thoughts of pursuing Faine had slipped from my mind in the face of this new scenario."
     z "Meeting the stranger’s gaze, I quickly remove my shoe from his phone."
     mc shock "I’m so sorry! Let me help you."
     z "Without even waiting for confirmation, I move to help him gather up his belongings, which luckily hadn’t scattered too far."
-    #show Hen shock with dissolve
+    show Hen shocked with dissolve
     z "Meanwhile, without so much as looking at me, he’d begun to frantically press the buttons of his shattered phone, all the while clutching the device as though it were his injured child."
-    na "Cmon, cmon, please be alive!"
+    h "Cmon, cmon, please be alive!"
+    show Hen thoughtful with poof
     z "Nervously, I look at the screen, silently hoping it might somehow be less damaged than it looks."
     mc sad "(Well, either way I really don’t have the money to fix this ... )"
     z "After a few more failures, he finally lowers his hands."
-    #show Hen eyesclosed with poof
-    na "It’s no good ... it’s dead."
-    #show Hen neutral with poof
+    h eyesclosed "It’s no good ... it’s dead."
+    show Hen avoidant with poof
     z "Standing up, he picks up the items I’d returned to him earlier, sliding the phone into his pocket and turning his full attention towards me."
 
+    jump Stay_Hen_Conclusion
+
+    label Stay_Hen_Conclusion:
+
+    show Hen with dissolve
+    mc shock "Uhm..."
+
+    menu:
+        mc "(What should I do?)"
+        "Tell him you don’t know what to do.":
+            jump Stay_Hen_Conclusion_part2
+        "Ask him how much the phone was worth. See if you have money to fix it.":
+            jump Stay_Hen_Conclusion_part2
+        "It was an accident!!":
+            jump Stay_Hen_Conclusion_part2
+
+    label Stay_Hen_Conclusion_part2:
+
+    mc sad "H-how much would it cost to buy a new one... "
+    mc "(I definitely can’t afford it but... it’s better to know what I’m working with here at least... )"
+    z "Or so I thought."
+    h smile "$5000.00"
+    mc shock "($5000?!?!)"
+    mc "(What sort of phone costs $5000???)"
+    mc "(He’s got to be messing with me-)"
+    mc sad "(But then again his clothes do look kind of expensive... )"
+    mc judge "Are... you making a joke or something?"
+    mc "I’ve never heard of a phone that costs that much... "
+    h neutral "Nope."
+    z "I stare at him for a moment."
+    mc sad "(Is he really being serious...?)"
+    mc shock "Uh... I-I’m sorry but I really don’t have that kind of money... "
+    mc "Is there any other way I could make up for this?"
+
+    if Did_Nothing == True:
+        h smile "Nope."
+        mc shock "(?!?!)"
+        mc "I-!?"
+        h avoidant "I’m just joking. "
+
+    h thoughtful "Hmmm let me see..."
+    z "He makes a show of thinking for a moment."
+    h "How about-"
+    z "He begins, but all of a sudden we are interrupted by a shout."
+    na "Hey Hen! Over here!"
+    show Hen neutral with poof
+    z "A voice calls out, and the stranger before me reflexively turns to look in the direction the voice is coming from."
+    show Hen Tiny at mannaka with dissolve
+    z "Two new people emerge from the crowd, a woman clutching a name brand purse and a boy waving his hand in the air to get our attention."
+    mc shock "(Are they friends of his?)"
+    show Otto Tiny at migi2 with dissolve
+    l "You get lost or something? We’ve been looking all over the campus place for you."
+    o "You didn’t answer your phone either."
+
+    $ Hen_Name = "Hen(?)"
+
+    h eyesclosed "Sorry, sorry, my phone got smashed so I didn’t get anything."
+    show Hen neutral with poof
+    z "He holds up his cracked and dead phone in emphasis."
+    o "Damn, that sucks... "
+    h smile "Yup."
+    z "Everyone waits a beat to see if Hen will explain what happened, but he didn’t seem to elaborate any further."
+    z "He simply shrugs."
+    o "...."
+    l "...."
+    mc judge "...."
+    z "Only then, does the girl seem to notice me."
+    l "Oh, who’s this? Another fan?"
+    z "She seems to study me for a moment."
+    mc shock "(Fan... ? Should I feel offended?)"
+    mc judge "(No, I’m just the person that broke his phone... )"
+    mc neutral "I’m-"
+    h neutral "-A possible new collab."
+    show Hen Tiny wink with poof
+    pause 0.5
+    show Hen Tiny neutral with poof
+    pause 0.1
+    show Hen Tiny wink with poof
+    pause 0.5
+    show Hen Tiny neutral with poof
+    z "Hen cuts me off suddenly, sending the most suggestive winks to the other two."
+    z "It must have been enough because they nod understandingly."
+    mc shock "(Wait, what collab? What does that mean?)"
+    l "Gotcha, we’ll head back to the gym then. Join us after when you’re done."
+    mc "(Done with what? They're clearly not even trying to include me in this conversation-)"
+    z "No one seems to provide further context for anything though and the two walk off to the other end of the auditorium."
+    hide Otto Tiny with dissolve
+    hide Hen Tiny
+    show Hen neutral
+    with dissolve
+    z "Hen turns back towards me as if nothing just happened."
+    h smile "Alright, let’s go, I have the perfect idea."
+    hide Hen with dissolve
+    z "Without so much as waiting for further confirmation, he'd already begun to move, clearly expecting me to follow."
+
+    #CHOICE MENU Here
+
+    mc "Hey- wait a second! Hen... right?"
+    show Hen with dissolve
+    z "Hen turns towards me once more."
+    mc neutral "Where are we going? And at least tell me what we're doing?"
+    mc judge "(I'm not just going somewhere when I have no idea what's going on!)"
+    h "It's Hendric... but Hen is fine."
+    $ Hen_Name = "Hen"
+    h thoughtful "As for where we're going and what we're doing... –"
+    h "...."
+    h smile "We're going to the store so you can buy me some candy."
+    mc shock "(....Candy?)"
+    mc "(I hadn’t thought it was possible to feel any more confused than I already did... )"
+    mc judge "Uhh... I don’t think I understand... "
+    mc "Is this another joke?"
+    h "Nope."
+    mc neutral "We’re... going to the store... so I can buy you candy."
+    h "Yup."
+    mc judge "The store... down the street?"
+    h "Mhm."
+    z "He continues to smile at me as though this makes perfect sense. "
+
+#(This makes no sense at all…)
+#(Am I missing something here? This has to be some sort of prank.)
+#(Was he lying about how much that phone was worth? But even then…–)
+#(Ugh! I don’t understand any of this!)
+#(*Sigh* Okay…he was heading in the direction of the exit closest to the store at least...so maybe he wasn’t lying about that? I can’t think of much he could possibly pull there…)
 
     label Find_Faine:
     scene bg mc room
@@ -523,21 +677,21 @@ label start:
     mc "(Ah!! Crap I totally forgot about him!!)"
     #show mini_cg_broken_phone with dissolve
     mc "(I totally ditched him back there, what was I even thinking?!)"
-    mc sad "(And I was just about to go home too ... hah ...)"
-    mc "(If I go back for him now he’ll probably be super pissed…if he’s even still there ... )"
+    mc sad "(And I was just about to go home too... hah...)"
+    mc "(If I go back for him now he’ll probably be super pissed... if he’s even still there... )"
     mc "(But then again if I just leave that’s also not right.)"
-    mc judge "(Nevermind how awkward it would be if I ran into him again after this ... )"
+    mc judge "(Nevermind how awkward it would be if I ran into him again after this... )"
     mc shock "(Agh- what do I do?!)"
-    mc neutral "(Okay, okay…calm down and think ... )"
-    mc "(It’s not that late, so the job fair is still open for a bit ... I think.)"
-    mc "(He might still be there if he’s attending one of the evening events ... maybe???)"
-    mc "(I...should probably at least try to do the right thing ... shouldn’t I... )"
+    mc neutral "(Okay, okay…calm down and think... )"
+    mc "(It’s not that late, so the job fair is still open for a bit... I think.)"
+    mc "(He might still be there if he’s attending one of the evening events... maybe???)"
+    mc "(I...should probably at least try to do the right thing... shouldn’t I... )"
     mc shock "...."
     z "Just as I am contemplating this, I feel a cold drop of rain hit my cheek."
     z "Soon, a flurry of heavy raindrops follow."
     z "Looking up, I find that the sky above has taken on a foreboding shade of gray."
     mc eyesclosed "UGH!...Fine!!"
-    mc judge "(I SO don’t have the time for this…)"
+    mc judge "(I SO don’t have the time for this... )"
     mc "(...But I also don’t think I can just go home after remembering this... )"
     z "And so without wasting another moment, I begin running through the rain, back towards the building where the job fair is being held."
 
@@ -557,53 +711,73 @@ label start:
     z "Catching sight of a nearby unoccupied booth, I wander over. "
     mc shock "Excuse me!"
     z "I catch a woman’s attention."
-    #show woman_sprite with dissolve
+    show morgana:
+        size(765,1120)
+        xalign 0.45
+        yalign 1
+    with dissolve
     c "How can I help you?"
     mc neutral "Well uh... I was looking for someone and I was wondering if maybe you saw him?"
 
     menu:
         mc "He-"
-        "Tall, now that I think about it and kind of handsome-":
+        "Was tall, now that I think about it and kind of handsome-":
             jump Flattering_Choice
-        "Brown-black hair, brown-black eye, brown-black jacket...":
+        "Had brown-black hair, brown-black eyes, brown-black jacket...":
             jump Uncertain_Choice
         "(Describe situation in which you encountered him since it drew attention)":
             jump Uncertain_Choice
 
     label Uncertain_Choice:
-    mc "Brown-black hair, brown-black eye, brown-black jacket..."
+    mc "He had brown-black hair."
+    mc "Uh, maybe brown-black eyes..."
+    mc sad "A brown-black jacket..."
+    mc "...."
+    z "The look the woman is giving me doesn't seem to be inspiring any confidence."
+    mc "I think he was also... uh... tall-?"
     z "Suddenly, I am interrupted as a voice speaks up behind me."
     na "He was tall! Dashing! Handsome! I could fall in love...actually I already have."
     mc shock "(...?!)"
+    hide morgana with dissolve
     z "I turn... to find the exact man I was looking for, staring down at me."
-    #show Hen with dissolve
+    show Hen with dissolve
     mc " (Agh! Where did he come from?!)"
-    #show Hen wink with poof
+    show Hen wink with poof
+    pause 0.17
+    show Hen neutral with poof
     mc judge "(...Did he just wink at me?)"
     z "I open my mouth to speak but he cuts me off."
-    na "Unfortunately I’ve committed a terrible sin!"
+    h smug "Unfortunately I’ve committed a terrible sin!"
+    show Hen eyesclosed with poof
     z "He goes on, raising his hands and speaking as though reciting a dramatic tale."
-    #show Hen eyesclosed with poof
-    na "Yes..how could a girl like me, who smashes someone’s custom, engraved, $5000.00 phone beyond repair and then runs away-"
-    na "-Ever be considered worthy of someone so perfect?"
-    na "I should probably beg for his forgiveness."
-    na "Hope that he might have a bit more integrity than I do."
+    h smug "Yes..how could a girl like me, who smashes someone’s custom, engraved, $5000.00 phone beyond repair and then runs away-"
+    h "-Ever be considered worthy of someone so perfect?"
+    h "I should probably beg for his forgiveness."
+    h "Hope that he might have a {i}bit{/i} more integrity than I do."
     z "His tone might be mistaken for playful joking under different circumstances, however the pointed stare he directs at me tells an entirely different story."
     mc shock "(....)"
-    #show Hen smile with poof
+    show Hen smile with poof
     z "He smiles at me, it is absolutely not reassuring."
     z "For a moment, an awkward silence falls."
     mc judge "Uhm... "
+    show Hen Small at hidari2
+    show morgana:
+        size(765,1120)
+        xalign 0.80
+        yalign 1
+    with dissolve
     z "I awkwardly make eye contact with the woman who I’d asked for help."
     z "She continues to smile at me, but is clearly uncomfortable."
     mc "(Ugh…this is so awkward... )"
     mc "(We should probably continue this in privacy... )"
-    mc smile "W-well... it... looks like I found him... ! T-thanks... "
-    #hide Hen with dissolve
+    mc happy "W-well... it... looks like I found him... T-thanks...! "
+    hide Hen
+    hide morgana
+    with dissolve
     z "Without another word, I quickly turn to leave, soon hearing his footsteps follow behind me."
-    #show Hen neutral with dissolve
+    show Hen neutral with dissolve
     z "A glance back has him smiling and shrugging at me, as though what just happened wasn’t entirely his doing."
-    #hide Hen with dissolve
+    hide Hen with dissolve
     mc judge "(...He’s kind of starting to irritate me.)"
     mc eyesclosed "(*Sigh*)"
     mc neutral "(What should I do?)"
@@ -617,25 +791,79 @@ label start:
 
     z "A safe distance away from prying ears, I come to a stop, as does he."
     mc "You realize I was there looking for you, right?"
-    #show Hen neutral with dissolve
+    show Hen neutral with dissolve
     z "I turn to face him, he looks back at me innocently."
-    na "So?"
+    h "So?"
     mc judge "...."
     mc shock "So I really don’t think you had to go and make a scene like that! It was totally uncalled for!"
-    na "Huuh... "
+    h thoughtful "Huuh... "
     z "He raises an eyebrow at me skeptically, clearly unimpressed with that response."
-    mc "(...)"
+    mc "(....)"
     mc sad "(Okay I probably did deserve this a bit since I did run and abandon him like that... but still!)"
     mc eyesclosed "*Sigh*"
     mc neutral "(This is clearly getting me nowhere... )"
     mc "Okay fine, whatever."
     mc "I came back to apologize about your phone, so I’m sorry about that…a-and running off afterwards."
     mc "I’d like to make it up to you somehow."
-    na "Hmmm... ?"
-    #show Hen smile with poof
-    na "And how are you going to do that?"
+    h "Hmmm... ?"
+    h smile "And how are you going to do that?"
     mc "(How am I going to do that?)"
     mc "(I hadn’t actually thought that far ahead...)"
+    mc "(Maybe I can tell him I’ll pay him for it when I get more money... )"
+    mc "I'll pay-"
+    show Hen neutral with poof
+    mc "(Wait... wait–)"
+    mc shock "(Didn’t he also say something earlier about it being worth $5000??)"
+    mc "(That can’t possibly be true though... can it?!)"
+    z "I look up to find him smiling at me."
+    h smug "Ah, I did mention that it was worth $5000.00, didn’t I? Brand new, customized, engraved... I almost forgot to mention all that work I probably lost by not being able to access my email."
+    h smile "I’d love to know what you have in mind."
+    mc "I... Uhm... "
+    mc judge "...."
+
+    menu:
+        "You don't know how to make it up to him, but you want to try":
+            jump Want_To_Try
+        "Tell him you'll pay him when you have money (You don't know you will).":
+            jump Pay_Him
+        "Tell him to get lost, it wasn't your fault":
+            jump Get_Lost
+
+    label Pay_Him:
+
+    mc neutral "(I don’t know if this is possible but... ) "
+    show Hen neutral with poof
+    mc shock "I can pay you!"
+    mc neutral "It’ll just have to wait until I have money."
+    h smile "Not interested."
+    mc "What if I find someone to fix your phone for you?"
+    h neutral "No thanks."
+    mc sad "I... don’t have anything else to offer."
+    h "Hm- what a pity."
+    h smile "But luckily for you, I am not only handsome, but also quite merciful."
+    h "I’m sure we’ll think of something."
+    show Hen neutral with poof
+    mc neutral "....?"
+    h "Well, looks like I’ve got to get going now."
+    h "I’ll be in touch."
+    mc shock "Wait- but how will you contact me?"
+    show Hen wink with poof
+    pause 0.17
+    show Hen neutral with poof
+    h "I have my methods."
+    mc judge "(He... has his methods...?)"
+    mc "(What does that mean?)"
+    z "Before I can ask, he’s already turned to leave, giving me a small wave."
+    hide Hen with dissolve
+    mc shock "(Okay then... I guess... ???)"
+    z "Thoroughly confused, I stand around for a good few moments, watching him wander off, until-"
+    mc shock "(Ah crap! what am I doing just standing here?!)"
+    z "I quickly wrestle my phone from my pocket to check the time."
+    mc "(I knew it... it’s already 6:30PM... I’m totally going to be late now!)"
+    z "I quickly begin making my way towards the nearest exit."
+    mc sad "(I hope dad won’t be too upset... )"
+    mc neutral "(I should probably move faster-)"
+    z "And so, I did, beginning my journey home."
 
 
     return
