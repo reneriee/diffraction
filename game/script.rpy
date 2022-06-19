@@ -58,6 +58,8 @@ default Did_Nothing = False
 default Hen_Name = "???"
 default Otto_Name = "Hat Boy"
 default Lexi_Name = "Purse Girl"
+default Kim_Name = "Cashier Woman"
+default Kim_Hen_April_Meet = False
 
 define z = Character (None, ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define f = Character("Faine", image="Faine", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
@@ -71,6 +73,7 @@ define b3 = Character("Recruiter 12", image = "migel", ctc = "ctc_arrow", ctc_ti
 define c = Character("Woman", image = "morgana", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define o = Character("[Otto_Name]", image="Otto", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 define l = Character("[Lexi_Name]", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
+define k = Character("[Kim_Name]", ctc = "ctc_arrow", ctc_timepause = "ctc_arrow", ctc_position = "fixed")
 
 image mini_cg_1 = "memory.png"
 image Hen_cg = "Hen_cg.jpg"
@@ -298,7 +301,7 @@ label start:
     jump all_rejections
 
     label all_rejections:
-    label mell_cheat:
+
     scene bg_job
     with fade
 
@@ -333,7 +336,7 @@ label start:
     hide Hen Giant with poof
     h "Hey- ah- ... Watch it!"
 
-    scene Hen_cg with dissolve:
+    scene Hen_cg with fadehold:
        size (1920, 1080) crop (1460, 1062, 2050, 1116)
        linear 3 crop (1460, 200, 2050, 1116)
     z "The man I collided with utters a panicked curse as his things clatter to the ground."
@@ -464,9 +467,9 @@ label start:
     z "A voice calls out, and the stranger before me reflexively turns to look in the direction the voice is coming from."
     show Hen Tiny at mannaka with dissolve
     z "Two new people emerge from the crowd, a woman clutching a name brand purse and a boy waving his hand in the air to get our attention."
-    mc shock "(Are they friends of his?)"
     show Otto Tiny at migi2 with dissolve
-    l "You get lost or something? We’ve been looking all over the campus place for you."
+    mc shock "(Are they friends of his?)"
+    l "You get lost or something? We’ve been looking all over the campus for you."
     o "You didn’t answer your phone either."
 
     $ Hen_Name = "Hen(?)"
@@ -532,12 +535,216 @@ label start:
     mc judge "The store... down the street?"
     h "Mhm."
     z "He continues to smile at me as though this makes perfect sense. "
+    mc "(This makes no sense at all... )"
+    mc "(Am I missing something here? This has to be some sort of prank.)"
+    mc sad "(Was he lying about how much that phone was worth? But even then... )"
+    mc shock "(Ugh! I don’t understand any of this!)"
+    mc sad "(*Sigh* Okay... he was heading in the direction of the exit closest to the store at least...so maybe he wasn’t lying about that? I can’t think of much he could possibly pull there... )"
 
-#(This makes no sense at all…)
-#(Am I missing something here? This has to be some sort of prank.)
-#(Was he lying about how much that phone was worth? But even then…–)
-#(Ugh! I don’t understand any of this!)
-#(*Sigh* Okay…he was heading in the direction of the exit closest to the store at least...so maybe he wasn’t lying about that? I can’t think of much he could possibly pull there…)
+    menu:
+        mc "Maybe I'll-"
+        "Go with him.":
+            jump Go_With_Hen
+        "Leave while I still can.":
+            jump Dont_Go_With_Hen
+
+    label Go_With_Hen:
+
+    mc judge "(I can’t really tell if I can trust this guy or not... but I do owe him a bit. Plus, I can always leave if things get weird.)"
+    mc neutral "(It’s been a while, but I still know this area well enough.)"
+    mc eyesclosed "Sure then... I guess?"
+    mc sad "...But like I said, I don’t have much money."
+    h neutral "Sure, sure."
+    hide Hen with dissolve
+    z "His distant tone makes it unclear if he was really listening to me as he begins moving once more."
+    z "I hesitantly follow, walking a few steps behind him."
+    mc judge "(I... really hope I won’t regret this... ) "
+    z "As we silently walk towards the venue exit, I am left quite alone to theorize on just what could possibly await me."
+    z "None of my guesses are particularly reassuring. "
+
+    show bg streets 1 with fade
+
+    z "We exit the venue, he looks around for just a moment, then continues to lead the way to the store."
+    mc neutral "(Well it doesn’t seem like he’s going to talk to me... )"
+
+    menu:
+        mc "Maybe I should ask about that collab he mentioned earlier."
+        "Ask him about it.":
+            mc "Hey, about that collab you mentioned-"
+            show Hen with dissolve
+            h "Hmm?"
+            mc "What did that mean by a 'possible new collab'? What collab?"
+            h smile "Oh that. The collab of me getting candy and you paying."
+            h "A collaborative effort."
+            hide Hen with dissolve
+            z "He once again continues onward without even waiting for my response."
+            mc judge "He's clearly not going to give me a proper answer... "
+        "Leave it be.":
+            mc sad "(Probably best to just keep my mouth shut for now... )"
+
+    mc "(He’s walking in the right direction at least.)"
+
+    label mell_cheat:
+    show bg_store with fade
+
+    mc shock "(This is the store... )"
+    z "Before I can even contemplate what would happen next, Hen has already wandered off, swiftly vanishing into one of the more distant aisles."
+    mc "Okay then... –"
+    z "I slowly follow after him."
+    z "Turning the corner, I spot him already crouched in front of a shelf of different gummies."
+    mc judge "(I guess we’re really doing this now... )"
+    z "He looks up at me as I approach... "
+    z "...And immediately extends a selection of packages in my direction, an expectant look on his face."
+    show Hen smile with dissolve
+    h "Hold these."
+    z "I soon find my arms entirely occupied by a large pile of candy."
+    mc "...."
+    mc "(What am I? Your shopping cart?)"
+    z "With his hands now freed up, he seems to stare at the candy selection seriously for a few moments, apparently torn between a pack of multicolored frog gummies and what appears to be a foreign brand of whale gummies."
+    h thoughtful "Hmmm... What do you think? Blue whales or Tree frogs?"
+    mc shock "(This is probably the most serious I’ve seen him look so far... )"
+
+    #menu:
+    #    mc "What were the options again?"
+    #    "Why not both?":
+    #    "Does it matter which one you choose?":
+
+    mc neutral "It’s... just candy... does it make a difference-..."
+    z "I am almost immediately cut off by an indignant gasp."
+    h shocked "Of course it makes a difference! They’re two completely different flavors!"
+    z "He shakes the packets lightly as though to emphasize his point."
+    mc judge "They... are...?"
+    mc "(What’s with him all of a sudden?)"
+    h thoughtful "Multi coloured tree frogs are each flavored by a different fruit, the orange ones are the best if you ask me, it’s so rare to get a decent citrus fruit flavor these days, for that alone they could be considered a great contender, but that’s not all! You see-..."
+    z "He goes on to tell me in immense detail about the superiority of multi-coloured tree frogs over other fruit themed gummies."
+    mc "(What is this guy? Some sort of candy maniac? What’s with all this exposition??)"
+    mc neutral "If they’re so great why don’t you just pick them?"
+    mc sad "(I feel like my brain is melting... )"
+    z "His eyes narrow more in judgment. I can almost feel them say “What do you know? You candy heathen!"
+    h shock "You don’t understand! Gummy whales instead are have a mild mellow-flavoured base that allows the top gummies to not taste as sweet despite them having less citric or acids flavours! If anything they're a better experience despite not being all gummie-"
+    z "It's hard to tell if he's taking a breath during his explanation."
+    mc "(I’m learning way too much about gummies today...)"
+    h thoughtful "So you see, they’re both completely different!"
+    mc judge "I... see... "
+    mc "(I don’t see anything... I just want to go home... )  "
+    mc neutral "Maybe... tree... frogs?"
+    mc judge "(Please don’t ask me why... Please don’t ask me why... )"
+    z "He looks at me carefully for a moment..."
+    show Hen neutral with poof
+    z "...Then slowly gets up and places both into the pile in my arms."
+    mc neutral "(Let's see here-these would be $3, plus that is $11.50 and those $18.75...)"
+    mc shock "(This is way too much!)"
+    z "Something must show on my face because he points at the bags of tree frogs in my arms."
+    h smile "I’ll pay for these ones, it’s fine."
+    mc "G-great..."
+    mc neutral "(What was even the point of making me listen to that speech if you’re just going to get both and pay for some anyways... )"
+    mc sad "(*Sigh* ...I guess I can’t complain since I did break his phone...) "
+    mc neutral "So... is that everything?"
+    mc judge "(I should probably double check I actually have the money for even half of this... )"
+    h thoughtful "Hmm..."
+    z "He looks over the candy aisle once more."
+    h neutral "Yes, that should do for now."
+    mc neutral "(For now... ?)"
+    z "He glances at me briefly as he passes me to head to the checkout desk. "
+    h "Ah, for me to eat this afternoon that is."
+    h smile "Don’t worry, you’ll be all debt-free once you've paid for these."
+    hide Hen with dissolve
+    z "He elaborates, as though in response to my thoughts."
+    mc sad "...."
+    mc shock "(...wait.)"
+    z "I pause for a moment."
+    mc "You’re planning to eat all of these at once?!"
+    z "Somehow it was the least important piece of information revealed in this exchange that turned out to be the most shocking."
+    show Hen neutral with dissolve
+    z "Pausing, he looks back at me."
+    h "Yeah? Why not?"
+    z "He responds plainly as though this is completely normal."
+    mc "You’re going to make yourself so sick-"
+    h smile "It’ll be fine. This is pretty normal for me."
+    mc "(This is normal to him???)"
+    hide Hen with dissolve
+    z "Before I can ask any more questions, he once again turns to head to the cashier, I quickly move to catch up with him, soon placing the absurd amount of candy onto the counter."
+    show Hen with dissolve
+    z "The woman at the cash register raises an eyebrow as Hen quickly picks up a few of the packets he’d said he would be paying for."
+    h smile "She’s paying for all but these ones."
+    z "He gestures towards me loosely as I begin to pull out my wallet."
+    z "The woman glances from me to Hen, her gaze lingering on him for a good few moments before she begins to scan items."
+
+    $ Kim_Hen_April_Meet = True
+
+    z "Hen simply continues to smile as though nothing is strange here."
+    k "That’ll be $11.35, Would you like a bag?"
+    z "Returning my attention to the cash register, I find the woman giving me a patient smile."
+    mc neutral "Ah... y-yes please."
+    z "Remembering what I was doing I resume digging out the cash from my wallet."
+    h neutral "So-... "
+    z "Hen begins to speak, but is immediately cut off."
+    k "No, you’re not getting a discount on this."
+    mc shock "(She knew what he was going to say?)"
+    mc neutral "(Maybe they know each other... )"
+    z "My questions are given no answers as the woman doesn’t even spare him a glance as she continues bagging the candy."
+    z "Hen doesn’t seem to pursue the matter."
+    z "Finally having freed the remainder of my coins from the recesses of my wallet, I hand the woman the money."
+    k "Thank you!"
+    z "She counts the change, then gives me another smile as she hands me the bag before turning to Hen."
+    z "I stand by the counter as I wait for him to complete his purchase, which appears to be a quick affair, without any further dialogue exchanged."
+    h "Okay, let’s go."
+    hide Hen with dissolve
+    z "Hen gives me a short expectant glance, before beginning to head outside."
+    k "Have a nice day!"
+    mc smile "Thanks!"
+    z "Tearing my gaze from the cashier, I slowly begin to follow Hen outside."
+
+    hide bg_store
+    show bg streets 1
+    with fade
+
+    show Hen with dissolve
+    z "Stopping as I find him standing next to the entrance, I hold out the bag of candy."
+    show Hen Big with poof
+    z "He takes it from me, placing his pile of gummies inside."
+    hide Hen Big
+    show Hen neutral
+    with dissolve
+    mc neutral "So what now?"
+    h "Hm?"
+    mc "Well you said that this would be enough to make up for the phone, right?"
+    h "Mhmmm."
+    z "He continues to rummage through the bag of candy."
+    mc shock "But you said your phone cost like $5000 right?…And then you said something about a collab?"
+    mc sad "I... guess I’m just a bit confused."
+    mc neutral "(I kind of assumed he’d had something more elaborate in mind.)"
+    z "He just shrugs at that."
+    mc shock "So this is all then?....I’m off the hook just like that?"
+    h "Pretty much."
+    mc "(Well that was easy?)"
+    mc "I-..."
+    h smile "Well I should get going now."
+    mc "Ah-... oh- okay then."
+    mc "(I guess I shouldn’t argue with him for letting me off so lightly.)"
+    h "See ya!"
+    hide Hen with dissolve
+    z "He raises a hand in a farewell gesture, then turns to leave without so much as a second glance."
+    mc "B-bye!"
+    z "And so, I am all of a sudden left standing alone in the streets."
+    mc neutral "(Well that was an unexpected adventure... )"
+    mc judge "(What a weirdo.)"
+    mc happy "(But, I guess he wasn't as bad as I thought.)"
+    mc neutral "(*Sigh* What to do now... )"
+    z "I look up at the slowly darkening sky."
+    mc "(It looks like it’s going to rain... maybe I should go home while it’s still dry out.)"
+    mc sad "(But...)"
+    #[Show blurry image of the Faine scene or smth?]
+    mc neutral "(...I wonder if that was really Faine back at the job fair.)"
+    z "Even with all that had just unfolded, the earlier encounter had never quite slipped my mind."
+    z "Looking back, I really could no longer say for sure if it wasn’t just a complete stranger, let alone why I had felt so compelled to drop everything and run after him."
+
+    menu:
+        mc "(But somehow...)"
+        "I just can’t seem to let go of this... (Go back to look for Faine)":
+            jump Return_Faine
+        "Nevermind... (Go home)":
+            jump Home_Early
 
     label Find_Faine:
     scene bg mc room

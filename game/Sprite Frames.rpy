@@ -220,7 +220,7 @@ layeredimage Hendric:
         attribute smug:
             "hfe6m"
         attribute eyesclosed:
-            "hfe3m"
+            "hfe5m"
     group hair:
         attribute fringe default:
             "hff"
