@@ -12,10 +12,13 @@ transform migi:
     xalign 1.3
 
 transform migi2:
-    xalign 1.7
+    xalign 0.95
 
 transform hidari:
     xalign -0.3
+
+transform hidari2:
+    xalign 0.05
 
 transform mannaka:
     xalign 0.5
@@ -105,7 +108,7 @@ layeredimage MC:
             "mcf"
 
 image Faine Tiny = LayeredImageProxy("Fainey", Transform(crop=(0,0,1872,2150), zoom=0.45))
-image Faine Small = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1728), zoom=0.60))
+image Faine Small = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1750), zoom=0.58))
 image Faine = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1600), zoom=0.70))
 image Faine Big = LayeredImageProxy("Fainey", Transform(crop=(0,1,1872,1350), zoom=0.85))
 
@@ -154,6 +157,79 @@ layeredimage Fainey:
     group hair:
         attribute hair default:
             "fff"
+
+image Hen Tiny = LayeredImageProxy("Hendric", Transform(crop=(0,1,1800,1975), zoom=0.53))
+image Hen Small = LayeredImageProxy("Hendric", Transform(crop=(0,1,1800,1800), zoom=0.60))
+image Hen = LayeredImageProxy("Hendric", Transform(crop=(0,1,1800,1550), xoffset=50, zoom=0.70))
+image Hen Big = LayeredImageProxy("Hendric", Transform(crop=(0,1,1800,1300), xoffset=50, zoom=0.85))
+image Hen Giant = LayeredImageProxy("Hendric", Transform(crop=(0,1,1800,1500), xoffset=50, zoom=0.90))
+
+layeredimage Hendric:
+    group base:
+        attribute coffee default:
+            "hfb1"
+        attribute monkey:
+            "hfb2"
+    group expressions:
+        attribute neutral default:
+            "h_neutral_blink"
+        attribute avoidant:
+            "h_avoidant_blink"
+        attribute shocked:
+            "h_shocked_blink"
+        attribute smile:
+            "hfe4e"
+        attribute thoughtful:
+            "h_thoughtful_blink"
+        attribute wink:
+            "hfe6e"
+        attribute smug:
+            "h_thoughtful_blink"
+        attribute eyesclosed:
+            "hfdb"
+    group brows:
+        attribute neutral default:
+            "hfe1br"
+        attribute avoidant:
+            "hfe2br"
+        attribute shocked:
+            "hfe3br"
+        attribute smile:
+            "hfe4br"
+        attribute thoughtful:
+            "hfe5br"
+        attribute wink:
+            "hfe6br"
+        attribute smug:
+            "hfe3br"
+        attribute eyesclosed:
+            "hfe1br"
+    group mouth:
+        attribute neutral default:
+            "hfe1m"
+        attribute avoidant:
+            "hfe2m"
+        attribute shocked:
+            "hfe3m"
+        attribute smile:
+            "hfe4m"
+        attribute thoughtful:
+            "hfe5m"
+        attribute wink:
+            "hfe6m"
+        attribute smug:
+            "hfe6m"
+        attribute eyesclosed:
+            "hfe5m"
+    group hair:
+        attribute fringe default:
+            "hff"
+
+image Otto Tiny = LayeredImageProxy("Totto", Transform(crop=(0,1,1800,2100), xoffset= 200, yoffset= 30, zoom=0.50))
+
+layeredimage Totto:
+        always:
+            "otto"
 
 ####BLINKING ANIMATION CODE####
 image MC_neutral_blink:
@@ -221,5 +297,41 @@ image f_thoughtful_blink:
     "ffe4b"
     0.13
     "ffdb"
+    0.13
+    repeat
+
+image h_neutral_blink:
+    "hfe1e"
+    blinkwait
+    "hfe1b"
+    0.13
+    "hfdb"
+    0.13
+    repeat
+
+image h_avoidant_blink:
+    "hfe2e"
+    blinkwait
+    "hfe2b"
+    0.13
+    "hfdb"
+    0.13
+    repeat
+
+image h_shocked_blink:
+    "hfe3e"
+    blinkwait
+    "hfe3b"
+    0.13
+    "hfdb"
+    0.13
+    repeat
+
+image h_thoughtful_blink:
+    "hfe5e"
+    blinkwait
+    "hfe5b"
+    0.13
+    "hfdb"
     0.13
     repeat
