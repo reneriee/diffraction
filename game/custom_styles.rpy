@@ -1,14 +1,15 @@
+
 ## GENERAL ########################################
 
 style text_shadow:
     drop_shadow  [(2, 2)] 
-    drop_shadow_color "#0003"
-    outlines [ (absolute(1), "#0003", absolute(0), absolute(0)) ]
-    color "#0003"
+    drop_shadow_color "#0004"
+    outlines [ (absolute(1), "#0004", absolute(0), absolute(0)) ]
+    color "#0004"
 
 transform drop_shadow_blur:
-    blur 4.0
-    alpha 0.5
+    blur 3.5
+    alpha 0.6
 
 # In game settings screens
 
@@ -90,3 +91,6 @@ style slider_value_max:
 
 
 #### Save/Load screens ####
+style in_game_day_text:
+    ypos -120
+    xpos 340

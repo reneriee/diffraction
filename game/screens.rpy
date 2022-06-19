@@ -108,7 +108,22 @@ screen say(who, what):
             window:
                 id "namebox"
                 style "namebox"
-                text who id "who"
+
+                frame style "box":
+                    xpos -380
+                    ypos 8
+                    image "gui/name_bg.png" ypos -22
+
+                    text "{font=Noto-Sans-JP.otf}「{/font} "+ who + "{font=Noto-Sans-JP.otf} 」{/font} " id "who":
+                        xpos 395
+                        ypos 6
+                        font "CabinetGrotesk-Medium.otf"
+                        at drop_shadow_blur
+
+                    text "{font=Noto-Sans-JP.otf}「{/font} "+ who + "{font=Noto-Sans-JP.otf} 」{/font} " id "who":
+                        xpos 395
+                        ypos 6
+                        font "CabinetGrotesk-Medium.otf"
 
         text what id "what"
 
@@ -131,7 +146,6 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
-
 style window:
     xalign 0
     xfill True
@@ -139,6 +153,11 @@ style window:
     ysize gui.textbox_height
 
     background Image("gui/textbox.png", xalign=0, yalign=1.0)
+
+style window_name:
+    xalign 0
+    xfill True
+    background Image("gui/name_bg.png", xalign=0, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -157,7 +176,6 @@ style say_label:
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
-
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
     ypos gui.dialogue_ypos
@@ -206,13 +224,14 @@ style input:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
+
 screen choice(items):
     style_prefix "choice"
 
     vbox:
         for i in items:
             textbutton i.caption action i.action
-
+            
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -242,28 +261,50 @@ style choice_button_text is default:
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 
+
 screen quick_menu():
 
     ## Ensure this appears on top of other screens.
-    zorder 100
+    zorder 10
 
     if quick_menu:
         vbox:
-            xalign 0.901
-            yalign 2.118
-
-            imagebutton auto "quickprefs_%s.png" focus_mask True xpos 28 ypos 193 action ShowMenu('preferences')
-            button:
-                add "quickmain_button"
-                focus_mask True
-                xpos -9
-                ypos -1
-                action MainMenu()
-            imagebutton auto "quickhistory_%s.png" focus_mask True xpos 0 ypos 105 action ShowMenu('history')
-            imagebutton auto "quickauto_%s.png" focus_mask True xpos -50 ypos -100 action Preference("auto-forward", "toggle")
-            imagebutton auto "quickskip_%s.png" focus_mask True xpos 135 ypos -260 action Skip() alternate Skip(fast=True, confirm=True)
-            imagebutton auto "quicksave_%s.png" focus_mask True xpos 229 ypos 6 action ShowMenu('save')
-            imagebutton auto "quickload_%s.png" focus_mask True xpos 229 ypos 161 action ShowMenu('load')
+            xalign 0.942
+            yalign 0.8985
+  
+            vbox:
+                xpos 50
+                ypos 100
+                button:
+                    add "quickmain_button"
+                    focus_mask True
+                    ypos 30
+                    xpos 2
+                    action MainMenu()
+                button:
+                    add "quickhistory_button" 
+                    focus_mask True
+                    ypos 120
+                    action ShowMenu('history')
+            hbox:
+                button:
+                    add "quickauto_button" 
+                    focus_mask True
+                    xpos 0
+                    action Preference("auto-forward", "toggle")
+                button: 
+                    add "quickprefs_button" 
+                    focus_mask True
+                    ypos 20
+                    xpos -18
+                    action ShowMenu('preferences')
+                button:
+                    add "quickskip_button" 
+                    focus_mask True
+                    xpos -35
+                    action Skip() alternate Skip(fast=True, confirm=True)                
+            # imagebutton auto "quicksave_%s.png" focus_mask True xpos 229 ypos 6 action ShowMenu('save')
+            # imagebutton auto "quickload_%s.png" focus_mask True xpos 229 ypos 161 action ShowMenu('load')
 
         # hbox:
         #     style_prefix "quick"
@@ -302,19 +343,63 @@ style quick_button_text:
 ################################################################################
 
 screen widgets:
-    image "weatherbg.png" yalign 0.03 xalign 0
+    image "weatherbg.png" yalign 0.03 xalign -0.01
     image "camera_icons.png" yalign 0.03 xalign 0.99
-    text "[month]/"yalign 0.03 xalign 0.07 style "date_small"
-    text "[day]" yalign 0.03 xalign 0.09 style "date_big"
-    text "[dayofweek]" yalign 0.08 xalign 0.07 at drop_shadow_blur style "text_shadow"
-    text "[dayofweek]" yalign 0.08 xalign 0.07 style "day_name"
-    text "[temperature] ° " yalign 0.1 xalign 0 style "temperature_text"
+     
+    frame style "box": 
+            xsize 100
+            ysize 60
+            ypos 0.044
+            xpos 0.062
+        
+            text "[month]/": 
+                size 41
+                yalign 0.5
+                xalign 0.0
+                font"digital-7.ttf"
+                at drop_shadow_blur
+                style "text_shadow"
 
-    if weather == "sunny":
-        add "sunny.png" yalign 0.03 xalign 0
-    elif weather == "rainy":
-        add "rainy.png" yalign 0.03 xalign 0
+            text "[month]/":
+                yalign 0.5
+                xalign 0.0
+                style "date_small"    
 
+            text "[day]":
+                size 55
+                yalign 0.1
+                xalign 0.0
+                xpos 40
+                font "digital-7.ttf"
+                at drop_shadow_blur
+                style "text_shadow"
+
+            text "[day]":
+                yalign 0.1
+                xalign 0.0
+                xpos 40
+                style "date_big" 
+    
+    text "[dayofweek]" yalign 0.093 xalign 0.0 xpos 110 size 25 at drop_shadow_blur style "text_shadow"
+    text "[dayofweek]" yalign 0.093 xalign 0.0 xpos 117 style "day_name"
+   
+    vbox:
+        xsize 80
+        ypos 0.091
+        xpos 0.0138
+
+        text "[temperature]° " yalign 0.5 xalign 0.5 size 25 at drop_shadow_blur style "text_shadow"
+        text "[temperature]° " yalign 0.5 xalign 0.5 ypos -18  style "temperature_text"
+    
+    vbox:
+        yalign 0.042
+        xalign 0.0158
+
+        if weather == "sunny":
+            add "sunny.png" 
+        elif weather == "rainy":
+            add "rainy.png"
+           
 
 style date_small is text:
     font "digital-7.ttf"
@@ -505,8 +590,12 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     if main_menu:
         add gui.main_menu_background
+    elif renpy.get_screen("save"):
+        add "gui/save_screen_bg.png"
+    elif renpy.get_screen("load"):
+        add "gui/load_screen_bg.png"
     else:
-        add gui.game_menu_background
+        add gui.game_menu_background   
 
     frame:
         style "game_menu_outer_frame"
@@ -744,32 +833,42 @@ screen file_slots(title):
                     value page_name_value
 
             ## The grid of file slots.
-            grid gui.file_slot_cols gui.file_slot_rows:
-                style_prefix "slot"
-                xalign 0
-                yalign 0
-                yfill True
+            frame style "box" ysize 550:
+          
+                grid gui.file_slot_cols gui.file_slot_rows:
+                    style_prefix "slot"
+                    xalign 0
+                    yalign 0
+                    yfill True
 
-                spacing 10
+                    spacing gui.slot_spacing
 
-                for i in range(gui.file_slot_cols * gui.file_slot_rows):
+                    for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
-                    $ slot = i + 1
-
-                    button:
-                        action FileAction(slot)
+                        $ slot = i + 1
                         
-                        has vbox
+                        button:
+                            action FileAction(slot)
 
-                        add FileScreenshot(slot) xalign 0.5
+                            has vbox
 
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
-                            style "slot_time_text"
+                            # add "save_slot_button_empty"
 
-                        text FileSaveName(slot):
-                            style "slot_name_text"
+                            add AlphaBlend("gui/slot_thumbnail_mask.png", Solid("#0000"),  FileScreenshot(slot)): 
+                                xpos 17
+                                ypos 16
+                            
+                            # text "Day [in_game_day]" style "in_game_day_text"
+                            text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Empty Slot")):
+                                style "slot_time_text"
+                                xpos 400
+                                ypos -120
 
-                        key "save_delete" action FileDelete(slot)
+                            text FileSaveName(slot):
+                                style "slot_name_text"
+
+                            key "save_delete" action FileDelete(slot)
+
 
             ## Buttons to access other pages.
             hbox:
@@ -835,6 +934,7 @@ style slot_button_text:
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
 screen preferences():
+    
 
     tag menu
 

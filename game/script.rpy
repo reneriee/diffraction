@@ -13,7 +13,8 @@ init python:
     or renpy.get_screen("history")
     or renpy.get_screen("about")
     or renpy.get_screen("about")
-    or renpy.get_screen("help")):
+    or renpy.get_screen("help")
+    or renpy.get_screen("confirm")):
         transform.blur = 18.0
     else:
         transform.blur = 7.0
@@ -34,6 +35,7 @@ init python:
 transform blur_bg:
   function do_the_blurry
 
+define in_game_day = 1
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 image morgana = "recruiter_one.png"
@@ -71,7 +73,7 @@ define flash = Fade(0.1, 0.0, 0.5, color="#666")
 
 # The game starts here.
 label start:
-    $renpy.show_layer_at(blur_bg,layer= "master", camera = True)
+    $renpy.show_layer_at(blur_bg, layer= "master", camera = True)
 
 ## Start inputting date for widgets here (weather, date, etc)
     $weather_stuff("sunny", 12, 30, "Thursday", 15)
