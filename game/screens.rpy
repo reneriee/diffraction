@@ -224,13 +224,12 @@ style input:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
-
 screen choice(items):
     style_prefix "choice"
 
     vbox:
         for i in items:
-            textbutton i.caption action i.action
+            textbutton i.caption action [i.action]
             
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
@@ -246,7 +245,6 @@ style choice_vbox:
     xalign 0.5
     ypos 405
     yanchor 0.5
-
     spacing gui.choice_spacing
 
 style choice_button is default:
@@ -254,6 +252,7 @@ style choice_button is default:
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
+    ypos -3
 
 
 ## Quick Menu screen ###########################################################
@@ -268,9 +267,50 @@ screen quick_menu():
     zorder 10
 
     if quick_menu:
+        hbox:
+            xalign 0.98
+            yalign 0.026
+            xsize 300
+
+            button:
+                add "mini_auto_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                action Preference("auto-forward", "toggle")
+            button:
+                add "mini_qs_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                action QuickSave()
+            button:
+                add "mini_ql_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                action QuickLoad()
+            button:
+                add "mini_twitter_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                action OpenURL("http://twitter.com/DiffractionVN")
+            button:
+                add "mini_main_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                action MainMenu()
+
         vbox:
             xalign 0.942
-            yalign 0.8985
+            yalign 0.9
   
             vbox:
                 xpos 50
@@ -303,6 +343,7 @@ screen quick_menu():
                     focus_mask True
                     xpos -35
                     action Skip() alternate Skip(fast=True, confirm=True)                
+         
             # imagebutton auto "quicksave_%s.png" focus_mask True xpos 229 ypos 6 action ShowMenu('save')
             # imagebutton auto "quickload_%s.png" focus_mask True xpos 229 ypos 161 action ShowMenu('load')
 
@@ -344,7 +385,6 @@ style quick_button_text:
 
 screen widgets:
     image "weatherbg.png" yalign 0.03 xalign -0.01
-    image "camera_icons.png" yalign 0.03 xalign 0.99
      
     frame style "box": 
             xsize 100
