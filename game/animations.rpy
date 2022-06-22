@@ -61,6 +61,30 @@ init -2:
         on selected_hover:
             "gui/button/quickskip_hover.png" with Dissolve(0.15, alpha=True)
 
+    image quicksave_button:
+        "gui/button/save_button_idle.png"
+        on idle:
+            "gui/button/save_button_idle.png" with Dissolve(0.15, alpha=True)
+        on hover:
+            "gui/button/save_button_idle.png" 
+            "gui/button/save_button_hover.png" with Dissolve(0.15, alpha=True)
+        on selected_idle:
+            "gui/button/save_button_hover.png" with Dissolve(0.15, alpha=True)
+        on selected_hover:
+            "gui/button/save_button_hover.png" with Dissolve(0.15, alpha=True)
+
+    image quickload_button:
+        "gui/button/load_button_idle.png"
+        on idle:
+            "gui/button/load_button_idle.png" with Dissolve(0.15, alpha=True)
+        on hover:
+            "gui/button/load_button_idle.png" 
+            "gui/button/load_button_hover.png" with Dissolve(0.15, alpha=True)
+        on selected_idle:
+            "gui/button/load_button_hover.png" with Dissolve(0.15, alpha=True)
+        on selected_hover:
+            "gui/button/load_button_hover.png" with Dissolve(0.15, alpha=True)
+
 # mini buttons (top right corner)
     image mini_main_button:
         "gui/button/mini_main_idle.png"

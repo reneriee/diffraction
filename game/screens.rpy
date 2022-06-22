@@ -309,43 +309,57 @@ screen quick_menu():
                 action MainMenu()
 
         vbox:
-            xalign 0.942
-            yalign 0.9
+            xalign 0.943
+            yalign 1.621
   
             vbox:
-                xpos 50
-                ypos 100
+                xpos 13
+                ypos 260
+                spacing 93
                 button:
                     add "quickmain_button"
                     focus_mask True
-                    ypos 30
-                    xpos 2
+                    xalign 0.5
+                    ypos 3
                     action MainMenu()
                 button:
                     add "quickhistory_button" 
                     focus_mask True
-                    ypos 120
+                    ypos 2
+                    xalign 0.5
                     action ShowMenu('history')
             hbox:
+                spacing -17
+                xpos -36
+                ypos 37
                 button:
                     add "quickauto_button" 
+                    yalign 0.5
                     focus_mask True
-                    xpos 0
                     action Preference("auto-forward", "toggle")
                 button: 
                     add "quickprefs_button" 
                     focus_mask True
-                    ypos 20
-                    xpos -18
+                    yalign 0.45
                     action ShowMenu('preferences')
                 button:
                     add "quickskip_button" 
+                    yalign 0.5
+                    focus_mask True
+                    action Skip() alternate Skip(fast=True, confirm=True)    
+            vbox:
+                xpos 255
+                ypos -205            
+                button:
+                    add "quicksave_button" 
                     focus_mask True
                     xpos -35
-                    action Skip() alternate Skip(fast=True, confirm=True)                
-         
-            # imagebutton auto "quicksave_%s.png" focus_mask True xpos 229 ypos 6 action ShowMenu('save')
-            # imagebutton auto "quickload_%s.png" focus_mask True xpos 229 ypos 161 action ShowMenu('load')
+                    action ShowMenu('save')
+                button:
+                    add "quickload_button" 
+                    focus_mask True
+                    xpos -35
+                    action ShowMenu('load')
 
         # hbox:
         #     style_prefix "quick"
