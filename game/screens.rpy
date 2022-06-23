@@ -644,15 +644,16 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     if main_menu:
         add gui.main_menu_background
-    elif renpy.get_screen("save"):
-        add "gui/save_screen_bg.png"
-    elif renpy.get_screen("load"):
-        add "gui/load_screen_bg.png"
     else:
         add gui.game_menu_background   
 
     frame:
-        style "game_menu_outer_frame"
+        if renpy.get_screen("save"):
+            style "game_menu_save_bg"
+        elif renpy.get_screen("load"):
+            style "game_menu_load_bg"
+        else:
+            style "game_menu_outer_frame"
 
         hbox:
 
@@ -726,8 +727,17 @@ style return_button_text is navigation_button_text
 style game_menu_outer_frame:
     bottom_padding 45
     top_padding 180
-
     background "gui/overlay/game_menu.png"
+
+style game_menu_save_bg:
+    bottom_padding 45
+    top_padding 180
+    background "gui/save_screen_bg.png"
+
+style game_menu_load_bg:
+    bottom_padding 45
+    top_padding 180
+    background "gui/load_screen_bg.png"
 
 style game_menu_navigation_frame:
     xsize 190
@@ -890,36 +900,45 @@ screen file_slots(title):
             frame style "box" ysize 550:
           
                 grid gui.file_slot_cols gui.file_slot_rows:
-                    style_prefix "slot"
+                    # style_prefix "slot"
                     xalign 0
                     yalign 0
                     yfill True
+                    xfill True
 
                     spacing gui.slot_spacing
 
                     for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
                         $ slot = i + 1
-                        
-                        button:
-                            action FileAction(slot)
 
-                            has vbox
+                        $is_it_empty = FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Empty Slot"))
 
-                            # add "save_slot_button_empty"
+                        frame style "box":
+                            button:
+                                if(is_it_empty == "Empty Slot"):
+                                    add "save_slot_button_empty"
+                                else:
+                                    add "save_slot_button"
+                                focus_mask True
+                                action FileAction(slot)
 
                             add AlphaBlend("gui/slot_thumbnail_mask.png", Solid("#0000"),  FileScreenshot(slot)): 
-                                xpos 17
-                                ypos 16
+                                xpos 23
+                                ypos 23
                             
-                            # text "Day [in_game_day]" style "in_game_day_text"
+                            if(is_it_empty != "Empty Slot"):
+                                text "Day [in_game_day]" style "slot_save_in_game_day_text"
+                                   
                             text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Empty Slot")):
-                                style "slot_time_text"
-                                xpos 400
-                                ypos -120
+                                if(is_it_empty == "Empty Slot"):
+                                    style "slot_empty_save" at opacity_08
+                                else:
+                                    style "slot_save_date_time"
 
-                            text FileSaveName(slot):
-                                style "slot_name_text"
+                            # text FileSaveName(slot):
+                            #     style "slot_name_text"
+                            #     ypos 100
 
                             key "save_delete" action FileDelete(slot)
 

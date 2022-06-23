@@ -35,7 +35,9 @@ init python:
 transform blur_bg:
   function do_the_blurry
 
+# Define the day number in game // Mostly for save files and other stuff
 define in_game_day = 1
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 image morgana = "recruiter_one.png"

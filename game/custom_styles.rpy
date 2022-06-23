@@ -11,6 +11,9 @@ transform drop_shadow_blur:
     blur 3.5
     alpha 0.6
 
+transform opacity_08:
+    alpha 0.8
+
 # In game settings screens
 
 style game_menu_title:
@@ -91,6 +94,24 @@ style slider_value_max:
 
 
 #### Save/Load screens ####
-style in_game_day_text:
-    ypos -120
-    xpos 340
+style slot_save_in_game_day_text:
+    xpos 355
+    ypos 65
+    size 30
+    color "#494949"
+    font "Exo-Medium.ttf" 
+
+style slot_save_date_time:
+    xpos 357
+    ypos 105
+    size 17
+    color "#494949"
+    font "Exo-Regular.ttf" 
+
+style slot_empty_save:
+    yalign 0.585
+    xalign 0.455
+    color "#494949"
+    font "Exo-Medium.ttf" 
+
+
