@@ -180,7 +180,7 @@ label start:
     scene bg black
 
     z "I'll leave Faine in your capable hands, Alright? - Alright!"
-    play music "<loop 0.00>Prologue.mp3" fadein 5.0
+    play music "<loop 0.00>Music/Prologue.mp3" fadein 5.0
     z "I gotta go or I'll lose the duck!"
     p "Wha- you can’t- ..."
     p "Annnd he’s already gone..."
@@ -235,7 +235,7 @@ label start:
     hide blink with dissolve
 
     mc shock "...Huh?"
-    play music "<loop 0.00 to 69.00>Job_Fair.mp3" fadein 5.0 volume 0.75
+    play music "<loop 0.00 to 69.00>Music/Job_Fair.mp3" fadein 5.0 volume 0.75
     show morgana:
         size(765,1120)
         xalign 0.45
@@ -247,6 +247,8 @@ label start:
         mc "I-"
         "Apologize, ask her to repeat herself.":
             jump choice_apologize_repeat
+            $ pretend_listen = False
+            $ who_is_she = False
         "Pretend you were listening.":
             $ pretend_listen = True
             jump choice_pretend_listen
@@ -274,7 +276,7 @@ label start:
     b1 "...Perhaps you're more suited elsewhere."
     b1 "Having some photography skill isn’t going to cut it if the only thing backing you up is 3 years of social media “experience”-"
     b1 "And poor listening skills."
-    mc "(I guess I've been caught...)"
+    mc "(I guess I shouldn't have lied...)"
     mc sad "I... see...Thank you for your time."
 
     jump apologize_repeat_continue
@@ -326,15 +328,13 @@ label start:
     mc judge "...."
 
     if pretend_listen == True:
-
         ba "Wait... weren’t you the girl zoning just a few booths over?"
         mc shock "(H-how does he know that?)"
         ba "Yeah, it's definitely you! Not many people with pink hair around here."
         z "He flips carelessly through my portfolio with one hand."
-        ba "You have no “real skills” - besides playing around on social media - and you apparently have no culture if you can’t even listen to passionate people."
-        ba "Absolutely not!" with hpunch
+        ba "You have no “real skills” - besides playing around on social media - and you apparently have no passion if you can’t even listen to passionate people."
+        ba "No skills, no passion, no culture - I'll never work with you!" with hpunch
         mc judge "(You can't be serious...)"
-
     else:
         ba "You’re just not convincing me right now with all this social media nonsense... "
         ba "We just can’t take on someone who’s done nothing but play around online over the last few years."
@@ -377,7 +377,7 @@ label start:
 
     scene bg_job
     with fadehold
-
+    play music "<loop 0.00>Music/Prologue.mp3" fadein 5.0 volume 0.75
     mc eyesclosed "(No, no, no, no. Nothing but rejections.)"
     mc sad "(I was told applying at job fairs was supposed to be easier but that’s not true at all. At least email rejections aren’t as brutal.)"
     mc "(This was such a waste of time ...)"
@@ -405,9 +405,10 @@ label start:
     mc "(Why was he here? Where has he been? Did he look different !? -)"
     z "A million questions surface, but before there’s time to think about it, I’m already running after him."
     z "Only in the rush, I’d forgotten to look where I was going... "
+    stop music fadeout 5.0
     show Hen Giant shocked with poof
     mc startled "Wai-... Ngh-" with hpunch
-    hide Hen Giant with dissolve
+    hide Hen Giant with poof
     h "Hey- ah-... Watch it!"
 
     scene Hen_cg with fadehold:
@@ -444,7 +445,7 @@ label start:
             mc "I-I’m sorry! I have to go ..."
             mc "I’ll come back later!"
             z "Without looking for a response, I quickly turn to run after Faine once again."
-            #$ Apologize_to_Hen = True
+            $ Apologize_to_Hen = True
             jump Find_Faine
         "Stand around awkwardly.":
             jump Stay_Hen_1
@@ -575,6 +576,7 @@ label start:
     pause 0.5
     show Hen Tiny neutral with poof
     z "Hen cuts me off suddenly, sending the most suggestive winks to the other two."
+    show Otto smile with poof
     z "It must have been enough because they nod understandingly."
     mc shock "(Wait, what collab? What does that mean?)"
     l "Gotcha, we’ll head back to the gym then. Join us after when you’re done."
@@ -589,7 +591,18 @@ label start:
     hide Hen with dissolve
     z "Without so much as waiting for further confirmation, he'd already begun to move, clearly expecting me to follow."
 
-    #CHOICE MENU Here
+    menu:
+        mc ""
+        "(Go with him quietly.)":
+            mc sad "It's not like I have much of a choice on whether I want to go or not."
+            jump Go_Quietly
+        "(Don't go with him until he's explains where you're going and what you're doing.)":
+            jump Explain_First
+        "(Don't go with him/leave.)":
+            mc judge "(No way am I going with this guy)"
+            jump Leave_Him_1
+
+    label Explain_First:
 
     mc "Hey- wait a second! Hen... right?"
     show Hen with dissolve
@@ -622,7 +635,7 @@ label start:
         "Go with him.":
             jump Go_With_Hen
         "Leave while I still can.":
-            jump Dont_Go_With_Hen
+            jump Leave_Him_2
 
     label Go_With_Hen:
 
@@ -633,6 +646,7 @@ label start:
     h neutral "Sure, sure."
     hide Hen with dissolve
     z "His distant tone makes it unclear if he was really listening to me as he begins moving once more."
+    label Go_Quietly:
     z "I hesitantly follow, walking a few steps behind him."
     mc judge "(I... really hope I won’t regret this... ) "
     z "As we silently walk towards the venue exit, I am left quite alone to theorize on just what could possibly await me."
@@ -924,7 +938,7 @@ label start:
     with fade
 
     mc sad "(Finally…)"
-    play music "<loop 0.00>Meeting_v1b.mp3" fadein 3.0 volume 0.65
+    play music "<loop 0.00>Music/Meeting_v1b.mp3" fadein 3.0 volume 0.65
     mc shock "(....Wait, where did he go?)"
     z "The park appears to be empty."
     z "Or so it seems…"
