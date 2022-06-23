@@ -77,6 +77,10 @@ layeredimage MC:
             "mce5e"
         attribute eyesclosed:
             "mcdb"
+        attribute crisis:
+            "mce6e"
+        attribute startled:
+            "MC_shock_blink"
     group brows:
         attribute neutral default:
             "mce1br"
@@ -90,6 +94,10 @@ layeredimage MC:
             "mce5br"
         attribute eyesclosed:
             "mce4br"
+        attribute crisis:
+            "mce6br"
+        attribute startled:
+            "mce6br"
     group mouth:
         attribute neutral default:
             "mce1m"
@@ -103,6 +111,12 @@ layeredimage MC:
             "mce5m"
         attribute eyesclosed:
             "mce2m"
+        attribute crisis:
+            "mce6m"
+        attribute n_mouth_alt:
+            "mcmm1"
+        attribute startled:
+            "mcmm2"
     group hair:
         attribute fringe default:
             "mcf"
@@ -225,11 +239,29 @@ layeredimage Hendric:
         attribute fringe default:
             "hff"
 
-image Otto Tiny = LayeredImageProxy("Totto", Transform(crop=(0,1,1800,2100), xoffset= 200, yoffset= 30, zoom=0.50))
+image Otto Tiny = LayeredImageProxy("Totto", Transform(crop=(0,1,1800,2000), xoffset= 170, yoffset= 80, zoom=0.50))
 
 layeredimage Totto:
         always:
-            "otto"
+            "ob1"
+        group eyes:
+            attribute smile default:
+                "o_smile_blink"
+            attribute puppy:
+                "o_smile_blink"
+        group brows:
+            attribute smile default:
+                "oe1br"
+            attribute puppy:
+                "oe2br"
+        group mouth:
+            attribute smile default:
+                "oe1m"
+            attribute puppy:
+                "oe2m"
+        group hair:
+            attribute fringe default:
+                "of1"
 
 ####BLINKING ANIMATION CODE####
 image MC_neutral_blink:
@@ -333,5 +365,14 @@ image h_thoughtful_blink:
     "hfe5b"
     0.13
     "hfdb"
+    0.13
+    repeat
+
+image o_smile_blink:
+    "oe1e"
+    blinkwait
+    "oe1b"
+    0.13
+    "odb"
     0.13
     repeat
