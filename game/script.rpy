@@ -35,9 +35,7 @@ init python:
 transform blur_bg:
   function do_the_blurry
 
-# Define the day number in game // Mostly for save files and other stuff
 define in_game_day = 1
-
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 image morgana = "recruiter_one.png"
@@ -248,9 +246,9 @@ label start:
     menu:
         mc "I-"
         "Apologize, ask her to repeat herself.":
-            jump choice_apologize_repeat
             $ pretend_listen = False
             $ who_is_she = False
+            jump choice_apologize_repeat
         "Pretend you were listening.":
             $ pretend_listen = True
             jump choice_pretend_listen
@@ -928,7 +926,7 @@ label start:
     jump Go_Home_Late
 
     label Find_Faine:
-    scene bg mc room
+    scene bg streets 1
     with fade
 
     z "Barely evading a few more startled passers-by, I made my way towards the place where I’d last spotted him, occasionally catching a glimpse of blue hair."

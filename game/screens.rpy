@@ -230,7 +230,7 @@ screen choice(items):
     vbox:
         for i in items:
             textbutton i.caption action [i.action]
-            
+
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -278,6 +278,8 @@ screen quick_menu():
                 yalign 0.5
                 xalign 0.0
                 xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
                 action Preference("auto-forward", "toggle")
             button:
                 add "mini_qs_button"
@@ -285,6 +287,8 @@ screen quick_menu():
                 yalign 0.5
                 xalign 0.0
                 xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
                 action QuickSave()
             button:
                 add "mini_ql_button"
@@ -292,6 +296,8 @@ screen quick_menu():
                 yalign 0.5
                 xalign 0.0
                 xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
                 action QuickLoad()
             button:
                 add "mini_twitter_button"
@@ -299,6 +305,8 @@ screen quick_menu():
                 yalign 0.5
                 xalign 0.0
                 xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
                 action OpenURL("http://twitter.com/DiffractionVN")
             button:
                 add "mini_main_button"
@@ -306,12 +314,14 @@ screen quick_menu():
                 yalign 0.5
                 xalign 0.0
                 xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
                 action MainMenu()
 
         vbox:
             xalign 0.943
             yalign 1.621
-  
+
             vbox:
                 xpos 13
                 ypos 260
@@ -321,44 +331,58 @@ screen quick_menu():
                     focus_mask True
                     xalign 0.5
                     ypos 3
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
                     action MainMenu()
                 button:
-                    add "quickhistory_button" 
+                    add "quickhistory_button"
                     focus_mask True
                     ypos 2
                     xalign 0.5
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('history')
             hbox:
                 spacing -17
                 xpos -36
                 ypos 37
                 button:
-                    add "quickauto_button" 
+                    add "quickauto_button"
                     yalign 0.5
                     focus_mask True
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
                     action Preference("auto-forward", "toggle")
-                button: 
-                    add "quickprefs_button" 
+                button:
+                    add "quickprefs_button"
                     focus_mask True
                     yalign 0.45
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('preferences')
                 button:
-                    add "quickskip_button" 
+                    add "quickskip_button"
                     yalign 0.5
                     focus_mask True
-                    action Skip() alternate Skip(fast=True, confirm=True)    
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
+                    action Skip() alternate Skip(fast=True, confirm=True)
             vbox:
                 xpos 255
-                ypos -205            
+                ypos -205
                 button:
-                    add "quicksave_button" 
+                    add "quicksave_button"
                     focus_mask True
                     xpos -35
+                    hover_sound "Audio/SaveHover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('save')
                 button:
-                    add "quickload_button" 
+                    add "quickload_button"
                     focus_mask True
                     xpos -35
+                    hover_sound "Audio/LoadHover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('load')
 
         # hbox:
@@ -399,14 +423,14 @@ style quick_button_text:
 
 screen widgets:
     image "weatherbg.png" yalign 0.03 xalign -0.01
-     
-    frame style "box": 
+
+    frame style "box":
             xsize 100
             ysize 60
             ypos 0.044
             xpos 0.062
-        
-            text "[month]/": 
+
+            text "[month]/":
                 size 41
                 yalign 0.5
                 xalign 0.0
@@ -417,7 +441,7 @@ screen widgets:
             text "[month]/":
                 yalign 0.5
                 xalign 0.0
-                style "date_small"    
+                style "date_small"
 
             text "[day]":
                 size 55
@@ -432,11 +456,11 @@ screen widgets:
                 yalign 0.1
                 xalign 0.0
                 xpos 40
-                style "date_big" 
-    
+                style "date_big"
+
     text "[dayofweek]" yalign 0.093 xalign 0.0 xpos 110 size 25 at drop_shadow_blur style "text_shadow"
     text "[dayofweek]" yalign 0.093 xalign 0.0 xpos 117 style "day_name"
-   
+
     vbox:
         xsize 80
         ypos 0.091
@@ -444,16 +468,16 @@ screen widgets:
 
         text "[temperature]° " yalign 0.5 xalign 0.5 size 25 at drop_shadow_blur style "text_shadow"
         text "[temperature]° " yalign 0.5 xalign 0.5 ypos -18  style "temperature_text"
-    
+
     vbox:
         yalign 0.042
         xalign 0.0158
 
         if weather == "sunny":
-            add "sunny.png" 
+            add "sunny.png"
         elif weather == "rainy":
             add "rainy.png"
-           
+
 
 style date_small is text:
     font "digital-7.ttf"
@@ -645,7 +669,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
     if main_menu:
         add gui.main_menu_background
     else:
-        add gui.game_menu_background   
+        add gui.game_menu_background
 
     frame:
         if renpy.get_screen("save"):
@@ -898,7 +922,7 @@ screen file_slots(title):
 
             ## The grid of file slots.
             frame style "box" ysize 550:
-          
+
                 grid gui.file_slot_cols gui.file_slot_rows:
                     # style_prefix "slot"
                     xalign 0
@@ -923,13 +947,13 @@ screen file_slots(title):
                                 focus_mask True
                                 action FileAction(slot)
 
-                            add AlphaBlend("gui/slot_thumbnail_mask.png", Solid("#0000"),  FileScreenshot(slot)): 
+                            add AlphaBlend("gui/slot_thumbnail_mask.png", Solid("#0000"),  FileScreenshot(slot)):
                                 xpos 23
                                 ypos 23
-                            
+
                             if(is_it_empty != "Empty Slot"):
                                 text "Day [in_game_day]" style "slot_save_in_game_day_text"
-                                   
+
                             text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Empty Slot")):
                                 if(is_it_empty == "Empty Slot"):
                                     style "slot_empty_save" at opacity_08
@@ -1007,7 +1031,7 @@ style slot_button_text:
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
 screen preferences():
-    
+
 
     tag menu
 
