@@ -238,7 +238,8 @@ label start:
     hide blink with dissolve
 
     mc shock "...Huh?"
-    play music "<loop 0.00 to 69.00>Music/Job_Fair.mp3" fadein 5.0 volume 0.75
+    play ambient "<loop 0.00>Audio/Crowd.mp3" fadein 5.0 volume 0.25
+    play music "<loop 0.00 to 69.00>Music/Job_Fair.mp3" fadein 5.0 volume 0.70
     show morgana:
         size(765,1120)
         xalign 0.45
@@ -262,6 +263,9 @@ label start:
     label choice_apologize_repeat:
     mc neutral "Sorry, could you please repeat yourself?"
     b1 "As I was saying, we currently can’t afford to invest in anyone without at least 3 years of relevant work experience."
+    play sound "Audio/Page_Flip.mp3"
+    queue sound "Audio/Page_Flip.mp3"
+    queue sound "Audio/Page_Flip.mp3"
     z "The woman vaguely flips through my portfolio. It’s clear based on how quickly she turns each page that she’s barely taking anything in."
     b1 "Now, that isn’t to say your work isn’t good; you might even be a good fit for our company once you get some experience."
     b1 "But unfortunately, 3 years of personal social media work isn’t quite our standard for “experience”."
@@ -380,26 +384,31 @@ label start:
 
     scene bg_job
     with fadehold
-    play music "<loop 0.00>Music/Prologue.mp3" fadein 5.0 volume 0.75
     mc eyesclosed "(No, no, no, no. Nothing but rejections.)"
     mc sad "(I was told applying at job fairs was supposed to be easier but that’s not true at all. At least email rejections aren’t as brutal.)"
-    mc "(This was such a waste of time ...)"
+    mc "(This was such a waste of time... )"
+    stop ambient fadeout 8
     mc judge "(...I should just put as much distance between myself and Mr. “cultured photos” as possible.)"
+    play music "<loop 0.00>Music/Prologue.mp3" fadein 5.0 volume 0.75
     mc sad "Hahhh... "
     mc judge"({i}That sounds cool, I’m sure you’ll be great.{/i})"
     mc "(Great my butt.)"
     mc sad "(I wonder what that boy would think if he saw me today?)"
     mc "(Would he still think I'm doing great?)"
-    #mc "(There’s probably not much point in giving myself a headache over it.)"
-    mc neutral "(Though now that I think about it, even though I remember what he said, I can’t quite remember his name... )"
-    mc "(I think it started with an ‘F’, right?... F-Fang?)"
-    mc "(No... was it Frank?)"
+    mc eyeclosed "(What a silly thought-"
+    mc "(Thinking about some kid after all this time.)"
+    mc sad "(It's sad that though...)"
+    mc "(I remember what he said but I can’t quite remember his name.)"
+    mc neutral "(I swear it started with an ‘F’... Right?... F-Fang?)"
+    mc "(No... I think it could've been Frank?)"
     mc "(Maybe it was more of a Finn... ?)"
-    show Faine Tiny with dissolve
+    show Faine Tiny with Dissolve(1.0)
     mc shock "(Wait.)"
     mc "(Isn’t that-)"
-    mc "...Faine."
+    mc "...{i}Faine{/i}."
     hide Faine Tiny with poof
+    stop music fadeout 1.0
+    play ambient "<loop 0.00>Audio/Crowd.mp3" fadein 2.0 volume 0.25
     mc "H-hey–!"
     z "The quiet exclamation is lost in the noisy crowd, as is the sudden flicker of an all too familiar face in the distance."
     z "Without realizing, I take a few steps forward."
@@ -407,11 +416,14 @@ label start:
     mc "(Faine?!)"
     mc "(Why was he here? Where has he been? Did he look different !? -)"
     z "A million questions surface, but before there’s time to think about it, I’m already running after him."
+    play sound "Audio/MC_Run.mp3"
     z "Only in the rush, I’d forgotten to look where I was going... "
-    stop music fadeout 5.0
+    play sound "Audio/Crash.mp3"
+    stop ambient fadeout 2.0
     show Hen Giant shocked with poof
     mc startled "Wai-... Ngh-" with hpunch
     hide Hen Giant with poof
+    play sound "Audio/Cell_Drop.mp3"
     h "Hey- ah-... Watch it!"
 
     scene Hen_cg with fadehold:
@@ -427,7 +439,7 @@ label start:
     mc "(There’s no time to worry about this, I have to get up and-)"
 
     scene bg_job with dissolve
-
+    play sound "Audio/Crack.mp3"
     z "*CRACK*"
     mc " .... "
     h " .... "
@@ -940,8 +952,8 @@ label start:
 
     scene bg park
     with fade
-    play ambient "Audio/Park.mp3" fadein 3.0 volume 0.5
-    queue ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.40
+    play ambient "Audio/Park.mp3" fadein 3.0 volume 0.40
+    queue ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.35
     mc sad "(Finally…)"
     mc shock "(....Wait, where did he go?)"
     z "The park appears to be empty."
@@ -1029,7 +1041,7 @@ label start:
     f "Bye."
     hide Faine with Dissolve(0.3)
     stop music fadeout 3.0
-    play ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.5
+    play ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.40
     z "And without another word he scrambles off toward the other park entrance."
     mc shock "...."
     mc neutral "What was that?"
@@ -1054,6 +1066,7 @@ label start:
     mc neutral "(I should probably get home before it starts raining anyways...)"
     mc sad "(Mom isn’t going to be happy if I’m late either...)"
     stop music fadeout 3.0
+    stop ambient fadeout 3.0
 
     $ Day_1_Guy_Choice = "Faine"
 
