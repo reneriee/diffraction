@@ -84,6 +84,9 @@ image Hen_cg = "Hen_cg.jpg"
 define flash = Fade(0.1, 0.0, 0.5, color="#666")
 define fadehold = Fade(0.7, 0.3, 0.7)
 
+init python:
+    renpy.music.register_channel('ambient', 'music')
+
 # The game starts here.
 label start:
     $renpy.show_layer_at(blur_bg, layer= "master", camera = True)
@@ -675,7 +678,6 @@ label start:
 
     mc "(He’s walking in the right direction at least.)"
 
-    label mell_cheat:
     show bg store with fade
 
     mc shock "(This is the store... )"
@@ -930,23 +932,27 @@ label start:
     with fade
 
     z "Barely evading a few more startled passers-by, I made my way towards the place where I’d last spotted him, occasionally catching a glimpse of blue hair."
-    z "I ended up finding myself at the venue exit."
+    z "I ended up finding myself outside the venue exit."
     mc shock "Ha…Ha…How is he so slippery!?"
     z "Despite the fact I had been running he seemed to have already vanished in the direction of the park."
 
+    label mell_cheat:
+
     scene bg park
     with fade
-
+    play ambient "Audio/Park.mp3" fadein 3.0 volume 0.5
+    queue ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.40
     mc sad "(Finally…)"
-    play music "<loop 0.00>Music/Meeting_v1b.mp3" fadein 3.0 volume 0.65
     mc shock "(....Wait, where did he go?)"
     z "The park appears to be empty."
     z "Or so it seems…"
     z "…Until I spot movement beneath a wooden picnic table, as what seems to be a head peeks out over the bench."
     z "Our eyes meet for just a moment."
     mc "Faine...?"
+    play sound "Audio/Wood_Impact.mp3" volume .5
     z "The boy quickly startled up, a short thump could be heard as the table wobbled slightly." with vpunch
     na "“Ouch–!! ….Ouch…ouch…."
+    play sound "Audio/Debris.mp3" volume .7
     z "Clasping his head he seemed to flinch for a moment before attempting to clumsily scramble out from under the table."
     mc judge "(What was he even doing down there…)"
     mc "(Is he trying to hide?)"
@@ -958,6 +964,7 @@ label start:
     mc sad "(Could I have made a mistake?)"
     mc neutral "(No…I'm sure it has to be him. He even reacted when I said his name!)"
     mc "You are…Faine, right?"
+    play music "<loop 0.00>Music/Meeting_v1b.mp3" fadein 3.0 volume 0.67
     show Faine mixed with Dissolve(0.5)
     f "That's me."
     f "So?"
@@ -1021,6 +1028,8 @@ label start:
     f "Okay."
     f "Bye."
     hide Faine with Dissolve(0.3)
+    stop music fadeout 3.0
+    play ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.5
     z "And without another word he scrambles off toward the other park entrance."
     mc shock "...."
     mc neutral "What was that?"
@@ -1034,7 +1043,7 @@ label start:
     mc judge "It’s even from three years ago."
     mc "And it has 75,000 likes."
     mc shock "...."
-    mc "It has 75,000 likes?!"
+    mc startled "It has 75,000 likes?!"
     mc "(Wait, what is this?! How?!)"
     z "The numbers are still there no matter how much I look at the post."
     mc "(This makes no sense. He might have just reposted something, right?)"
