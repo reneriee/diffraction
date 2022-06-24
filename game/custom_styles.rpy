@@ -109,9 +109,17 @@ style slot_save_date_time:
     font "Exo-Regular.ttf" 
 
 style slot_empty_save:
-    yalign 0.585
-    xalign 0.455
+    yalign 0.5
+    xalign 0.5
     color "#494949"
     font "Exo-Medium.ttf" 
 
+style save_pagination:
+    color "#1D2230"
+    hover_color "#89BFDE"
+    selected_color "#fff"
 
+style save_page_label:
+    color "#093a77"
+    hover_color "#64dcf1"
+    selected_color "#fff"

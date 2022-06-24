@@ -219,7 +219,7 @@ define gui.choice_button_text_insensitive_color = "#444444"
 ## image files in gui/button, like the other kinds of buttons.
 
 ## The save slot button.
-define gui.slot_button_width = 760
+define gui.slot_button_width = 780
 define gui.slot_button_height = 192
 define gui.slot_button_borders = Borders(1, 1, 1, 1)
 define gui.slot_button_text_size = 21

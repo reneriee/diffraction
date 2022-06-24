@@ -901,7 +901,7 @@ screen file_slots(title):
     use game_menu(title):
 
         fixed:
-
+            ypos -20
             ## This ensures the input will get the enter event before any of the
             ## buttons do.
             order_reverse True
@@ -911,13 +911,15 @@ screen file_slots(title):
                 style "page_label"
 
                 key_events True
-                xalign 1.0
-                yalign 0
+                xalign 0.5
+                yalign 0.5
+                ypos 660
+                xpos 1000
 
                 action page_name_value.Toggle()
 
                 input:
-                    style "page_label_text"
+                    style "save_page_label"
                     value page_name_value
 
             ## The grid of file slots.
@@ -927,10 +929,8 @@ screen file_slots(title):
                     # style_prefix "slot"
                     xalign 0
                     yalign 0
-                    yfill True
-                    xfill True
-
-                    spacing gui.slot_spacing
+                    xspacing 28
+                    yspacing -17
 
                     for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
@@ -939,6 +939,11 @@ screen file_slots(title):
                         $is_it_empty = FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Empty Slot"))
 
                         frame style "box":
+                            left_padding -17
+                            right_padding -15
+                            xsize 760
+                            ysize 200
+
                             button:
                                 if(is_it_empty == "Empty Slot"):
                                     add "save_slot_button_empty"
@@ -971,24 +976,36 @@ screen file_slots(title):
             hbox:
                 style_prefix "page"
 
-                xalign 0.5
-                yalign 1.0
+                xalign 0.42
+                yalign 0.9
 
                 spacing gui.page_spacing
 
-                textbutton _("<") action FilePagePrevious()
+                button:
+                    add "gui/button/chevron-left.png" 
+                    yalign 0.5
+                    action FilePagePrevious()
 
                 if config.has_autosave:
-                    textbutton _("{#auto_page}A") action FilePage("auto")
+                    textbutton _("{#auto_page}A"):
+                        text_style "save_pagination" 
+                        action FilePage("auto")
 
                 if config.has_quicksave:
-                    textbutton _("{#quick_page}Q") action FilePage("quick")
+                    textbutton _("{#quick_page}Q"):
+                        text_style "save_pagination"
+                        action FilePage("quick")
 
                 ## range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 10):
-                    textbutton "[page]" action FilePage(page)
+                for page in range(1, 5):
+                    textbutton "[page]":
+                        text_style "save_pagination"
+                        action FilePage(page)
 
-                textbutton _(">") action FilePageNext()
+                button:
+                    add "gui/button/chevron-right.png"
+                    yalign 0.5
+                    action FilePageNext()
 
 
 style page_label is gui_label
