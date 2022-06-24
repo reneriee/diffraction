@@ -249,6 +249,8 @@ style choice_vbox:
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    hover_sound "Audio/Hover_Beep.mp3"
+    activate_sound "Audio/Select_Beep.mp3"
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
@@ -381,7 +383,7 @@ screen quick_menu():
                     add "quickload_button"
                     focus_mask True
                     xpos -35
-                    hover_sound "Audio/LoadHover_Beep.mp3"
+                    hover_sound "Audio/SaveHover_Beep.mp3"
                     activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('load')
 
@@ -522,12 +524,12 @@ screen navigation():
             image "gui/tabs_border_home.png" ypos 115 xpos -841
 
         else:
-            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 action ShowMenu("preferences")
-            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 action ShowMenu("gallery")
-            imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 action ShowMenu("load")
-            imagebutton auto "savetab_%s.png" focus_mask True xpos 222 ypos 55 action ShowMenu("save")
-            imagebutton auto "trackstab_%s.png" focus_mask True xpos 242 ypos 55 action ShowMenu("tracks")
-            imagebutton auto "historytab_%s.png" focus_mask True xpos 262 ypos 55 action ShowMenu("history")
+            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("preferences")
+            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("gallery")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("load")
+            imagebutton auto "savetab_%s.png" focus_mask True xpos 222 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("save")
+            imagebutton auto "trackstab_%s.png" focus_mask True xpos 242 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("tracks")
+            imagebutton auto "historytab_%s.png" focus_mask True xpos 262 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("history")
             image "gui/tabs_border.png" ypos 115 xpos -1330
 
 
@@ -725,7 +727,8 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     textbutton _("Return"):
         style "return_button"
-
+        hover_sound "Audio/MiniHover_Beep.mp3"
+        activate_sound "Audio/MiniSelect_Beep.mp3"
         action Return()
 
     text title xpos 186 ypos 178 size 40 at drop_shadow_blur style "text_shadow"
@@ -982,13 +985,13 @@ screen file_slots(title):
                 spacing gui.page_spacing
 
                 button:
-                    add "gui/button/chevron-left.png" 
+                    add "gui/button/chevron-left.png"
                     yalign 0.5
                     action FilePagePrevious()
 
                 if config.has_autosave:
                     textbutton _("{#auto_page}A"):
-                        text_style "save_pagination" 
+                        text_style "save_pagination"
                         action FilePage("auto")
 
                 if config.has_quicksave:
@@ -1062,28 +1065,28 @@ screen preferences():
                     hbox:
                         style_prefix "radio"
                         label _("Display") style "pref_label"
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
-                        textbutton _("Windowed") action Preference("display", "window")
+                        textbutton _("Fullscreen") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("display", "fullscreen")
+                        textbutton _("Windowed") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("display", "window")
 
                 hbox:
                     style_prefix "radio"
                     label _("Rollback Side") style "pref_label"
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                    textbutton _("Disable") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "disable")
+                    textbutton _("Left") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "left")
+                    textbutton _("Right") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "right")
 
                 hbox:
                     style_prefix "check"
                     label _("Skip") style "pref_label"
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    textbutton _("Unseen Text") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("skip", "toggle")
+                    textbutton _("After Choices") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("after choices", "toggle")
+                    textbutton _("Transitions") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action InvertSelected(Preference("transitions", "toggle"))
 
                 hbox:
                     style_prefix "radio"
                     label _("Protagonist Portrait") style "pref_label"
-                    textbutton _("On") action SetField(persistent, 'show_mc_side_image', True)
-                    textbutton _("Off") action SetField(persistent, 'show_mc_side_image', False)
+                    textbutton _("On") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action SetField(persistent, 'show_mc_side_image', True)
+                    textbutton _("Off") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action SetField(persistent, 'show_mc_side_image', False)
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
