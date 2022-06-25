@@ -122,6 +122,8 @@ label start:
             jump choice_store
         "cheat":
             jump mell_cheat
+        "Beginning":
+            jump starting
 
     label choice_thatplace:
     hide bg scenery2
@@ -183,6 +185,7 @@ label start:
 
     label choice_done:
 
+    label starting:
 
     scene bg black
 
@@ -288,7 +291,8 @@ label start:
     b1 "Having some photography skill isn’t going to cut it if the only thing backing you up is 3 years of social media “experience”-"
     b1 "And poor listening skills."
     mc "(I guess I shouldn't have lied...)"
-    mc sad "I... see...Thank you for your time."
+    mc sad "I... see..."
+    mc "Thank you for your time then."
 
     jump apologize_repeat_continue
 
@@ -980,6 +984,8 @@ label start:
 
     jump Go_Home_Late
 
+    label mell_cheat:
+
     label Find_Faine:
     scene bg streets 1
     with fade
@@ -989,8 +995,6 @@ label start:
     mc startled "Ha…Ha…How is he so slippery!?"
     play sound "Audio/MC_Run.mp3"
     z "Despite the fact I had been running he seemed to have already vanished in the direction of the park."
-
-    label mell_cheat:
 
     scene bg park
     with fade
@@ -1093,16 +1097,86 @@ label start:
 
     mc happy "Aha...It's a silly story, you see!"
     show Faine Small with dissolve
-    z "As soon as the words are out of my mouth, Faine immediately takes a few steps backwards."
-    mc shock "(Wait! That's not what I wanted!)"
+    z "As soon as the words are out of my mouth, Faine immediately shifts a few steps backwards."
+    z "His eyes grow even colder and his hold on his camera tightens."
+    mc shock "(Wait... This isn't what I wanted!)"
+    mc "(I better think of something to lighten the mood quick.)"
     mc happy "I-I just wanted to come by and ask you where... Where you got your shirt!"
     mc "Yeah! That's it!"
     f "...."
-    show Faine mixed
-    f "Someone gave it to me."
+    show Faine mixed with poof
+    z "Something small seems to soften in his expression."
+    f "I don't know. Someone gave it to me."
     mc happy "O-oh, is that so..."
-    mc judge "(It's even more awkward than before...)"
+    z "Instead of words, Faine gives nothing but a small nod in reponse this time."
+    mc neutral "...."
+    mc judge "(It's even more awkward than it was before...)"
+    mc "(Better think of something else to keep this conversation going.)"
+    mc neutral "I-"
+    show Faine unhappy with poof
+    z "(...Wait.)"
+    mc sad "({i}I{/i} what? What do I want to say?)"
+    mc "(Why do I want this to keep this going?)"
+    mc "(Why did I make something up?)"
+    show Faine mixed with poof
+    mc "(Why did I come after him in the first place?)"
+    show Faine anxious with poof
+    mc "(Why did I even remember his words now of all times, after all these years...)"
+    z "It takes a few seconds for me to realize that I had been quiet for much longer than I thought when his shuffling catches my eye."
+    show Faine neutral with poof
+    z "I look up to see eyes strikingly similar to someone from a long time ago."
+    f "If that's all-"
+    f "I'm late for work. Bye."
+    hide Faine Tiny with dissolve
+    z "Without even waiting for a response, he moves passed me to leave."
+    mc shock "W-wait!"
+    show Faine with dissolve
+    z "I quickly call out to him, and, despite everything, Faine stops and turns towards me once more."
+    mc "...."
+    mc "(He said he was late for work so I probably shouldn't keep him too long.)"
 
+    menu:
+        mc ""
+        "(Push him for his contacts.)":
+            jump Make_Something_Up_Next_1
+        "(Wish him well and let him leave.)":
+            jump Make_Something_Up_Next_2
+
+    label Make_Something_Up_Next_1:
+
+    mc shock "C-Can I have your contact info so we can stay in touch, maybe?"
+    z "The words comes out all at once, a bit more forceful in my rush, and a response comes just as quick-"
+    f mixed "No."
+    mc sad "Oh-"
+    mc "(What do I even say to that?)"
+    mc "Okay. Sorry."
+    hide Faine with dissolve
+    z "This time, there is barely any acknowledgement as Faine leaves."
+
+    jump Make_Something_Up_Next
+
+    label Make_Something_Up_Next_2:
+
+    mc sad "Uh- nevermind, it's nothing."
+    mc neutral "Good luck at work."
+    f anxious "...Thank you."
+    f neutral "Bye."
+    hide Faine with dissolve
+    z "Once more, he makes his way over to the park entrance without waiting for a response."
+
+    jump Make_Something_Up_Next
+
+    label Make_Something_Up_Next:
+
+    mc "...."
+    mc eyesclosed "(Stupid.)"
+    mc "(What was all of that?)"
+    mc sad "(I barely have time for myself these days, let alone time to try and make friends.)"
+    mc "(So what was I even trying to do there?)"
+    mc eyesclosed "*Sigh*"
+    mc "What a terrible day so far..."
+
+    jump Make_Something_Up_Conclusion
 
     label Honesty_Faine:
 
@@ -1143,14 +1217,13 @@ label start:
     with poof
     z "He hesitantly pockets the phone again, continuing to awkwardly stare at me for a bit before finally muttering."
     f neutral "...I’m late for work."
-    z "Faine raises a single stiff hand in what can only be assumed to be a greeting gesture."
+    z "Faine raises a single stiff hand in what can only be assumed to be a greeting gesture of sorts."
     f "Okay."
     f "Bye."
     hide Faine with Dissolve(0.3)
     stop music fadeout 3.0
     play ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.40
     z "And without another word he scrambles off toward the other park entrance."
-
     mc shock "...."
     mc neutral "What was that?"
     mc eyesclosed "(*Sigh* Well, whatever that was, it certainly wasn’t the Faine I remember.)"
@@ -1168,6 +1241,8 @@ label start:
     z "The numbers are still there no matter how much I look at the post."
     mc "(This makes no sense. He might have just reposted something, right?)"
     mc "(This makes even less sense than before.)"
+
+    label Make_Something_Up_Conclusion:
     mc "*Stomach Gurgles*"
     mc eyesclosed "(It’s late though, I can think about this later.)"
     #put away Faine's profile
