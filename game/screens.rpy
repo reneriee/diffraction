@@ -521,15 +521,16 @@ screen navigation():
             imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 action ShowMenu("gallery")
             imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 action ShowMenu("load")
             imagebutton auto "trackstab_%s.png" focus_mask True xpos 222 ypos 55 action ShowMenu("tracks")
-            image "gui/tabs_border_home.png" ypos 115 xpos -841
+            image "gui/tabs_border.png" ypos 115 xpos -1330
 
         else:
             imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("preferences")
-            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("gallery")
-            imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("load")
-            imagebutton auto "savetab_%s.png" focus_mask True xpos 222 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("save")
-            imagebutton auto "trackstab_%s.png" focus_mask True xpos 242 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("tracks")
-            imagebutton auto "historytab_%s.png" focus_mask True xpos 262 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("history")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("load") 
+            imagebutton auto "savetab_%s.png" focus_mask True xpos 202 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("save")
+            imagebutton auto "historytab_%s.png" focus_mask True xpos 222 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("history")
+            imagebutton idle "locked_tab.png" focus_mask True xpos 242 ypos 55 # action ShowMenu("tracks") #
+            imagebutton idle "locked_tab.png"  focus_mask True xpos 262 ypos 55 # action ShowMenu("gallery") #
+
             image "gui/tabs_border.png" ypos 115 xpos -1330
 
 
@@ -663,6 +664,17 @@ style main_menu_version:
 ## The scroll parameter can be None, or one of "viewport" or "vpgrid". When
 ## this screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
+define pref_tint = im.MatrixColor("gui/gradient.png", 
+im.matrix.tint(.70,.90,1)*im.matrix.brightness(-0.05)
+*im.matrix.contrast(1.2))
+
+define load_tint = im.MatrixColor("gui/save_screen_bg.png", 
+im.matrix.tint(.0,.73,.80)*im.matrix.brightness(0.2)
+*im.matrix.contrast(1.2)*im.matrix.opacity(0.8))
+
+define save_tint = im.MatrixColor("gui/load_screen_bg.png",
+im.matrix.tint(.0,.70,.75)*im.matrix.brightness(-0.07)
+*im.matrix.contrast(1.5)*im.matrix.opacity(0.8))
 
 screen game_menu(title, scroll=None, yinitial=0.0):
 
@@ -672,56 +684,73 @@ screen game_menu(title, scroll=None, yinitial=0.0):
         add gui.main_menu_background
     else:
         add gui.game_menu_background
+    
+    frame style "box":
 
-    frame:
         if renpy.get_screen("save"):
-            style "game_menu_save_bg"
+            add save_tint
+            add "gui/gradient2.png"  alpha .54
+            add "gui/rain_window.png"  alpha .8
+            add "gui/menu_frame.png"  
         elif renpy.get_screen("load"):
-            style "game_menu_load_bg"
+            add load_tint
+            add "gui/gradient2.png"  alpha .54
+            add "gui/rain_window.png"  alpha .8
+            add "gui/menu_frame.png"  
         else:
-            style "game_menu_outer_frame"
+            add pref_tint
+            add "gui/gradient2.png"  alpha .5
+            add "gui/rain_window.png"  alpha .6
+            add "gui/menu_frame.png"  
 
-        hbox:
 
-            ## Reserve space for the navigation section.
-            frame:
-                style "game_menu_navigation_frame"
+        add "menu_frame.png"
 
-            frame:
-                style "game_menu_content_frame"
+        frame style "box":
+            bottom_padding 45
+            top_padding 180
+           
+            hbox:
 
-                if scroll == "viewport":
+                ## Reserve space for the navigation section.
+                frame:
+                    style "game_menu_navigation_frame"
 
-                    viewport:
-                        yinitial yinitial
-                        scrollbars "vertical"
-                        mousewheel True
-                        draggable True
-                        pagekeys True
+                frame:
+                    style "game_menu_content_frame"
 
-                        side_yfill True
+                    if scroll == "viewport":
 
-                        vbox:
+                        viewport:
+                            yinitial yinitial
+                            scrollbars "vertical"
+                            mousewheel True
+                            draggable True
+                            pagekeys True
+
+                            side_yfill True
+
+                            vbox:
+                                transclude
+
+                    elif scroll == "vpgrid":
+
+                        vpgrid:
+                            cols 1
+                            yinitial yinitial
+
+                            scrollbars "vertical"
+                            mousewheel True
+                            draggable True
+                            pagekeys True
+
+                            side_yfill True
+
                             transclude
 
-                elif scroll == "vpgrid":
-
-                    vpgrid:
-                        cols 1
-                        yinitial yinitial
-
-                        scrollbars "vertical"
-                        mousewheel True
-                        draggable True
-                        pagekeys True
-
-                        side_yfill True
+                    else:
 
                         transclude
-
-                else:
-
-                    transclude
 
     use navigation
 
@@ -949,9 +978,16 @@ screen file_slots(title):
 
                             button:
                                 if(is_it_empty == "Empty Slot"):
-                                    add "save_slot_button_empty"
+                                    if(renpy.get_screen("save")):
+                                        add "save_slot_button_empty"
+                                    else:
+                                        add "load_slot_button_empty"
                                 else:
-                                    add "save_slot_button"
+                                    if(renpy.get_screen("save")):
+                                        add "save_slot_button"
+                                    else:
+                                        add "load_slot_button"
+
                                 focus_mask True
                                 action FileAction(slot)
 
@@ -960,13 +996,24 @@ screen file_slots(title):
                                 ypos 23
 
                             if(is_it_empty != "Empty Slot"):
-                                text "Day [in_game_day]" style "slot_save_in_game_day_text"
+                                text "Day [in_game_day]":
+                                    if(renpy.get_screen("save")):
+                                        style "slot_save_in_game_day_text"
+                                    else:
+                                        style "slot_load_in_game_day_text"
 
                             text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Empty Slot")):
                                 if(is_it_empty == "Empty Slot"):
-                                    style "slot_empty_save" at opacity_08
+                                    if(renpy.get_screen("save")):
+                                        style "slot_empty_save" at opacity_08
+                                    else:
+                                        style "slot_empty_load" at opacity_08
                                 else:
-                                    style "slot_save_date_time"
+                                    if(renpy.get_screen("save")):
+                                        style "slot_save_date_time"
+                                    else:
+                                        style "slot_load_date_time"
+
 
                             # text FileSaveName(slot):
                             #     style "slot_name_text"
@@ -991,18 +1038,30 @@ screen file_slots(title):
 
                 if config.has_autosave:
                     textbutton _("{#auto_page}A"):
-                        text_style "save_pagination"
+                        if(renpy.get_screen("save")):
+                            text_style "save_pagination"
+                        else:
+                            text_style "load_pagination"
+
                         action FilePage("auto")
 
                 if config.has_quicksave:
                     textbutton _("{#quick_page}Q"):
-                        text_style "save_pagination"
+                        if(renpy.get_screen("save")):
+                            text_style "save_pagination"
+                        else:
+                            text_style "load_pagination"
+
                         action FilePage("quick")
 
                 ## range(1, 10) gives the numbers from 1 to 9.
                 for page in range(1, 5):
                     textbutton "[page]":
-                        text_style "save_pagination"
+                        if(renpy.get_screen("save")):
+                            text_style "save_pagination"
+                        else:
+                            text_style "load_pagination"
+
                         action FilePage(page)
 
                 button:

@@ -113,13 +113,42 @@ style slot_empty_save:
     xalign 0.5
     color "#494949"
     font "Exo-Medium.ttf" 
-
+    
 style save_pagination:
     color "#1D2230"
-    hover_color "#89BFDE"
+    hover_color "#5086a5"
     selected_color "#fff"
 
 style save_page_label:
+    color "#093a77"
+    hover_color "#3694a5"
+    selected_color "#fff"
+
+style slot_empty_load:
+    yalign 0.5
+    xalign 0.5
+    color "#ffffff"
+    font "Exo-Medium.ttf" 
+style slot_load_in_game_day_text:
+    xpos 355
+    ypos 65
+    size 30
+    color "#ffffff"
+    font "Exo-Medium.ttf" 
+
+style slot_load_date_time:
+    xpos 357
+    ypos 105
+    size 17
+    color "#ffffff"
+    font "Exo-Regular.ttf" 
+
+style load_pagination:
+    color "#337993"
+    hover_color "#89BFDE"
+    selected_color "#fff"
+
+style load_page_label:
     color "#093a77"
     hover_color "#64dcf1"
     selected_color "#fff"

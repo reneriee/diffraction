@@ -175,3 +175,27 @@ init -2:
             "gui/button/slot_save_idle_empty_background.png" with Dissolve(0.25, alpha=True)
         on selected_hover:
             "gui/button/slot_save_hover_empty_background.png" with Dissolve(0.25, alpha=True)
+
+    image load_slot_button:
+        "gui/button/slot_load_idle_background.png"
+        on idle:
+            "gui/button/slot_load_idle_background.png"  with Dissolve(0.25, alpha=True)
+        on hover:
+            "gui/button/slot_load_idle_background.png"
+            "gui/button/slot_load_hover_background.png" with Dissolve(0.25, alpha=True)
+        on selected_idle:
+            "gui/button/slot_load_idle_background.png" with Dissolve(0.25, alpha=True)
+        on selected_hover:
+            "gui/button/slot_load_hover_background.png" with Dissolve(0.25, alpha=True)
+    
+    image load_slot_button_empty:
+        "gui/button/slot_load_idle_empty_background.png"
+        on idle:
+            "gui/button/slot_load_idle_empty_background.png"  with Dissolve(0.25, alpha=True)
+        on hover:
+            "gui/button/slot_load_idle_empty_background.png"
+            "gui/button/slot_load_hover_empty_background.png" with Dissolve(0.25, alpha=True)
+        on selected_idle:
+            "gui/button/slot_load_idle_empty_background.png" with Dissolve(0.25, alpha=True)
+        on selected_hover:
+            "gui/button/slot_load_hover_empty_background.png" with Dissolve(0.25, alpha=True)
