@@ -1,4 +1,29 @@
 init -2:
+# Animated main screen
+    image main_menu_animated:
+        pause 0.3
+        animation
+        "gui/main_menu.png"
+        ypos -50
+        alpha 0.0
+        easeout 2.8 ypos 0 alpha 0.95 
+        easeout 1.0 alpha 1.0 
+
+    image logo_animated:
+        pause 0.3
+        animation
+        "gui/logo.png"
+        alpha 0.0
+        xsize 647
+        ysize 259
+        easeout 2.3 alpha 1.0 
+
+    image arrow_thing_animated:
+        animation
+        "gui/button/main_chevron_right.png"
+        alpha 0.0
+        easeout 2.0 alpha 1.0 
+
 # animations for quick menu buttons
 
     image quickmain_button:
@@ -199,3 +224,30 @@ init -2:
             "gui/button/slot_load_idle_empty_background.png" with Dissolve(0.25, alpha=True)
         on selected_hover:
             "gui/button/slot_load_hover_empty_background.png" with Dissolve(0.25, alpha=True)
+
+# Confirm box
+
+    image yes_button:
+        "gui/button/yes_idle.png"
+        on idle:
+            "gui/button/yes_idle.png"  with Dissolve(0.15, alpha=True)
+        on hover:
+            "gui/button/yes_idle.png"
+            "gui/button/yes_hover.png" with Dissolve(0.15, alpha=True)
+        on selected_idle:
+            "gui/button/yes_idle.png" with Dissolve(0.15, alpha=True)
+        on selected_hover:
+            "gui/button/yes_hover.png" with Dissolve(0.15, alpha=True)
+    
+    image no_button:
+        "gui/button/no_idle.png"
+        on idle:
+            "gui/button/no_idle.png"  with Dissolve(0.15, alpha=True)
+        on hover:
+            "gui/button/no_idle.png"
+            "gui/button/no_hover.png" with Dissolve(0.15, alpha=True)
+        on selected_idle:
+            "gui/button/no_idle.png" with Dissolve(0.15, alpha=True)
+        on selected_hover:
+            "gui/button/no_hover.png" with Dissolve(0.15, alpha=True)
+    

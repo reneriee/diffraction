@@ -53,11 +53,13 @@ style scrollbar:
     ysize gui.scrollbar_size
     base_bar Frame("gui/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+    thumb_offset 7
 
 style vscrollbar:
     xsize gui.scrollbar_size
     base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    thumb_offset 7
 
 style slider:
     ysize gui.slider_size
@@ -110,18 +112,18 @@ screen say(who, what):
                 style "namebox"
 
                 frame style "box":
-                    xpos -380
+                    xpos 850
                     ypos 8
                     image "gui/name_bg.png" ypos -22
 
                     text "{font=Noto-Sans-JP.otf}「{/font} "+ who + "{font=Noto-Sans-JP.otf} 」{/font} " id "who":
-                        xpos 395
+                        xpos 445
                         ypos 6
                         font "CabinetGrotesk-Medium.otf"
                         at drop_shadow_blur
 
                     text "{font=Noto-Sans-JP.otf}「{/font} "+ who + "{font=Noto-Sans-JP.otf} 」{/font} " id "who":
-                        xpos 395
+                        xpos 445
                         ypos 6
                         font "CabinetGrotesk-Medium.otf"
 
@@ -243,7 +245,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 395
     yanchor 0.5
     spacing gui.choice_spacing
 
@@ -430,7 +432,7 @@ screen widgets:
             xsize 100
             ysize 60
             ypos 0.044
-            xpos 0.062
+            xpos 0.089
 
             text "[month]/":
                 size 41
@@ -517,11 +519,11 @@ screen navigation():
             yalign 0.5
 
         if main_menu:
-            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 action ShowMenu("preferences")
-            imagebutton auto "gallerytab_%s.png" focus_mask True xpos 182 ypos 55 action ShowMenu("gallery")
-            imagebutton auto "loadtab_%s.png" focus_mask True xpos 202 ypos 55 action ShowMenu("load")
-            imagebutton auto "trackstab_%s.png" focus_mask True xpos 222 ypos 55 action ShowMenu("tracks")
-            image "gui/tabs_border.png" ypos 115 xpos -1330
+            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("preferences")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("load") 
+            imagebutton idle "locked_tab.png" focus_mask True xpos 202 ypos 55
+            imagebutton idle "locked_tab.png" focus_mask True xpos 222 ypos 55
+            image "gui/tabs_border.png" ypos 115 xpos -843
 
         else:
             imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("preferences")
@@ -569,6 +571,15 @@ style navigation_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#main-menu
 
+transform my_fade(t, alpha):
+    alpha 0.0
+    pause 2.0
+    alpha 0.0
+    linear t alpha alpha
+
+define isHovered = False
+define started_game = True
+
 screen main_menu():
 
     ## This ensures that any other menu screen is replaced.
@@ -579,51 +590,79 @@ screen main_menu():
     ## This empty frame darkens the main menu.
     frame:
         style "main_menu_frame"
+        add "main_menu_animated"
+        add "logo_animated":
+            xalign 0.5
+            yalign 0.7
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
+    window style "main_menu_button_box":
+        at my_fade(1, 1.0)
+        vbox: 
+            style_prefix "navigation"
+            
+            # button:
+            #     xsize 200
+            #     ysize 200
+            #     action Start()
+            #     hovered SetVariable('isHovered', True)
+            #     unhovered SetVariable('isHovered', False)
+               
+            #     if isHovered == True:
+            #         frame:
+            #             xsize 200
+            #             ysize 200
+            #             background "#000"
+            #             add "arrow_thing_animated"
+            #     else:
+            #         frame:
+            #             xsize 200
+            #             ysize 200
+            #             background "#044079"
+            #     text "[isHovered]"
+                 
 
-    vbox:
-        style_prefix "navigation"
+            if renpy.get_screen('main_menu'):
+                xalign 0.5
+                yalign 0.5
 
-        if renpy.get_screen('main_menu'):
-            xalign 0.5
-            yalign 0.5
+            if main_menu:
+                spacing 0
+                ypos 940
 
-        if main_menu:
-            spacing gui.navigation_spacing
+                
+                textbutton _("Start") text_style "main_menu_buttons" action Start()
+                # textbutton _("About") action ShowMenu("about")
+                textbutton _("Load") text_style "main_menu_buttons"  action ShowMenu("load")
+                textbutton _("Preferences") text_style "main_menu_buttons" action ShowMenu("preferences")
 
-            textbutton _("Start") action Start()
-            textbutton _("About") action ShowMenu("about")
-            textbutton _("Load") action ShowMenu("load")
-            textbutton _("Preferences") action ShowMenu("preferences")
+            if _in_replay:
 
-        if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
+                textbutton _("End Replay") action EndReplay(confirm=True)
 
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            #     ## Help isn't necessary or relevant to mobile devices.
+            #     textbutton _("Help") action ShowMenu("help")
 
-        if renpy.variant("pc"):
+            if renpy.variant("pc"):
 
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+                ## The quit button is banned on iOS and unnecessary on Android and
+                ## Web.
+                textbutton _("Quit") text_style "main_menu_buttons"  action Quit(confirm=not main_menu)
 
 
     if gui.show_name:
 
-        vbox:
+        vbox at my_fade(1, 1.0) :
             style "main_menu_vbox"
 
-            text "[config.name!t]":
-                style "main_menu_title"
+            # text "[config.name!t]":
+            #     style "main_menu_title"
 
-            text "[config.version]":
+            text "Ver. [config.version]":
                 style "main_menu_version"
 
 
@@ -633,21 +672,22 @@ style main_menu_text is gui_text
 style main_menu_title is main_menu_text
 style main_menu_version is main_menu_text
 
-style main_menu_frame:
-    xsize 420
-    yfill True
 
-    background "gui/overlay/main_menu.png"
+style main_menu_frame:
+    xfill True
+    yfill True
+    background "gui/overlay/white.png"
 
 style main_menu_vbox:
     xalign 1.0
     xoffset -30
-    xmaximum 1200
+    xmaximum 1100
     yalign 1.0
     yoffset -30
 
 style main_menu_text:
-    properties gui.text_properties("main_menu", accent=True)
+    properties gui.text_properties("main_menu")
+    color "#000000"
 
 style main_menu_title:
     properties gui.text_properties("title")
@@ -669,12 +709,12 @@ im.matrix.tint(.70,.90,1)*im.matrix.brightness(-0.05)
 *im.matrix.contrast(1.2))
 
 define load_tint = im.MatrixColor("gui/save_screen_bg.png", 
-im.matrix.tint(.0,.73,.80)*im.matrix.brightness(0.2)
-*im.matrix.contrast(1.2)*im.matrix.opacity(0.8))
+im.matrix.tint(.0,.73,.80)*im.matrix.brightness(0.17)
+*im.matrix.contrast(1.0)*im.matrix.opacity(0.7))
 
 define save_tint = im.MatrixColor("gui/load_screen_bg.png",
-im.matrix.tint(.0,.70,.75)*im.matrix.brightness(-0.07)
-*im.matrix.contrast(1.5)*im.matrix.opacity(0.8))
+im.matrix.tint(.0,.50,.75)*im.matrix.brightness(-0.02)
+*im.matrix.contrast(1.0)*im.matrix.opacity(0.7))
 
 screen game_menu(title, scroll=None, yinitial=0.0):
 
@@ -707,8 +747,9 @@ screen game_menu(title, scroll=None, yinitial=0.0):
         add "menu_frame.png"
 
         frame style "box":
-            bottom_padding 45
-            top_padding 180
+            bottom_padding 140
+            top_margin 180
+            right_margin 65
            
             hbox:
 
@@ -1026,8 +1067,8 @@ screen file_slots(title):
             hbox:
                 style_prefix "page"
 
-                xalign 0.42
-                yalign 0.9
+                xalign 0.43
+                yalign 1.05
 
                 spacing gui.page_spacing
 
@@ -1055,7 +1096,7 @@ screen file_slots(title):
                         action FilePage("quick")
 
                 ## range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 5):
+                for page in range(1, 6):
                     textbutton "[page]":
                         if(renpy.get_screen("save")):
                             text_style "save_pagination"
@@ -1067,7 +1108,7 @@ screen file_slots(title):
                 button:
                     add "gui/button/chevron-right.png"
                     yalign 0.5
-                    action FilePageNext()
+                    action FilePageNext(max=5)
 
 
 style page_label is gui_label
@@ -1081,11 +1122,11 @@ style slot_time_text is slot_button_text
 style slot_name_text is slot_button_text
 
 style page_label:
-    xpadding 75
-    ypadding 5
+    xpos 75
+    ypos 5
 
 style page_label_text:
-    text_align 0.5
+    text_align 0.0
     layout "subtitle"
     hover_color gui.hover_color
 
@@ -1231,7 +1272,8 @@ screen preferences():
 
                                 text "0%" style "slider_value_min"
 
-                            bar value Preference("auto-forward time")
+                            bar value Preference("auto-forward time"):
+                                bar_invert True 
 
                             frame style "box" left_margin 17:
                                 text "100%" style "slider_value_max"
@@ -1269,6 +1311,7 @@ style pref_label:
 
 style pref_label_text:
     yalign 1.0
+    color "#2c2828"
 
 style pref_vbox:
     xsize 338
@@ -1331,6 +1374,12 @@ screen history():
         for h in _history_list:
 
             window:
+                if h.who:
+                    bottom_margin 6
+                    top_margin 6
+                else:
+                    bottom_margin 15
+                    top_margin 15
 
                 ## This lays things out properly if history_height is None.
                 has fixed:
@@ -1347,9 +1396,15 @@ screen history():
                         if "color" in h.who_args:
                             text_color h.who_args["color"]
 
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                text what:
-                    substitute False
+                    $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+                    text what:
+                        substitute False
+                else:
+                    $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+                    text what:
+                        substitute False
+                        color "#4c4d52"
+                        italic True
 
         if not _history_list:
             label _("The dialogue history is empty.")
@@ -1363,8 +1418,14 @@ define gui.history_allow_tags = { "alt", "noalt" }
 style history_window is empty
 
 style history_name is gui_label
-style history_name_text is gui_label_text
-style history_text is gui_text
+style history_name_text:
+    color "#067f94"
+    font "CabinetGrotesk-Medium.otf"
+    size 33
+
+style history_text:
+    color "#535353"
+    
 
 style history_text is gui_text
 
@@ -1602,8 +1663,19 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 150
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                button:
+                    add "no_button"
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
+                    action no_action
+
+                button:  
+                    add "yes_button"
+                    hover_sound "Audio/Hover_Beep.mp3"
+                    activate_sound "Audio/Select_Beep.mp3"
+                    action yes_action
+                
+
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
@@ -1616,7 +1688,7 @@ style confirm_button is gui_medium_button
 style confirm_button_text is gui_medium_button_text
 
 style confirm_frame:
-    background Frame([ "gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
+    background Frame([ "gui/confirm_frame.png", "gui/confirm_box.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
     padding gui.confirm_frame_borders.padding
     xalign .5
     yalign .5
@@ -1624,6 +1696,9 @@ style confirm_frame:
 style confirm_prompt_text:
     text_align 0.5
     layout "subtitle"
+    color "#494949"
+    font "Exo-Regular.ttf"
+    size 28
 
 style confirm_button:
     properties gui.button_properties("confirm_button")

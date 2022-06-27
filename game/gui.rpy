@@ -24,14 +24,14 @@ init python:
 define gui.accent_color = u'#38FFF3'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = u'#888888'
+define gui.idle_color = u'#535353'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
 define gui.idle_small_color = u'#aaaaaa'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = u'#19c1ca'
+define gui.hover_color = u'#1fcdd6'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
@@ -83,7 +83,9 @@ define gui.title_text_size = 40
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
+
+define gui.main_menu_background = "main_menu_animated"
+# define gui.main_menu_background = "gui/main_menu.png"
 define gui.game_menu_background = "gui/game_menu.png"
 
 
@@ -102,7 +104,7 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 360
+define gui.name_xpos = 30
 define gui.name_ypos = -90
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
@@ -200,10 +202,11 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ##
 ## Choice buttons are used in the in-game menus.
 
-define gui.choice_button_width = 1185
+define gui.choice_button_width = 1165
+define gui.choice_button_height= 85
 ## define gui.choice_button_height = None##
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(30, 21, 30, 21)
+define gui.choice_button_borders = Borders(30, 23, 30, 23)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
@@ -229,8 +232,8 @@ define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
 ## The width and height of thumbnails used by the save slots.
-define config.thumbnail_width = 350
-define config.thumbnail_height = 190
+define config.thumbnail_width = 300
+define config.thumbnail_height = 150
 
 ## The number of columns and rows in the grid of save slots.
 define gui.file_slot_cols = 2
@@ -247,7 +250,7 @@ define gui.file_slot_rows = 3
 define gui.navigation_xpos = 60
 
 ## The vertical position of the skip indicator.
-define gui.skip_ypos = 15
+define gui.skip_ypos = 30
 
 ## The vertical position of the notify screen.
 define gui.notify_ypos = 68
@@ -319,9 +322,9 @@ define gui.scrollbar_borders = Borders(6, 6, 6, 6)
 define gui.slider_borders = Borders(6, 6, 6, 6)
 
 ## Vertical borders.
-define gui.vbar_borders = Borders(6, 6, 6, 6)
-define gui.vscrollbar_borders = Borders(6, 6, 6, 6)
-define gui.vslider_borders = Borders(6, 6, 6, 6)
+define gui.vbar_borders = Borders(10, 10, 10, 10)
+define gui.vscrollbar_borders =Borders(10, 10, 10, 10)
+define gui.vslider_borders =Borders(10, 10, 10, 10)
 
 ## What to do with unscrollable scrollbars in the gui. "hide" hides them, while
 ## None shows them.
@@ -337,19 +340,19 @@ define config.history_length = 250
 
 ## The height of a history screen entry, or None to make the height variable at
 ## the cost of performance.
-define gui.history_height = 210
+define gui.history_height = None
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.history_name_xpos = 233
-define gui.history_name_ypos = 0
+define gui.history_name_xpos = 190
+define gui.history_name_ypos = 1
 define gui.history_name_width = 233
 define gui.history_name_xalign = 1.0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.history_text_xpos = 255
+define gui.history_text_xpos = 230
 define gui.history_text_ypos = 3
-define gui.history_text_width = 1110
+define gui.history_text_width = 1200
 define gui.history_text_xalign = 0.0
 
 

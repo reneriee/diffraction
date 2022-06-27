@@ -25,9 +25,21 @@ style game_menu_title_text:
     color "#FFFFFF"
 
 style box:
-    background None
+    background None     
+    xalign 0.5
+
 
 # -------------------------------------------
+
+#### Main Menu screen ####
+style main_menu_button_box:
+    background None
+
+style main_menu_buttons:
+    xalign 0.5
+    color "#000000"
+    hover_color "#07dfd0"
+    selected_color "#07dfd0"
 
 #### Preferences screen ####
 
@@ -129,6 +141,7 @@ style slot_empty_load:
     xalign 0.5
     color "#ffffff"
     font "Exo-Medium.ttf" 
+
 style slot_load_in_game_day_text:
     xpos 355
     ypos 65
