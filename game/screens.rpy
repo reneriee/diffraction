@@ -632,10 +632,10 @@ screen main_menu():
                 ypos 940
 
                 
-                textbutton _("Start") text_style "main_menu_buttons" action Start()
+                textbutton _("Start") text_style "main_menu_buttons" hover_sound "Audio/Hover_Beep.mp3" activate_sound "Audio/Select_Beep.mp3" action Start()
                 # textbutton _("About") action ShowMenu("about")
-                textbutton _("Load") text_style "main_menu_buttons"  action ShowMenu("load")
-                textbutton _("Preferences") text_style "main_menu_buttons" action ShowMenu("preferences")
+                textbutton _("Load") text_style "main_menu_buttons" hover_sound "Audio/Hover_Beep.mp3" activate_sound "Audio/Select_Beep.mp3" action ShowMenu("load")
+                textbutton _("Preferences") text_style "main_menu_buttons" hover_sound "Audio/Hover_Beep.mp3" activate_sound "Audio/Select_Beep.mp3" action ShowMenu("preferences")
 
             if _in_replay:
 
@@ -651,7 +651,7 @@ screen main_menu():
 
                 ## The quit button is banned on iOS and unnecessary on Android and
                 ## Web.
-                textbutton _("Quit") text_style "main_menu_buttons"  action Quit(confirm=not main_menu)
+                textbutton _("Quit") text_style "main_menu_buttons" hover_sound "Audio/Hover_Beep.mp3" activate_sound "Audio/Select_Beep.mp3" action Quit(confirm=not main_menu)
 
 
     if gui.show_name:

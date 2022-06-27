@@ -250,7 +250,7 @@ define gui.file_slot_rows = 3
 define gui.navigation_xpos = 60
 
 ## The vertical position of the skip indicator.
-define gui.skip_ypos = 30
+define gui.skip_ypos = 0
 
 ## The vertical position of the notify screen.
 define gui.notify_ypos = 68
