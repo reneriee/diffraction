@@ -45,15 +45,14 @@ transform blinkwait:
 #    if persistent.show_mc_side_image == True:
 #        config.side_image_tag = "MC"
 
-# transform change_transform(old,new):
+#transform change_transform(old,new):
 #     contains:
 #         old
 #         alpha 1.0
-#         align 0.02 yalign 1.0
 #         linear 0.3 alpha 0.0
 #     contains:
 #         new
-#         xalign 0.02 yalign 1.0
+#         alpha 0.0
 #         linear 0.3 alpha 1.0
 
 image side MC = LayeredImageProxy("MC", Transform(crop=(0,1,1533,1400), zoom=0.3))
@@ -81,6 +80,8 @@ layeredimage MC:
             "mce6e"
         attribute startled:
             "MC_shock_blink"
+        attribute thunk:
+            "MC_neutral_blink"
     group brows:
         attribute neutral default:
             "mce1br"
@@ -98,6 +99,8 @@ layeredimage MC:
             "mce6br"
         attribute startled:
             "mce6br"
+        attribute thunk:
+            "mce1br"
     group mouth:
         attribute neutral default:
             "mce1m"
@@ -113,7 +116,7 @@ layeredimage MC:
             "mce2m"
         attribute crisis:
             "mce6m"
-        attribute n_mouth_alt:
+        attribute thunk:
             "mcmm1"
         attribute startled:
             "mcmm2"
@@ -239,29 +242,51 @@ layeredimage Hendric:
         attribute fringe default:
             "hff"
 
-image Otto Tiny = LayeredImageProxy("Totto", Transform(crop=(0,1,1800,2000), xoffset= 170, yoffset= 80, zoom=0.50))
+image Otto Tiny = LayeredImageProxy("Totto", Transform(crop=(0,1,1800,2000), xoffset= 125, yoffset= 80, zoom=0.50))
 
 layeredimage Totto:
-        always:
-            "ob1"
-        group eyes:
-            attribute smile default:
-                "o_smile_blink"
-            attribute puppy:
-                "o_smile_blink"
-        group brows:
-            attribute smile default:
-                "oe1br"
-            attribute puppy:
-                "oe2br"
-        group mouth:
-            attribute smile default:
-                "oe1m"
-            attribute puppy:
-                "oe2m"
-        group hair:
-            attribute fringe default:
-                "of1"
+    always:
+        "ob1"
+    group eyes:
+        attribute smile default:
+            "o_smile_blink"
+        attribute puppy:
+            "o_smile_blink"
+    group brows:
+        attribute smile default:
+            "oe1br"
+        attribute puppy:
+            "oe2br"
+    group mouth:
+        attribute smile default:
+            "oe1m"
+        attribute puppy:
+            "oe2m"
+    group hair:
+        attribute fringe default:
+            "of1"
+
+image Lexi Tiny = LayeredImageProxy("Lexin", Transform(crop=(0,1,1800,2300), xoffset= 270, yoffset= 100, zoom=0.445))
+
+layeredimage Lexin:
+    always:
+        "lb1"
+    group eyes:
+        attribute neutral default:
+            "l_neutral_blink"
+        attribute question:
+            "l_neutral_blink"
+    group brows:
+        attribute neutral default:
+            "le1br"
+        attribute question:
+            "lmbr1"
+    group mouth:
+        attribute neutral default:
+            "le1m"
+        attribute question:
+            "le1m"
+
 
 ####BLINKING ANIMATION CODE####
 image MC_neutral_blink:
@@ -374,5 +399,14 @@ image o_smile_blink:
     "oe1b"
     0.13
     "odb"
+    0.13
+    repeat
+
+image l_neutral_blink:
+    "le1e"
+    blinkwait
+    "le1b"
+    0.13
+    "ldb"
     0.13
     repeat
