@@ -1,22 +1,22 @@
 init -2:
 # Animated main screen
     image main_menu_animated:
-        pause 0.3
+        pause 0.35
         animation
         "gui/main_menu.png"
         ypos -50
         alpha 0.0
-        easeout 2.8 ypos 0 alpha 0.95 
+        easeout 2.7 ypos 0 alpha 0.95 
         easeout 1.0 alpha 1.0 
 
     image logo_animated:
-        pause 0.3
+        pause 1.5
         animation
         "gui/logo.png"
         alpha 0.0
         xsize 647
         ysize 259
-        easeout 2.3 alpha 1.0 
+        easeout 2.0 alpha 1.0 
 
     image arrow_thing_animated:
         animation
