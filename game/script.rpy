@@ -68,6 +68,7 @@ default Lexi_Name = "Purse Girl"
 default Kim_Name = "Cashier Woman"
 default Day_1_Guy_Choice = "that guy"
 default Question_Hen = False
+default Ask_Collab = False
 default Apologize_to_Hen = False
 default Day_1_Guy_Return = "No One"
 
@@ -795,30 +796,32 @@ label start:
             $ Question_Hen = True
             jump Explain_First
         "(Don't go with him/leave.)":
-            mc judge "(No way am I going with this guy.)"
             jump Leave_Him_1
 
     label Leave_Him_1:
     mc judge "(Where's he going? There's no way I'm going with this guy.)"
-    z "I look between the guy and the venue exit calculating if I might just be able to make it past him."
-    z "Before I can even consider anything, a voice cuts back in."
+    z "I look between Hen and the venue exit calculating if I might just be able to make it past him."
+    z "Before I can even consider anything though, a voice cuts back in."
     h "A cautious one, I see!"
     show Hen smile with dissolve
     h "You wouldn't happen to be considering sneaking off, would you?"
-    mc shock "(There goes that plan.)"
-    mc shock "I-"
+    mc shock "(...?!)"
+    mc "(...There goes that plan I guess.)"
+    mc "I-"
     mc neutral "...."
-    mc "Look, I can't just follow some stranger to who-knows-where. I don't even know if “Hen” is you real name."
+    mc "Look, I can't just follow some stranger to who-knows-where. I don't even know if Hen's your real name."
     h neutral "Well, it's Hendric, but Hen is fine."
     $ Hen_Name = "Hen"
     mc judge "(That's not really the main issue here.)"
-    h "But alas, you've caught me. I guess I have to share my masterplan with you now."
-    h smile "I was going to ask you to buy me some candy."
+    h smile "But alas, you've caught me. I guess I have to share my masterplan with you now."
+    h neutral "I was going to ask you to buy me some candy."
     mc shock "...."
-    mc "...Candy?...Seriously?"
+    mc "...Candy...Seriously?"
     h "Yup."
     mc neutral "(He...doesn't look like he's lying...)"
-    h neutral "Let's go then."
+    mc "(But I don't know if I should trust him still...)"
+    h smile "So? Let's go then."
+    $ Question_Hen = True
 
     jump Leave_Him_1_Conclude
 
@@ -869,10 +872,10 @@ label start:
     h smile "Oh my!"
     mc shock "...?!"
     h "I spill my heart out, tell you everything you need to know-"
-    h "Only asking for a mere few bags of candy in exchange for my custom, engraved, {i}$5000.00{/i} phone."
+    h "Only asking for a mere few bags of candy in exchange for my poor, broken, custom, engraved, {i}$5000.00{/i} phone."
     z "With each adjective, his voice grows louder until a few curious people glance our way."
     h "How cruel and unjust!"
-    z "The number of glances keep increasing. Curious whispers about us seem to be starting up as well."
+    z "The number of glances keep increasing. A few curious whispers about us seem to be starting up as well."
     mc "(This isn't good-)"
     mc startled "Okay!-"
     mc "Okay, I'll go with you! Just stop that."
@@ -910,6 +913,7 @@ label start:
     menu:
         mc "I could ask about that collab he mentioned earlier."
         "Ask him about it.":
+            $ Ask_Collab = True
             mc "Hey, about that collab you mentioned-"
             show Hen with dissolve
             h "Hmm?"
@@ -925,17 +929,19 @@ label start:
     mc "(He’s walking in the right direction at least.)"
 
     show bg store with fade
-    play music "<loop 0.00>Music/Store_Theme.mp3" fadein 5.0 volume 0.67
+    #play music "<loop 0.00>Music/Store_Theme.mp3" fadein 5.0 volume 0.5
     if Question_Hen == False:
         mc shock "(Why are we at the store?)"
     else:
-        mc shock "(This is the store... )"
+        mc shock "(This is definitely the store... )"
     z "Before I can even contemplate what would happen next, Hen has already wandered off, swiftly vanishing into one of the more distant aisles."
     mc "Okay then... –"
     z "I slowly follow after him."
     z "Turning the corner, I spot him already crouched in front of a shelf of different gummies."
     if Question_Hen == False:
         mc judge "(What's he even doing here?)"
+    elif Question_Hen == False and Ask_Collab == True:
+        mc judge "...Is he seriously making me pay for his candy???"
     else:
         mc judge "(I guess we’re really doing this now... )"
     z "He looks up at me as I approach... "
@@ -952,7 +958,7 @@ label start:
 
     menu:
         mc ""
-        "What were the options again? (Pick one from what he says)":
+        "(Pick one from what he said)":
             jump One_Of_Two
         "Why not both?":
             jump Why_Not_Both
@@ -960,6 +966,17 @@ label start:
             jump Does_It_Matter
 
     label One_Of_Two:
+    mc neutral "Uhm..."
+    mc "(Is there even a right answer here?)"
+    z "Over on the shelf where he grabbed the bags, each type of gummie is displayed with its price just below."
+    z "I attempt to discreetly glance at both to find the cheaper option."
+    mc judge "(I really don't have the money for this.)"
+    mc neutral "Maybe the treefrogs then?"
+    mc judge "(Please don't ask me why...)"
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.6
+
+    h neutral "Hmm, not a bad choice."
+    h "The multi coloured frogs are almost perfect in size and thickness for to get that satisfying gummie chew. The variety in flavours also helps to ensure that you don't get bored, but if you ask me, the citrus flavours over the other fruit ones are superior in this brand. "
     "Hen compliments April about her choice of the cheaper option of treefrogs and explains in extensive detail why."
     "He still eyes the whales longingly."
     jump One_Of_Two_Conclude
@@ -972,6 +989,7 @@ label start:
     label Does_It_Matter:
 
     mc neutral "It’s... just candy... does it make a difference-..."
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.6
     z "I am almost immediately cut off by an indignant gasp."
     h shocked "Of course it makes a difference! They’re two completely different flavors!"
     play sound "Audio/Candy_Shake.mp3"
@@ -1002,7 +1020,7 @@ label start:
     z "...Then slowly gets up and places both into the pile in my arms."
     mc neutral "(Let's see here-these would be $3, plus that is $11.50 and those $18.75...)"
     mc shock "(This is way too much!)"
-    z "Something must show on my face because he points at the bags of tree frogs in my arms."
+    z "Something must show on my face because he points at the pile under the bag of gummie whales in my arms."
     h smile "I’ll pay for these ones, it’s fine."
     mc "G-great..."
     mc neutral "(What was even the point of making me listen to that speech if you’re just going to get both and pay for some anyways... )"
@@ -1031,6 +1049,7 @@ label start:
     h smile "It’ll be fine. This is pretty normal for me."
     mc "(This is normal to him???)"
     hide Hen with dissolve
+    stop music fadeout 5.0
     show Store_Blurred with dissolve
     z "Before I can ask any more questions, he once again turns to head to the cashier, I quickly move to catch up with him, soon placing the absurd amount of candy onto the counter."
     show Hen with dissolve
