@@ -232,7 +232,6 @@ init -2:
         on idle:
             "gui/button/yes_idle.png"  with Dissolve(0.15, alpha=True)
         on hover:
-            "gui/button/yes_idle.png"
             "gui/button/yes_hover.png" with Dissolve(0.15, alpha=True)
         on selected_idle:
             "gui/button/yes_idle.png" with Dissolve(0.15, alpha=True)
@@ -244,7 +243,6 @@ init -2:
         on idle:
             "gui/button/no_idle.png"  with Dissolve(0.15, alpha=True)
         on hover:
-            "gui/button/no_idle.png"
             "gui/button/no_hover.png" with Dissolve(0.15, alpha=True)
         on selected_idle:
             "gui/button/no_idle.png" with Dissolve(0.15, alpha=True)
