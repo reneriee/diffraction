@@ -110,6 +110,12 @@ label start:
 
     stop music fadeout 2.0
 
+    $ protag_name = renpy.input ("My name is...")
+    $ protag_name = protag_name.strip()
+
+    if protag_name == "":
+        $ protag_name = "April"
+
 ## Start inputting date for widgets here (weather, date, etc)
     $weather_stuff("sunny", 5, 1, "Thursday", 15)
     show screen widgets
