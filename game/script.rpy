@@ -110,7 +110,7 @@ label start:
 
     stop music fadeout 2.0
 
-    $ protag_name = renpy.input ("My name is...")
+    $ protag_name = renpy.input ("My name is...", length = 17, default= "April")
     $ protag_name = protag_name.strip()
 
     if protag_name == "":

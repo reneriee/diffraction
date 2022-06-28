@@ -1404,7 +1404,6 @@ screen history():
                     text what:
                         substitute False
                         color "#4c4d52"
-                        italic True
 
         if not _history_list:
             label _("The dialogue history is empty.")

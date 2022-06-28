@@ -6,7 +6,7 @@
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
 
-
+define config.rollback_enabled = False
 ## Basics ######################################################################
 
 ## A human-readable name of the game. This is used to set the default window
@@ -40,7 +40,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "OTOMEGAMEPROJECT"
+define build.name = "Diffraction"
 
 
 ## Sounds and music ############################################################
