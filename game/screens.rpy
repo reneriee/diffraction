@@ -750,6 +750,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
             bottom_padding 140
             top_margin 180
             right_margin 65
+            left_margin -75
            
             hbox:
 
@@ -1156,127 +1157,128 @@ screen preferences():
     tag menu
 
     use game_menu(_("Preferences"), scroll="viewport"):
-        vbox:
+        frame style "box" left_margin 75:
             vbox:
-                box_wrap True
+                vbox:
+                    box_wrap True
 
-                if renpy.variant("pc") or renpy.variant("web"):
+                    if renpy.variant("pc") or renpy.variant("web"):
+
+                        hbox:
+                            style_prefix "radio"
+                            label _("Display") style "pref_label"
+                            textbutton _("Fullscreen") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("display", "fullscreen")
+                            textbutton _("Windowed") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("display", "window")
+
+                    # hbox:
+                    #     style_prefix "radio"
+                    #     label _("Rollback Side") style "pref_label"
+                    #     textbutton _("Disable") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "disable")
+                    #     textbutton _("Left") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "left")
+                    #     textbutton _("Right") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "right")
+
+                    hbox:
+                        style_prefix "check"
+                        label _("Skip") style "pref_label"
+                        textbutton _("Unseen Text") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("skip", "toggle")
+                        textbutton _("After Choices") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("after choices", "toggle")
+                        textbutton _("Transitions") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action InvertSelected(Preference("transitions", "toggle"))
 
                     hbox:
                         style_prefix "radio"
-                        label _("Display") style "pref_label"
-                        textbutton _("Fullscreen") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("display", "fullscreen")
-                        textbutton _("Windowed") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("display", "window")
+                        label _("Protagonist Portrait") style "pref_label"
+                        textbutton _("On") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action SetField(persistent, 'show_mc_side_image', True)
+                        textbutton _("Off") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action SetField(persistent, 'show_mc_side_image', False)
 
-                hbox:
-                    style_prefix "radio"
-                    label _("Rollback Side") style "pref_label"
-                    textbutton _("Disable") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "disable")
-                    textbutton _("Left") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "left")
-                    textbutton _("Right") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("rollback side", "right")
+                    ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                    ## added here, to add additional creator-defined preferences.
 
-                hbox:
-                    style_prefix "check"
-                    label _("Skip") style "pref_label"
-                    textbutton _("Unseen Text") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("skip", "toggle")
-                    textbutton _("After Choices") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action Preference("after choices", "toggle")
-                    textbutton _("Transitions") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action InvertSelected(Preference("transitions", "toggle"))
+                null height (4 * gui.pref_spacing)
 
-                hbox:
-                    style_prefix "radio"
-                    label _("Protagonist Portrait") style "pref_label"
-                    textbutton _("On") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action SetField(persistent, 'show_mc_side_image', True)
-                    textbutton _("Off") hover_sound "Audio/MiniHover_Beep.mp3" activate_sound "Audio/MiniSelect_Beep.mp3" action SetField(persistent, 'show_mc_side_image', False)
+                vbox:
+                    style_prefix "slider"
+                    box_wrap True
 
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                    hbox:
 
-            null height (4 * gui.pref_spacing)
+                        if config.has_music:
+                            label _("BGM Volume") style "pref_label_audio"
 
-            vbox:
-                style_prefix "slider"
-                box_wrap True
+                            hbox:
 
-                hbox:
+                                frame style "box" right_margin 17:
 
-                    if config.has_music:
-                        label _("BGM Volume") style "pref_label_audio"
+                                    text "0%" style "slider_value_min"
 
-                        hbox:
+                                bar value Preference("music volume")
 
-                            frame style "box" right_margin 17:
+                                frame style "box" left_margin 17:
+                                    text "100%" style "slider_value_max"
 
-                                text "0%" style "slider_value_min"
+                    hbox:
 
-                            bar value Preference("music volume")
+                        if config.has_sound:
 
-                            frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"
+                            label _("SFX Volume") style "pref_label_audio"
 
-                hbox:
+                            hbox:
+                                frame style "box" right_margin 17:
 
-                    if config.has_sound:
+                                    text "0%" style "slider_value_min"
 
-                        label _("SFX Volume") style "pref_label_audio"
+                                bar value Preference("sound volume")
 
-                        hbox:
-                            frame style "box" right_margin 17:
+                                frame style "box" left_margin 17:
+                                    text "100%" style "slider_value_max"
 
-                                text "0%" style "slider_value_min"
+                                if config.sample_sound:
+                                    textbutton _("Test") action Play("sound", config.sample_sound)
 
-                            bar value Preference("sound volume")
+                        # if config.has_voice:
+                        #     label _("Voice Volume")
 
-                            frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"
+                        #     hbox:
+                        #         bar value Preference("voice volume")
 
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
+                        #         if config.sample_voice:
+                        #             textbutton _("Test") action Play("voice", config.sample_voice)
 
-                    # if config.has_voice:
-                    #     label _("Voice Volume")
+                        if config.has_music or config.has_sound or config.has_voice:
+                            null height gui.pref_spacing
 
-                    #     hbox:
-                    #         bar value Preference("voice volume")
+                            # textbutton _("Mute All"):
+                            #     action Preference("all mute", "toggle")
+                            #     style "mute_all_button"
 
-                    #         if config.sample_voice:
-                    #             textbutton _("Test") action Play("voice", config.sample_voice)
+                    frame style "box" top_margin 30:
+                        vbox:
+                            hbox:
 
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
+                                label _("Text Speed") style "pref_label_audio"
 
-                        # textbutton _("Mute All"):
-                        #     action Preference("all mute", "toggle")
-                        #     style "mute_all_button"
+                                frame style "box" right_margin 17:
 
-                frame style "box" top_margin 30:
-                    vbox:
-                        hbox:
+                                    text "0%" style "slider_value_min"
 
-                            label _("Text Speed") style "pref_label_audio"
+                                bar value Preference("text speed")
 
-                            frame style "box" right_margin 17:
-
-                                text "0%" style "slider_value_min"
-
-                            bar value Preference("text speed")
-
-                            frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"
+                                frame style "box" left_margin 17:
+                                    text "100%" style "slider_value_max"
 
 
-                        hbox:
+                            hbox:
 
-                            label _("Auto Speed") style "pref_label_audio"
+                                label _("Auto Speed") style "pref_label_audio"
 
-                            frame style "box" right_margin 17:
+                                frame style "box" right_margin 17:
 
-                                text "0%" style "slider_value_min"
+                                    text "0%" style "slider_value_min"
 
-                            bar value Preference("auto-forward time"):
-                                bar_invert True 
+                                bar value Preference("auto-forward time"):
+                                    bar_invert True 
 
-                            frame style "box" left_margin 17:
-                                text "100%" style "slider_value_max"
+                                frame style "box" left_margin 17:
+                                    text "100%" style "slider_value_max"
 
 
 style pref_label is gui_label
@@ -1459,6 +1461,8 @@ style history_label:
 
 style history_label_text:
     xalign 0.5
+    yalign 0.5
+    color "#535353"
 
 
 ## Help screen #################################################################

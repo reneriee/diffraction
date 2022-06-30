@@ -6,7 +6,10 @@
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
 
+# define config.developer = False
 define config.rollback_enabled = False
+define config.default_music_volume = 0.65
+define config.default_sfx_volume = 0.4
 ## Basics ######################################################################
 
 ## A human-readable name of the game. This is used to set the default window
