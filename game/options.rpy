@@ -29,7 +29,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "1.05"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -187,6 +187,36 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+    build.classify("game/images/**.png", "archive")
+    build.classify("game/images/**.jpg", "archive")
+    build.classify("game/images/**.jpeg", "archive")
+    build.classify("game/**.rpy", "archive")
+    build.classify("game/**.rpyc", "archive")
+
+    ## To archive files, classify them as 'archive'.
+
+    # build.classify('game/**.png', 'archive')
+    # build.classify('game/**.jpg', 'archive')
+
+    ## Files matching documentation patterns are duplicated in a mac app build,
+    ## so they appear in both the app and the zip file.
+
+    build.documentation('*.html')
+    build.documentation('*.txt')
+    build.classify("game/gui/**.png", "archive")
+    build.classify("game/Music/**.mp3", "archive")
+    build.classify("game/Audio/**.mp3", "archive")
+
+    ## To archive files, classify them as 'archive'.
+
+    # build.classify('game/**.png', 'archive')
+    # build.classify('game/**.jpg', 'archive')
+
+    ## Files matching documentation patterns are duplicated in a mac app build,
+    ## so they appear in both the app and the zip file.
+
+    build.documentation('*.html')
+    build.documentation('*.txt')
 
     ## To archive files, classify them as 'archive'.
 
@@ -200,6 +230,7 @@ init python:
     build.documentation('*.txt')
 
 
+
 ## A Google Play license key is required to download expansion files and perform
 ## in-app purchases. It can be found on the "Services & APIs" page of the Google
 ## Play developer console.
@@ -211,4 +242,3 @@ init python:
 ## by a slash.
 
 # define build.itch_project = "renpytom/test-project"
- 

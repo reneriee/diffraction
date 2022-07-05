@@ -224,6 +224,7 @@ label start:
     z "The woman vaguely flips through my portfolio. It’s clear based on how quickly she turns each page that she’s barely taking anything in."
     b1 "Now, that isn’t to say your work isn’t good; you might even be a good fit for our company once you get some experience."
     b1 "But unfortunately, three years of personal social media work isn’t quite our standard for “experience.”"
+    stop sound
     mc sad "...I understand."
     mc "(Of course... It’s not like I haven’t heard that one before.)"
 
@@ -387,7 +388,7 @@ label start:
     mc sad "(I was told applying at job fairs was supposed to be easier but that’s not true at all. At least email rejections aren’t as brutal.)"
     mc "(This was such a waste of time...)"
     stop ambient fadeout 8
-    mc judge "(...I should just steer clear of Mr. Cultured Photo's booth as much as possible.)"
+    mc judge "(...I should just steer clear of Mr. Cultured's booth as much as possible.)"
     play music "<loop 0.00>Music/Prologue.mp3" fadein 5.0 volume 0.75
     mc eyesclosed "Hahhh... "
     mc sad "Another day, another disappointment, I guess."
@@ -473,7 +474,7 @@ label start:
     z "The crowd around me blurs while my focus stays on the spot he last stood."
     z "Only in the rush, I’d forgotten to look where I was going... "
     play sound "Audio/Crash.mp3"
-    stop ambient fadeout 20
+    stop ambient fadeout 10
     show Hen Giant shocked with poof
     mc startled "Wai-... Ngh-" with hpunch
     hide Hen Giant with poof
@@ -498,7 +499,7 @@ label start:
     z "*CRACK*"
     mc neutral " .... "
     h " .... "
-    mc crisis "(Oh crap ...)"
+    mc crisis "(Oh crap...)"
     show mini_cg_3 with Dissolve(2)
     z "There,{w=0.5} beneath my shoe,{w=0.5} lies a very shiny,{w=0.5} very new-looking{w=0.5}... {i}very{/i} broken-beyond-repair smartphone."
     hide mini_cg_3 with Dissolve(2)
@@ -528,7 +529,7 @@ label start:
         "Stand around awkwardly.":
             stop music fadeout 2.0
             jump Stay_Hen_1
-        "Stop and apologize to the stanger, attempt to make amends.":
+        "Stop and apologize to the stranger, attempt to make amends.":
             $ Apologize_to_Hen = True
             stop music fadeout 2.0
             jump Stay_Hen_2
@@ -587,7 +588,7 @@ label start:
             jump Dont_Know
         "(Ask him how much the phone was worth. See if you have money to fix it.)":
             jump Money_To_Fix
-        "It was an accident!!":
+        "It was an accident!! (Not entirely my fault.)":
             jump Insist_Accident
 
     label Dont_Know:
@@ -688,7 +689,7 @@ label start:
     z "He holds up his cracked and dead phone in emphasis."
     o "Damn, that sucks... "
     h smile "Yup."
-    z "Everyone waits a beat to see if Hen will explain what happened, but he doesn't to elaborate any further."
+    z "Everyone waits a beat to see if Hen will explain what happened, but he doesn't elaborate any further."
     z "He simply shrugs."
     l "...."
     o "...."
@@ -697,7 +698,7 @@ label start:
     l question "Oh, who’s this? Another fan?"
     z "She seems to study me for a moment."
     mc shock "(Fan...? Should I feel offended?)"
-    mc judge "(No, I’m just the person that broke his phone... )"
+    mc judge "(No, I’m just the person that broke his phone...)"
     mc neutral "I’m-"
     h neutral "-A possible new collab."
     show Hen Tiny wink with poof
@@ -737,7 +738,7 @@ label start:
             z "But he continues walking right after."
             hide Hen with dissolve
             jump Go_Quietly
-        "(Don't go with him until he's explains.)":
+        "(Don't go with him until he explains.)":
             $ Question_Hen = True
             jump Explain_First
         "(Don't go with him/leave.)":
@@ -821,7 +822,7 @@ label start:
     h "Only asking for a mere few bags of candy in exchange for my poor, broken, custom, engraved, {i}$5,000.00{/i} phone."
     z "With each adjective, his voice grows louder until a few curious people glance our way."
     h "How cruel and unjust!"
-    z "The number of glances keep increasing. A few curious whispers about us seem to be starting up as well."
+    z "The number of glances keep increasing. A few whispers about us seem to be starting up as well."
     mc "(This isn't good-)"
     mc startled "Okay!-"
     mc "Okay, I'll go with you! Just stop that."
@@ -881,7 +882,7 @@ label start:
     if Question_Hen == False:
         mc shock "(Why are we at the store?)"
     else:
-        mc shock "(This is definitely the store... )"
+        mc shock "(This is definitely the store...)"
     z "Before I can even contemplate what would happen next, Hen has already wandered off, swiftly vanishing into one of the more distant aisles."
     mc "Okay then...–"
     z "I slowly follow after him."
@@ -904,11 +905,11 @@ label start:
     z "With his hands now freed up, he seems to stare at the candy selection seriously for a few moments-"
     z "Apparently torn between a pack of multi-coloured frog gummies and what appears to be a foreign brand of whale gummies."
     h thoughtful "Hmmm... What do you think? Blue Whales or Tree Frogs?"
-    mc shock "(This is probably the most serious look I've seen from him so far... )"
+    mc shock "(This is probably the most serious look I've seen from him so far...)"
 
     menu:
         mc ""
-        "(Pick one from what he said)":
+        "(Pick one from what he said.)":
             jump One_Of_Two
         "Why not both?":
             jump Why_Not_Both
@@ -921,7 +922,7 @@ label start:
     mc judge "(I guess the tree frogs are cheaper… but ugh… my poor wallet.)"
     mc neutral "Tree frogs… I guess?"
     mc sad "(There go my pathetic savings… goodbye…)"
-    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.45
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
 
     h neutral "Hmm, not a bad choice."
     mc shock "(...!)"
@@ -941,10 +942,10 @@ label start:
 
     mc neutral "Just get both."
     z "I briefly glance down at the already ridiculous pile of candy in my arms, wondering why he’s suddenly showing some restraint."
-    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.45
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
     h shocked "I can’t do that! Don’t you see I need to watch my health?"
-    h "I couldn't possibly!"
-    #Insert hen fast blinking here
+    h blinky "I couldn't possibly!"
+    show Hen shocked with poof
     mc judge "U-uhm…"
     mc "(...T-this is him watching his health…?)"
     show Hen thoughtful with poof
@@ -970,7 +971,7 @@ label start:
     label Does_It_Matter:
 
     mc neutral "It’s... just candy... does it make a difference-..."
-    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.45
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
     z "I am almost immediately cut off by an indignant gasp."
     h shocked "Of course it makes a difference! They’re two completely different flavors!"
     play sound "Audio/Candy_Shake.mp3"
@@ -984,7 +985,7 @@ label start:
     mc sad "(I feel like my brain is melting...)"
     z "His eyes narrow more in judgment."
     h thoughtful "What do you know? You candy heathen!"
-    h shocked "You see-! Gummy whales instead have a mild mellow-flavoured marshmallow base that allows the top gelatin to diffuse the sweetness despite them having less citrus or acidic flavours! If anything they're a better gummy experience despite not being all uniform. And they also-"
+    h shocked "You see-! Gummy whales instead have a mild-flavoured marshmallow base that allows the top gelatin to diffuse the sweetness despite them having less citrus or acidic flavours! If anything they're a better gummy experience despite not being all uniform. And they also-"
     z "It's hard to tell if he's taking a breath during his explanation."
     mc "(I’m learning way too much about gummies today...)"
     h thoughtful "So you see, they’re both completely different!"
@@ -1005,7 +1006,7 @@ label start:
 
     mc neutral "(Okay, fine, let's see here... These would be $3, plus that is $11.50 and those $18.75...)"
     mc shock "(This is way too much!)"
-    z "Something must show on my face because he points at the pile under the bag of gummy whales in my arms."
+    z "Something must show on my face because he points at the group of bags under the gummy whales in my arms."
     h smile "I’ll pay for these ones, it’s fine."
     mc "G-great..."
     mc neutral "(What was even the point of making me listen to that speech if you’re just going to get both and pay for some anyways...)"
@@ -1062,6 +1063,7 @@ label start:
     mc neutral "(Seems like they know each other...)"
     z "My questions are given no answers as the woman doesn’t even spare him a glance as she continues bagging the candy."
     z "Hen doesn’t seem to pursue the matter."
+    stop sound
     z "Finally having freed the remainder of my coins from the recesses of my wallet, I hand the woman the money."
     k "Thank you!"
     z "She counts the change, then gives me another smile as she hands me the bag before turning to Hen."
@@ -1086,7 +1088,7 @@ label start:
     hide Hen Big
     show Hen neutral
     with dissolve
-    stop sound fadeout 1.0
+    stop sound
     mc neutral "So what now?"
     h "Hm?"
     mc "Well you said that this would be enough to make up for the phone, right?"
@@ -1175,12 +1177,12 @@ label start:
     mc neutral "Gildstein Community College student photography exhibit...?"
     z "Across one full wall of the auditorium there are just over a dozen or so pictures lined up in a row, displaying the name of the respective student photographer just beneath them."
     z "It’s almost easy to mistake how small the classes here actually are with each picture blown up and taking up a lot more space than a normal photograph."
-    mc shock "(I... remember this... )"
+    mc shock "(I... remember this...)"
     mc "(Back when I was considering where to study, my parents took me to see one of these...)"
     z  "-Though I did end up going somewhere better, so I haven’t seen this in years."
     mc "(I can’t believe they’re still running these.)"
     mc happy "How nostalgic."
-    mc sad "(I was so focussed on my job search earlier that I must have overlooked it.)"
+    mc sad "(I was so focused on my job search earlier that I must have overlooked it.)"
     mc neutral "(....)"
     z "I quickly pull out my phone to check the time."
     mc sad "(I’m already late, so taking a little peek around can’t hurt, right?)"
@@ -1192,7 +1194,7 @@ label start:
     play music "<loop 0.00>Music/Home_Mellow.mp3" fadein 6.0 volume 0.7
 
     mc neutral "Oh, not bad, not bad at all..."
-    z "It’s a lot easier now to slowly navigate from one image to the next now with the lack of crowds."
+    z "It’s a lot easier to slowly navigate from one image to the next now with the lack of crowds."
     z "There’s time to check each name carefully before taking a look at their work."
     mc happy "This one’s pretty good too..."
     z "On the far side of the wall there was a sign that said the exhibit's overall theme was “Corners of Daily Life.”"
@@ -1211,7 +1213,7 @@ label start:
     z "The picture staring back at me is an incredibly simple one and one that’s very on-theme - what with it being exactly the theme itself - depicting a cracked corner of a room."
     z "Little motes of dust and debris are the only other visible details in the photo. But somehow... "
     mc happy "(Aha, a little on the nose there.)"
-    mc shock "(But that use of lighting is so interesting... )"
+    mc shock "(But that use of lighting is so interesting...)"
     mc neutral "(Among the pictures here, this one has the most unique lighting of the bunch.)"
     mc "(Whether that’s a good or bad thing though-)"
     mc judge "(Either way, this person has potential, I’m kind of jealous...)"
@@ -1314,7 +1316,7 @@ label start:
     show Faine mixed with Dissolve(0.5)
     f "That's me."
     f "So?"
-    z "His hands and knees covered in dirt, he now stands upright, an uncharacteristically wary look on his face."
+    z "With his hands and knees covered in dirt, he now stands upright, an uncharacteristically wary look on his face."
     mc shock "(Well that's…direct…)"
     mc "I-..."
     mc sad "..."
@@ -1440,7 +1442,7 @@ label start:
     mc "I've been out of town for a while and I don't really know anyone here anymore, so I guess I thought it might be nice to talk to you again?"
     mc sad "But…it's okay if you don't want to."
     show Faine neutral with poof
-    z "Though his posture remains tense, something seems to give in his expression as he looks away once more, his mouth remaining closed in a thin line for a moment."
+    z "Though his posture remains tense, something seems to give way in his expression as he looks away once more, his mouth remaining closed in a thin line."
     f anxious "It's not that I don't want to..."
     f "I just..."
     z "He looked down at his camera nervously for a moment."
@@ -1512,7 +1514,7 @@ label start:
 
     menu:
         mc "I should..."
-        "I forgot the phone guy! Go back and look for him.":
+        "I forgot the phone guy! (Go back and look for him.)":
             stop ambient fadeout 3.0
             jump Return_Hen
         "It's been a long day. Let's go home.":
@@ -1600,7 +1602,7 @@ label start:
 
     mc "He was tall, now that I think about it and kind of handsome-"
     h "-Both in his looks and personality! The whole package of handsome if you were to ask me!"
-    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.45
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
     z "A loud voice from behind interrupts me."
     hide silh2 with dissolve
     z "I turn around, only to come face-to-face with the exact person I was looking for."
@@ -1635,7 +1637,7 @@ label start:
     z "The woman gives me a withering look, clearly unimpressed about what I'd just told her"
     z "She then opens her mouth as if to say something, but before she can do that, we're both interupted by a voice behind me."
     h "It's seems like the lady does know of her crime!"
-    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.45
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
     mc shock "(...?!)"
     hide silh2 with dissolve
     z "I turn towards the voice, only to find the exact person I was looking for."
@@ -1660,7 +1662,7 @@ label start:
     mc "I think he was also... uh... tall-?"
     z "Suddenly, I am interrupted as a voice speaks up behind me."
     na "He was tall! Dashing! Handsome! I could fall in love...actually I already have."
-    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.45
+    play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
     mc shock "(...?!)"
     hide silh2 with dissolve
     z "I turn... to find the exact man I was looking for, staring down at me."
@@ -1835,7 +1837,7 @@ label start:
     show bg hallway with fade
     stop ambient fadeout 2.0
     play sound "Audio/Door_Open.mp3"
-    mc "(Here goes... )"
+    mc "(Here goes...)"
     play ambient "Audio/Kitchen_Noise.mp3" loop fadein 5.0 volume 0.7
     z "Walking in, I quietly close the door behind me, taking off my shoes before proceeding to walk down the now rather dim hall."
     stop sound
@@ -1871,7 +1873,7 @@ label start:
 
     label Go_Home_Late:
 
-    play ambient "Audio/Rain2.mp3" loop fadein 5.0 volume 0.4
+    play ambient "Audio/Rain2.mp3" loop fadein 5.0 volume 0.35
     show bg streets 1 night with fade
 
     z "The walk back home is a relatively short and uneventful one."
@@ -1977,7 +1979,7 @@ label start:
     hide blackscreen with Dissolve(0.03)
     hide blink with dissolve
 
-    mc sad "(I’ll... try to finish some... uploads... tomorrow too...)"
+    mc no_coat sad "(I’ll... try to finish some... uploads... tomorrow too...)"
 
     show blink with Dissolve(0.03)
     show blackscreen with Dissolve(0.03)
@@ -1985,13 +1987,13 @@ label start:
     hide blackscreen with Dissolve(0.03)
     hide blink with dissolve
 
-    mc eyesclosed "(...Maybe send out some more job app.... lica... tions...)"
+    mc no_coat eyesclosed "(...Maybe send out some more job app.... lica... tions...)"
 
     show blink with Dissolve(0.3)
     show blackscreen with Dissolve(0.3)
     pause 1
 
-    "CHAPTER 1 END - MAY DAY (*DEMO END*)"
+    "CHAPTER 1 END - MAY DAY (*MINI DEMO END*)"
 
 #[GO AFTER FAINE + being in trouble with Hen v1 + 2 ]
 #[MC thinking about how different Faine was, contemplating the broken phone scenario and hen (depending on if she went back for him) etc.]

@@ -378,14 +378,14 @@ screen quick_menu():
                     add "quicksave_button"
                     focus_mask True
                     xpos -35
-                    hover_sound "Audio/SaveHover_Beep.mp3"
+                    hover_sound "Audio/Hover_Beep.mp3"
                     activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('save')
                 button:
                     add "quickload_button"
                     focus_mask True
                     xpos -35
-                    hover_sound "Audio/SaveHover_Beep.mp3"
+                    hover_sound "Audio/Hover_Beep.mp3"
                     activate_sound "Audio/Select_Beep.mp3"
                     action ShowMenu('load')
 
@@ -519,17 +519,17 @@ screen navigation():
             yalign 0.5
 
         if main_menu:
-            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("preferences")
-            imagebutton auto "loadtab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("load") 
+            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Hover_Beep.mp3" action ShowMenu("preferences")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Hover_Beep.mp3" action ShowMenu("load")
             imagebutton idle "locked_tab.png" focus_mask True xpos 202 ypos 55
             imagebutton idle "locked_tab.png" focus_mask True xpos 222 ypos 55
             image "gui/tabs_border.png" ypos 115 xpos -843
 
         else:
-            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("preferences")
-            imagebutton auto "loadtab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("load") 
-            imagebutton auto "savetab_%s.png" focus_mask True xpos 202 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("save")
-            imagebutton auto "historytab_%s.png" focus_mask True xpos 222 ypos 55 hover_sound "Audio/Flute.mp3" action ShowMenu("history")
+            imagebutton auto "prefstab_%s.png" focus_mask True xpos 160 ypos 55 hover_sound "Audio/Hover_Beep.mp3" action ShowMenu("preferences")
+            imagebutton auto "loadtab_%s.png" focus_mask True xpos 182 ypos 55 hover_sound "Audio/Hover_Beep.mp3" action ShowMenu("load")
+            imagebutton auto "savetab_%s.png" focus_mask True xpos 202 ypos 55 hover_sound "Audio/Hover_Beep.mp3" action ShowMenu("save")
+            imagebutton auto "historytab_%s.png" focus_mask True xpos 222 ypos 55 hover_sound "Audio/Hover_Beep.mp3" action ShowMenu("history")
             imagebutton idle "locked_tab.png" focus_mask True xpos 242 ypos 55 # action ShowMenu("tracks") #
             imagebutton idle "locked_tab.png"  focus_mask True xpos 262 ypos 55 # action ShowMenu("gallery") #
 
@@ -599,16 +599,16 @@ screen main_menu():
     ## contents of the main menu are in the navigation screen.
     window style "main_menu_button_box":
         at my_fade(1, 1.0)
-        vbox: 
+        vbox:
             style_prefix "navigation"
-            
+
             # button:
             #     xsize 200
             #     ysize 200
             #     action Start()
             #     hovered SetVariable('isHovered', True)
             #     unhovered SetVariable('isHovered', False)
-               
+
             #     if isHovered == True:
             #         frame:
             #             xsize 200
@@ -621,7 +621,7 @@ screen main_menu():
             #             ysize 200
             #             background "#044079"
             #     text "[isHovered]"
-                 
+
 
             if renpy.get_screen('main_menu'):
                 xalign 0.5
@@ -631,7 +631,7 @@ screen main_menu():
                 spacing 0
                 ypos 940
 
-                
+
                 textbutton _("Start") text_style "main_menu_buttons" hover_sound "Audio/Hover_Beep.mp3" activate_sound "Audio/Select_Beep.mp3" action Start()
                 # textbutton _("About") action ShowMenu("about")
                 textbutton _("Load") text_style "main_menu_buttons" hover_sound "Audio/Hover_Beep.mp3" activate_sound "Audio/Select_Beep.mp3" action ShowMenu("load")
@@ -704,11 +704,11 @@ style main_menu_version:
 ## The scroll parameter can be None, or one of "viewport" or "vpgrid". When
 ## this screen is intended to be used with one or more children, which are
 ## transcluded (placed) inside it.
-define pref_tint = im.MatrixColor("gui/gradient.png", 
+define pref_tint = im.MatrixColor("gui/gradient.png",
 im.matrix.tint(.70,.90,1)*im.matrix.brightness(-0.05)
 *im.matrix.contrast(1.2))
 
-define load_tint = im.MatrixColor("gui/save_screen_bg.png", 
+define load_tint = im.MatrixColor("gui/save_screen_bg.png",
 im.matrix.tint(.0,.73,.80)*im.matrix.brightness(0.17)
 *im.matrix.contrast(1.0)*im.matrix.opacity(0.7))
 
@@ -724,24 +724,24 @@ screen game_menu(title, scroll=None, yinitial=0.0):
         add gui.main_menu_background
     else:
         add gui.game_menu_background
-    
+
     frame style "box":
 
         if renpy.get_screen("save"):
             add save_tint
             add "gui/gradient2.png"  alpha .54
             add "gui/rain_window.png"  alpha .8
-            add "gui/menu_frame.png"  
+            add "gui/menu_frame.png"
         elif renpy.get_screen("load"):
             add load_tint
             add "gui/gradient2.png"  alpha .54
             add "gui/rain_window.png"  alpha .8
-            add "gui/menu_frame.png"  
+            add "gui/menu_frame.png"
         else:
             add pref_tint
             add "gui/gradient2.png"  alpha .5
             add "gui/rain_window.png"  alpha .6
-            add "gui/menu_frame.png"  
+            add "gui/menu_frame.png"
 
 
         add "menu_frame.png"
@@ -751,7 +751,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
             top_margin 180
             right_margin 65
             left_margin -75
-           
+
             hbox:
 
                 ## Reserve space for the navigation section.
@@ -1275,7 +1275,7 @@ screen preferences():
                                     text "0%" style "slider_value_min"
 
                                 bar value Preference("auto-forward time"):
-                                    bar_invert True 
+                                    bar_invert True
 
                                 frame style "box" left_margin 17:
                                     text "100%" style "slider_value_max"
@@ -1353,7 +1353,6 @@ style slider_button_text:
 style slider_vbox:
     xsize 675
 
-
 ## History screen ##############################################################
 ##
 ## This is a screen that displays the dialogue history to the player. While
@@ -1426,7 +1425,7 @@ style history_name_text:
 
 style history_text:
     color "#535353"
-    
+
 
 style history_text is gui_text
 
@@ -1672,12 +1671,12 @@ screen confirm(message, yes_action, no_action):
                     activate_sound "Audio/Select_Beep.mp3"
                     action no_action
 
-                button:  
+                button:
                     add "yes_button"
                     hover_sound "Audio/Hover_Beep.mp3"
                     activate_sound "Audio/Select_Beep.mp3"
                     action yes_action
-                
+
 
 
     ## Right-click and escape answer "no".
