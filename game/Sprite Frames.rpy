@@ -204,6 +204,8 @@ layeredimage Hendric:
             "h_thoughtful_blink"
         attribute eyesclosed:
             "hfdb"
+        attribute blinky:
+            "h_fast_blink"
     group brows:
         attribute neutral default:
             "hfe1br"
@@ -221,6 +223,8 @@ layeredimage Hendric:
             "hfe3br"
         attribute eyesclosed:
             "hfe1br"
+        attribute blinky:
+            "hfe3br"
     group mouth:
         attribute neutral default:
             "hfe1m"
@@ -238,6 +242,8 @@ layeredimage Hendric:
             "hfe6m"
         attribute eyesclosed:
             "hfe5m"
+        attribute blinky:
+            "hfe3m"
     group hair:
         attribute fringe default:
             "hff"
@@ -392,6 +398,16 @@ image h_thoughtful_blink:
     "hfdb"
     0.13
     repeat
+
+image h_fast_blink:
+    "hfe3e"
+    0.1
+    "hfe3b"
+    0.1
+    "hfdb"
+    0.1
+    "hfe3e"
+    repeat 5
 
 image o_smile_blink:
     "oe1e"

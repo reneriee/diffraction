@@ -203,7 +203,7 @@ label start:
     b1 "Are you alright?"
     mc "(Ah... stupid, why am I daydreaming at a time like this?!)"
     menu:
-        mc "I-"
+        p "I-"
         "Apologize, ask her to repeat herself.":
             $ pretend_listen = False
             $ who_is_she = False
@@ -313,7 +313,7 @@ label start:
     mc judge "...."
 
     if pretend_listen == True:
-        ba "Wait... weren’t you the girl zoning just a few booths over?"
+        ba "Wait... weren’t you the girl zoning out just a few booths over?"
         mc shock "(H-how does he know that?)"
         ba "Yeah, it's definitely you! Not many people with pink hair around here."
         z "He flips carelessly through my portfolio with one hand."
@@ -505,7 +505,7 @@ label start:
     hide mini_cg_3 with Dissolve(2)
 
     menu:
-        mc "What should I do!?"
+        p "(Uhhhh-!?)"
         "Keep running.":
             mc "(Ugh- I can’t deal with this now, I need to find Faine!)"
             z "Tearing my glance away from the cracked phone and the hopefully still disoriented stranger, I turn and run, quickly resuming my pursuit."
@@ -583,12 +583,12 @@ label start:
     mc shock "Uhm..."
 
     menu:
-        mc "(What should I do?)"
+        p "(What should I do?)"
         "(Tell him you don’t know what to do.)":
             jump Dont_Know
         "(Ask him how much the phone was worth. See if you have money to fix it.)":
             jump Money_To_Fix
-        "It was an accident!! (Not entirely my fault.)":
+        "(Insist it was an accident!!)":
             jump Insist_Accident
 
     label Dont_Know:
@@ -597,7 +597,7 @@ label start:
         show Hen thoughtful with poof
         z "He eyes me critically as if searching for something."
         mc "(I apologized already but I still don't feel like that's enough.)"
-        z "His eyes dart down to his still broken phone and then looks back up to me once more."
+        z "His eyes dart down to his still broken phone and then looks back up to me once more-"
         show Hen eyesclosed with poof
         "Before he lets out a sigh."
     else:
@@ -728,7 +728,7 @@ label start:
     z "Without so much as waiting for further confirmation, he'd already begun to move, clearly expecting me to follow."
 
     menu:
-        mc ""
+        p ""
         "(Go with him quietly.)":
             mc sad "It's not like I have much of a choice on whether I want to go or not."
             z "I hesitantly follow, walking a few steps behind him."
@@ -804,7 +804,7 @@ label start:
     label Leave_Him_1_Conclude:
 
     menu:
-        mc "Maybe I'll-"
+        p "Maybe I'll-"
         "Go with him.":
             jump Go_With_Hen
         "Leave while I still can.":
@@ -859,7 +859,7 @@ label start:
     mc "(Maybe I should talk to him.)"
 
     menu:
-        mc "(I could ask about that collab he mentioned earlier.)"
+        p "(I could ask about that collab he mentioned earlier.)"
         "Ask him about it.":
             $ Ask_Collab = True
             mc "Hey, about that collab you mentioned-"
@@ -908,8 +908,8 @@ label start:
     mc shock "(This is probably the most serious look I've seen from him so far...)"
 
     menu:
-        mc ""
-        "(Pick one from what he said.)":
+        p ""
+        "(Pick the cheaper of the two.)":
             jump One_Of_Two
         "Why not both?":
             jump Why_Not_Both
@@ -1006,7 +1006,7 @@ label start:
 
     mc neutral "(Okay, fine, let's see here... These would be $3, plus that is $11.50 and those $18.75...)"
     mc shock "(This is way too much!)"
-    z "Something must show on my face because he points at the group of bags under the gummy whales in my arms."
+    z "Something must show on my face because he points at the pile of bags under the gummy whales."
     h smile "I’ll pay for these ones, it’s fine."
     mc "G-great..."
     mc neutral "(What was even the point of making me listen to that speech if you’re just going to get both and pay for some anyways...)"
@@ -1132,7 +1132,7 @@ label start:
     $ Day_1_Guy_Choice = "Hen"
 
     menu:
-        mc "(But somehow...)"
+        p "(But somehow...)"
         "I just can’t seem to let go of this... (Go back to look for Faine)":
             jump Return_Faine
         "Nevermind... (Go home)":
@@ -1153,7 +1153,7 @@ label start:
     z "Looking around, the hall is fairly empty at this point, so it’s easy to see across the expanse of the space, but unfortunately... "
     mc neutral "(Hm... no sign of him...)"
     mc "(Maybe I should ask one of the booth staff if they saw anyone matching his description?)"
-    mc judge "(Besides the blue hair I don’t exactly remember many details though...)"
+    mc judge "(Besides the light blue hair I don’t exactly remember many details though...)"
     mc neutral "(I’ll... just look around a bit more for now just in case I missed something.)"
 
     show bg job fair rain with fadehold
@@ -1210,7 +1210,7 @@ label start:
     mc shock "...."
     mc "-Woah... "
     show mini_cg_2 with Dissolve(3)
-    z "The picture staring back at me is an incredibly simple one and one that’s very on-theme - what with it being exactly the theme itself - depicting a cracked corner of a room."
+    z "The picture staring back at me is an incredibly simple one, and one that’s very on-theme - what with it being exactly the theme itself - depicting a cracked corner of a room."
     z "Little motes of dust and debris are the only other visible details in the photo. But somehow... "
     mc happy "(Aha, a little on the nose there.)"
     mc shock "(But that use of lighting is so interesting...)"
@@ -1240,7 +1240,7 @@ label start:
     scene bg streets 1
     with fade
 
-    z "Barely evading a few more startled passers-by, I made my way towards the place where I’d last spotted him, occasionally catching a glimpse of blue hair."
+    z "Barely evading a few more startled passers-by, I made my way towards the place where I’d last spotted him, occasionally catching a glimpse of light blue hair."
     z "I ended up finding myself just outside of the venue exit."
     mc startled "Ha… Ha… How is he so slippery!?"
     mc "I don't even remember him being athletic at all."
@@ -1254,7 +1254,7 @@ label start:
     play ambient "Audio/Park.mp3" fadein 3.0 volume 0.8
     queue ambient "<loop 0.00>Audio/Park.mp3" fadein 3.0 volume 0.7
     mc sad "(Finally…)"
-    mc shock "(....Wait, where did he go?)"
+    mc shock "(...Wait, where did he go?)"
     z "The park appears to be empty."
     z "Or so it seems…"
 
@@ -1275,14 +1275,14 @@ label start:
     z "The boy startles. A short thump could be heard as his head met the underside of the table, wobbling it slightly." with vpunch
     na "“Ouch–!! ….Ouch…ouch…."
     play sound "Audio/Debris.mp3"
-    z "Clasping his head he seemed to flinch for a moment before attempting to clumsily scramble out from under the table."
+    z "Clasping his head, he seemed to flinch for a moment before attempting to clumsily scramble out from under the table."
     mc judge "(What was he even doing down there…)"
     stop sound fadeout 1.0
     mc "(Is he trying to hide?)"
     mc neutral "Are you okay?"
 
     menu:
-        mc "(Maybe I should-)"
+        p "(Maybe I should-)"
         "(Go to help him.)":
             jump Go_Help
         "(Give him some space.)":
@@ -1338,7 +1338,7 @@ label start:
     mc "(I scrambled through a crowd for him... so...)"
 
     menu:
-        mc "(...What now?)"
+        p "(...What now?)"
         "(Laugh it off and make something up.)":
             jump Make_Something_Up
         "(Be honest, you don't know what you want.)":
@@ -1360,7 +1360,7 @@ label start:
     mc "(Yeah... yeah, that's it... exactly what I wanted to ask... absolutely...)"
     show Faine Small mixed with poof
     f "...."
-    z "Something small seems to soften in his expression."
+    z "Something small seems to shift in his expression."
     f "I don't know. Someone gave it to me."
     mc happy "O-oh, is that so..."
     z "Instead of words, Faine gives nothing but a small nod in reponse this time."
@@ -1376,9 +1376,8 @@ label start:
     show Faine anxious with poof
     mc sad "(Did his words from back then really mean so much to me?)"
     z "Before I realize it, I had been quiet for much longer than I thought."
-    z "His shuffling catches my attention."
     show Faine neutral with poof
-    z "I look up to see eyes strikingly similar to someone from a long time ago."
+    z "His shuffling catches my attention and I look up to see eyes strikingly similar to someone from a long time ago."
     f "If that's all-"
     f "I'm late for work. Bye."
     hide Faine Tiny with dissolve
@@ -1390,7 +1389,7 @@ label start:
     mc "(He said he was late for work so I probably shouldn't keep him too long.)"
 
     menu:
-        mc ""
+        p ""
         "(Push him for his contacts.)":
             jump Make_Something_Up_Next_1
         "(Wish him well and let him leave.)":
@@ -1448,12 +1447,12 @@ label start:
     z "He looked down at his camera nervously for a moment."
     show Faine eyesclosed with poof
     mc neutral "(Maybe he's feeling shy?)"
-    mc "If you don't want to talk right now, how about giving me your social media? Or…I guess I could give you mine."
+    mc "If you don't want to talk right now, how about giving me your social media? Or… I guess I could give you mine."
     show Faine neutral with poof
     z "He looks back up at me carefully."
     mc shock "You don't need to message me or anything, I probably won't really have the time to talk much anyway."
     mc "It'd just be nice to not lose contact again, you know?"
-    mc sad "Well…I guess this probably seems kind of weird to you since you don't remember and all..."
+    mc sad "Well… I guess this probably seems kind of weird to you since you don't remember and all..."
     mc "(What am I even saying at this point...)"
     mc "(I barely have time for myself, let alone for reviving forgotten friendships.)"
     z "He looks at me thoughtfully."
@@ -1473,7 +1472,7 @@ label start:
     with poof
     z "He hesitantly pockets the phone again, continuing to awkwardly stare at me for a bit before finally muttering."
     f neutral "...I’m late for work."
-    z "Faine raises a single stiff hand in what can only be assumed to be a greeting gesture of sorts."
+    z "Faine raises a single stiff hand, in what can only be assumed to be a greeting gesture of sorts."
     f "Okay."
     f "Bye."
     hide Faine with Dissolve(0.3)
@@ -1513,7 +1512,7 @@ label start:
     $ Day_1_Guy_Choice = "Faine"
 
     menu:
-        mc "I should..."
+        p "I should..."
         "I forgot the phone guy! (Go back and look for him.)":
             stop ambient fadeout 3.0
             jump Return_Hen
@@ -1590,7 +1589,7 @@ label start:
     mc neutral "Well uh... I was looking for someone and I was wondering if maybe you saw him?"
 
     menu:
-        mc "He-"
+        p "He-"
         "Was tall, now that I think about it and kind of handsome-":
             jump Flattering_Choice
         "(Describe hair, eyes, and clothes.)":
@@ -1635,7 +1634,7 @@ label start:
     mc sad "I think I might have ended up breaking his phone too..."
     mc thunk "Have you perhaps seen that guy by any chance...?"
     z "The woman gives me a withering look, clearly unimpressed about what I'd just told her"
-    z "She then opens her mouth as if to say something, but before she can do that, we're both interupted by a voice behind me."
+    z "She then opens her mouth as if to say something, but before she can do that, we're both interrupted by a voice behind me."
     h "It's seems like the lady does know of her crime!"
     play music "Music/Comedy.mp3" loop fadein 3.0 volume 0.43
     mc shock "(...?!)"
@@ -1730,7 +1729,7 @@ label start:
     mc eyesclosed "*Sigh*"
     mc neutral "(This is clearly getting me nowhere...)"
     mc "Okay fine."
-    mc sad "I came back to apologize about your phone, so I’m sorry about that…a-and running off afterwards."
+    mc sad "I came back to apologize about your phone, so I’m sorry about that… a-and running off afterwards."
     mc neutral "I’d like to make it up to you somehow."
     h "Hmmm... ?"
     h smile "And how are you going to do that?"
@@ -1749,7 +1748,7 @@ label start:
     mc judge "...."
 
     menu:
-        mc ""
+        p ""
         "(You don't know how to make it up to him, but you want to try)":
             mc sad "I...I don't actually know what I can do-"
             mc thunk "But I want to try."

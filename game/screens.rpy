@@ -135,6 +135,8 @@ screen say(who, what):
     if not renpy.variant("small") and persistent.show_mc_side_image == True:
             add SideImage() xalign 0.0 yalign 1.0
 
+    use quick_menu
+
 
 ## Make the namebox available for styling through the Character object.
 init python:
@@ -406,8 +408,8 @@ screen quick_menu():
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
-init python:
-    config.overlay_screens.append("quick_menu")
+#init python:
+    #config.overlay_screens.append("quick_menu")
 
 default quick_menu = True
 
@@ -475,7 +477,7 @@ screen widgets:
 
     vbox:
         yalign 0.042
-        xalign 0.0158
+        xalign 0.0178
 
         if weather == "sunny":
             add "sunny.png"
