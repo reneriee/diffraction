@@ -273,56 +273,6 @@ screen quick_menu():
     zorder 10
 
     if quick_menu:
-        hbox:
-            xalign 0.98
-            yalign 0.026
-            xsize 300
-
-            button:
-                add "mini_auto_button"
-                focus_mask True
-                yalign 0.5
-                xalign 0.0
-                xpos 0
-                hover_sound "Audio/MiniHover_Beep.mp3"
-                activate_sound "Audio/MiniSelect_Beep.mp3"
-                action Preference("auto-forward", "toggle")
-            button:
-                add "mini_qs_button"
-                focus_mask True
-                yalign 0.5
-                xalign 0.0
-                xpos 0
-                hover_sound "Audio/MiniHover_Beep.mp3"
-                activate_sound "Audio/MiniSelect_Beep.mp3"
-                action QuickSave()
-            button:
-                add "mini_ql_button"
-                focus_mask True
-                yalign 0.5
-                xalign 0.0
-                xpos 0
-                hover_sound "Audio/MiniHover_Beep.mp3"
-                activate_sound "Audio/MiniSelect_Beep.mp3"
-                action QuickLoad()
-            button:
-                add "mini_twitter_button"
-                focus_mask True
-                yalign 0.5
-                xalign 0.0
-                xpos 0
-                hover_sound "Audio/MiniHover_Beep.mp3"
-                activate_sound "Audio/MiniSelect_Beep.mp3"
-                action OpenURL("http://twitter.com/DiffractionVN")
-            button:
-                add "mini_main_button"
-                focus_mask True
-                yalign 0.5
-                xalign 0.0
-                xpos 0
-                hover_sound "Audio/MiniHover_Beep.mp3"
-                activate_sound "Audio/MiniSelect_Beep.mp3"
-                action MainMenu()
 
         vbox:
             xalign 0.943
@@ -501,6 +451,63 @@ style day_name is text:
 style temperature_text is text:
     font "Exo-Medium.ttf"
     size 25
+
+
+screen quick_menu_buttons:
+    if quick_menu:
+        hbox:
+            xalign 0.98
+            yalign 0.026
+            xsize 300
+
+            button:
+                add "mini_auto_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
+                action Preference("auto-forward", "toggle")
+            button:
+                add "mini_qs_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
+                action QuickSave()
+            imagebutton:
+                idle "gui/button/mini_ql_idle.png"
+                insensitive "gui/button/mini_ql_inactive.png"
+                hover "gui/button/mini_ql_hover.png"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
+                action QuickLoad()
+            button:
+                add "mini_twitter_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
+                action OpenURL("http://twitter.com/DiffractionVN")
+            button:
+                add "mini_main_button"
+                focus_mask True
+                yalign 0.5
+                xalign 0.0
+                xpos 0
+                hover_sound "Audio/MiniHover_Beep.mp3"
+                activate_sound "Audio/MiniSelect_Beep.mp3"
+                action MainMenu()
+
 
 ################################################################################
 ## Main and Game Menu Screens

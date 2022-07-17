@@ -127,18 +127,14 @@ init -2:
             "gui/button/mini_twitter_idle.png"
             "gui/button/mini_twitter_hover.png" with Dissolve(0.15, alpha=True)
 
-    image mini_ql_button:
-        "gui/button/mini_ql_idle.png"
-        on idle:
-            "gui/button/mini_ql_idle.png" with Dissolve(0.15, alpha=True)
-        on hover:
-            "gui/button/mini_ql_idle.png"
-            "gui/button/mini_ql_hover.png" with Dissolve(0.15, alpha=True)
-        on insensitive:
-            "gui/button/mini_ql_inactive.png"
-
-
-   
+    # image mini_ql_button:
+    #     "gui/button/mini_ql_idle.png"
+    #     on idle:
+    #         "gui/button/mini_ql_idle.png" with Dissolve(0.15, alpha=True)
+    #     on hover:
+    #         "gui/button/mini_ql_idle.png"
+    #         "gui/button/mini_ql_hover.png" with Dissolve(0.15, alpha=True)
+        
     image mini_qs_button:
         "gui/button/mini_qs_idle.png"
         on idle:

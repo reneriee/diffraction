@@ -134,6 +134,7 @@ label start:
 ################################################################################
 
     scene bg black
+    show screen quick_menu_buttons
 
     play music "<loop 0.00>Music/Prologue.mp3" fadein 5.0
     z "I'll leave Faine in your capable hands, alright? - Alright!"
